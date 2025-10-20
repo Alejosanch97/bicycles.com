@@ -1,0 +1,146 @@
+/* --- Estilos para el Footer --- */
+.main-footer {
+    background-color: #2c2c2c; /* Color de fondo oscuro */
+    color: #e0e0e0; /* Color del texto claro */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: white; /* Títulos un poco más claros */
+}
+
+.footer-links li a,
+.footer-links li {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    line-height: 2.2;
+}
+
+.footer-links li a:hover {
+    color: white;
+}
+
+/* Estilos de los íconos de redes sociales */
+.social-icons .social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #444;
+    color: #e0e0e0;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons .social-icon:hover {
+    background-color: #e0e0e0;
+    color: #2c2c2c;
+}
+
+/* Estilos del formulario de suscripción */
+.newsletter-form .input-group .form-control {
+    background-color: #444;
+    border-color: #555;
+    color: white;
+}
+
+.newsletter-form .input-group .form-control::placeholder {
+    color: #aaa;
+}
+
+.newsletter-form .input-group .btn {
+    background-color: #e0e0e0;
+    color: #2c2c2c;
+    border-color: #e0e0e0;
+    font-weight: bold;
+}
+
+.newsletter-form .input-group .btn:hover {
+    background-color: white;
+    border-color: white;
+}
+
+/* Estilos del texto de la parte inferior */
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* Estilos del ícono flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366; /* Verde de WhatsApp */
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos del ícono flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366; /* Verde de WhatsApp */
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+    text-decoration: none; /* ¡Esta es la línea clave para quitar el subrayado! */
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    color: white; /* Aseguramos que el color del ícono siga blanco al pasar el mouse */
+}
+
+/* Estilos de los íconos de redes sociales */
+.social-icons .social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #444;
+    color: #e0e0e0;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* ¡Añade esta línea para quitar el subrayado! */
+}
+
+.social-icons .social-icon:hover {
+    background-color: #e0e0e0;
+    color: #2c2c2c;
+    text-decoration: none; /* Aseguramos que no haya subrayado incluso al pasar el mouse */
+}

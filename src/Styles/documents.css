@@ -1,0 +1,528 @@
+/* src/Styles/documents.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+.documents-page {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.page-header {
+    background-color: #ffffff;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e1e4e8;
+    text-align: center;
+}
+
+.page-header .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.page-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.breadcrumbs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.breadcrumb-link {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.breadcrumb-link:hover {
+    color: #007bff;
+}
+
+.breadcrumb-separator {
+    margin: 0 0.5rem;
+    color: #ced4da;
+}
+
+.breadcrumb-current {
+    font-weight: 600;
+    color: #495057;
+}
+
+.main-content {
+    padding: 3rem 0;
+}
+
+.document-container {
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.document-content {
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.document-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.document-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #1a202c;
+    padding-left: 1rem;
+}
+
+.document-content p {
+    margin-bottom: 1.5rem;
+    color: #4a5568;
+}
+
+.document-content ul,
+.document-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: #4a5568;
+}
+
+.document-content ul li,
+.document-content ol li {
+    margin-bottom: 0.75rem;
+}
+
+.document-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.document-content th,
+.document-content td {
+    padding: 15px 20px;
+    border: none;
+    text-align: left;
+}
+
+.document-content thead th {
+    background-color: #1a202c;
+    color: #fff;
+    font-weight: 600;
+}
+
+.document-content tbody tr:nth-child(even) {
+    background-color: #f7f9fc;
+}
+
+.document-content tbody tr:hover {
+    background-color: #e2e8f0;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para la sección de Contacto */
+.contact-info-container {
+    text-align: center;
+}
+
+.contact-intro {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+.contact-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.contact-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 250px;
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.contact-card:hover i {
+    color: #007bff;
+}
+
+.contact-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.contact-card-value {
+    font-size: 0.85rem;
+    color: #6c757d;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.contact-hours {
+    margin-top: 3rem;
+    font-style: italic;
+    color: #6c757d;
+}
+
+/* Estilos para la sección de Cuidados */
+.care-info-container {
+    text-align: center;
+}
+
+.care-intro {
+    font-style: italic;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.care-list {
+    text-align: left;
+    display: inline-block; /* Para centrar la lista */
+    list-style: none; /* Elimina los puntos predeterminados */
+    padding: 0;
+}
+
+.care-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.care-list li::before {
+    content: '•'; /* Un bullet point elegante */
+    position: absolute;
+    left: 0;
+    color: #1a202c;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.care-contact {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.care-cta {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.contact-card-care {
+    display: flex;
+    align-items: center;
+    background-color: #f7f9fc;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-card-care:hover {
+    background-color: #e2e8f0;
+}
+
+.contact-card-care i {
+    font-size: 1.2rem;
+    color: #1a202c;
+    margin-right: 0.75rem;
+}
+
+.contact-card-care a {
+    text-decoration: none;
+    color: #1a202c;
+    font-weight: 500;
+}
+
+/* Estilos para la sección de Preguntas Frecuentes */
+.faq-info-container {
+    text-align: left;
+}
+
+.faq-list {
+    margin-top: 2rem;
+}
+
+.faq-item {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.faq-answer {
+    color: #4a5568;
+    line-height: 1.7;
+}
+
+/* Estilos de carga */
+.document-container.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #1a202c;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    margin-top: 1rem;
+    color: #555;
+    font-size: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.not-found-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.not-found-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #777;
+}
+
+.document-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 2rem auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* --- RESPONSIVIDAD OPTIMIZADA --- */
+
+/* Estilos para pantallas pequeñas (móviles) */
+/* Estilos para pantallas pequeñas (móviles) */
+@media (max-width: 767.98px) {
+    .page-header {
+        padding: 1.5rem 0; /* Reducir aún más el padding */
+    }
+
+    .page-title {
+        font-size: 1.8rem; /* Tamaño de fuente más apropiado */
+    }
+
+    .breadcrumbs {
+        font-size: 0.8rem; /* Reducir tamaño de las migas de pan */
+    }
+
+    .main-content {
+        padding: 2rem 0; /* Reducir padding de contenido principal */
+    }
+
+    .document-container {
+        padding: 1rem; /* Reducir el padding interno del documento */
+        box-shadow: none; /* Eliminar sombra */
+        border-radius: 0;
+    }
+
+    /* Ajustes críticos para la legibilidad del texto */
+    .document-content {
+        line-height: 1.6; /* Reducir ligeramente el interlineado */
+        font-size: 0.95rem; /* Tamaño de fuente base más pequeño */
+    }
+    
+    .document-content p {
+        margin-bottom: 1rem;
+    }
+
+    .document-content h2 {
+        font-size: 1.4rem; /* H2 más pequeño */
+        margin-top: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .document-content h3 {
+        font-size: 1.15rem; /* H3 más pequeño */
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        padding-left: 0.75rem; /* Reducir padding del borde izquierdo */
+    }
+    
+    /* Contacto */
+    .contact-card {
+        padding: 1.5rem; /* Reducir padding de las tarjetas de contacto */
+        max-width: none;
+    }
+
+    .contact-card i {
+        font-size: 2rem;
+    }
+    
+    .contact-card-title {
+        font-size: 1rem;
+    }
+    
+    .contact-card-value {
+        font-size: 0.8rem;
+    }
+
+    /* Preguntas Frecuentes */
+    .faq-question {
+        font-size: 1.1rem;
+    }
+
+    .faq-answer {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* Configuración de tabla para móvil (ya existente, la dejamos) */
+    .document-content table, .document-content thead, .document-content tbody, .document-content th, .document-content td, .document-content tr {
+        display: block;
+    }
+
+    .document-content thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .document-content tr {
+        border: 1px solid #ccc;
+        margin-bottom: 1rem;
+    }
+
+    .document-content td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+    }
+
+    .document-content td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+
+    .contact-cards {
+        flex-direction: column; 
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .contact-card {
+        width: 100%; 
+    }
+
+    .faq-item {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .faq-question {
+        font-size: 1.1rem;
+    }
+}
+
+/* 📱 Dispositivos extra pequeños (Ej: iPhone SE, Anchos < 450px) */
+/* Añadimos este bloque para una reducción extra en pantallas muy pequeñas */
+@media (max-width: 450px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .document-content {
+        font-size: 0.9rem; /* Reducción máxima del texto base */
+    }
+
+    .document-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .document-content h3 {
+        font-size: 1.0rem;
+    }
+    
+    .contact-card {
+        padding: 1rem;
+    }
+    
+    .contact-card-value {
+        font-size: 0.75rem;
+    }
+}

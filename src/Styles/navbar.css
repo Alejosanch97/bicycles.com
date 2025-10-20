@@ -1,0 +1,366 @@
+/* 🌟 Estilos generales del navbar */
+.avana-navbar {
+  background-color: #edeef6 !important;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+
+/* Contenedor del logo */
+.avana-navbar .navbar-brand {
+  /* Ya no necesitamos flex-direction: column si solo hay la imagen */
+  display: block; 
+  align-items: center;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+.avana-navbar .navbar-brand .logo {
+  /* ¡CLAVE! Reducir drásticamente la altura para que encaje */
+  height: 80px; 
+  transition: height 0.3s ease-in-out;
+}
+
+/* Enlaces */
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.avana-navbar .nav-link {
+  color: #333 !important;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: color 0.3s ease-in-out;
+}
+
+.avana-navbar .nav-link:hover {
+  color: #f88400 !important;
+}
+
+/* Íconos */
+.nav-icon-btn {
+  color: #070707;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  margin-left: 15px;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-icon-btn:hover {
+  color: #fbf9f9;
+}
+
+/* 🧭 ====================== 📱 RESPONSIVE - MÓVILES ====================== */
+@media (max-width: 767px) {
+  .avana-navbar {
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .avana-navbar .navbar-brand {
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .avana-navbar .navbar-brand .logo {
+    height: 70px;
+  }
+
+  .navbar-toggler, 
+  .menu-toggle {
+    position: relative;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    margin-left: auto;
+    z-index: 1001;
+  }
+
+  .d-none.d-lg-flex {
+    display: none !important;
+  }
+
+  .menu-overlay {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 85%;
+    max-width: 340px;
+    height: 100vh;
+    background: #ffffff;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.25);
+    padding: 4rem 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
+    z-index: 1000;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+
+  .mobile-menu.active {
+    transform: translateX(0);
+    opacity: 1;
+    animation: slideFadeIn 0.4s ease forwards;
+  }
+
+  .mobile-menu a {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 1.2rem 0;
+    color: #333;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    text-align: center;
+    width: 100%;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+
+  .mobile-menu a:hover {
+    color: #f8f8f7;
+    transform: translateX(4px);
+  }
+
+  .mobile-menu .menu-logo {
+    margin: 0 0 2.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .mobile-menu .menu-logo img {
+    max-width: 140px;
+    height: auto;
+  }
+
+  .mobile-menu::before {
+    content: "";
+    width: 60%;
+    height: 2px;
+    background: #d7794a;
+    margin-bottom: 2rem;
+    border-radius: 50px;
+  }
+
+  .mobile-menu .menu-icons {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #ddd;
+  }
+
+  .mobile-menu .menu-icons svg {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: #333;
+  }
+
+  .mobile-menu .menu-icons svg:hover {
+    color: #d7794a;
+    transform: scale(1.15);
+  }
+
+}
+
+/* 📱📲 ====================== 📱 TABLETS (768px - 1024px) ====================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .avana-navbar {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .avana-navbar .navbar-brand .logo {
+    height: 110px; /* Tamaño intermedio del logo */
+  }
+
+  .navbar-nav {
+    gap: 25px;
+  }
+
+  .avana-navbar .nav-link {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .nav-icon-btn {
+    font-size: 1.8rem;
+    margin-left: 20px;
+  }
+
+  /* 📋 Mejor espaciado y centrado del menú en tablets */
+  .mobile-menu {
+    width: 70%;
+    max-width: 400px;
+    padding: 3rem 2rem;
+  }
+
+  .mobile-menu a {
+    font-size: 1.6rem;
+  }
+
+  .mobile-menu .menu-icons svg {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* ✨ Animación */
+@keyframes slideFadeIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 📨 Modal */
+.modal-content {
+  background-color: #f8f6f5;
+  border: 1px solid #d7794a;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  padding: 2rem 1rem;
+}
+
+.modal-header {
+  border-bottom: none;
+  padding: 0 1rem 1.5rem;
+}
+
+.contact-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #b8860b;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.modal-header .btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.modal-header .btn-close:hover {
+  opacity: 1;
+}
+
+.modal-body {
+  padding: 0 1rem 2rem;
+}
+
+.modal-body .form-control {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.modal-body .form-control:focus {
+  border-color: #b8860b;
+  box-shadow: 0 0 0 0.2rem rgba(184, 134, 11, 0.2);
+  outline: none;
+}
+
+.modal-body .form-control::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.modal-body .btn-dark {
+  background-color: #333;
+  border-color: #333;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.modal-body .btn-dark:hover {
+  background-color: #fdfbfb;
+  border-color: #fbfafa;
+}
+
+@media (min-width: 992px) and (max-width: 1150px) {
+  /* Reducimos espacio entre enlaces */
+  .navbar-nav {
+    gap: 10px;
+  }
+
+  /* Reducimos tamaño de texto */
+  .avana-navbar .nav-link {
+    font-size: 0.9rem;
+    padding: 0 0.4rem;
+  }
+
+  /* Ajustamos logo */
+  .avana-navbar .navbar-brand .logo {
+    height: 120px;
+  }
+
+  /* Íconos más pequeños y con menos margen */
+  .nav-icon-btn {
+    font-size: 1.3rem;
+    margin-left: 8px;
+  }
+
+  /* Si sigue chocando, podemos forzar el ícono a nueva posición */
+  .d-none.d-lg-flex {
+    margin-left: auto;
+  }
+}

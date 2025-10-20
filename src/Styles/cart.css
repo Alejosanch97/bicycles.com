@@ -1,0 +1,64 @@
+/*
+ * Este CSS cambia el color de la 'X' en los botones de cierre
+ * de los modales de Bootstrap.
+ */
+
+/* Botón de cierre personalizado */
+/* Forzar visibilidad del botón de cierre */
+.btn-close {
+  background: none !important; /* Quita el SVG default de Bootstrap */
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 1 !important;
+  position: relative;
+}
+
+.btn-close::before {
+  content: "✕"; /* Carácter X */
+  font-size: 1.5rem;
+  color: #212529; /* Negro muy oscuro */
+  font-weight: bold;
+  line-height: 1;
+}
+
+.btn-close:hover::before {
+  color: #8B4513; /* Marrón cuero al hacer hover */
+}
+
+
+
+/*
+ * Estilos para el botón 'Confirmar Pedido'
+ */
+.btn-confirm-order {
+    background-color: #343a40; /* Un gris oscuro para que resalte */
+    border-color: #343a40;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 0.5rem; /* Bordes ligeramente redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+    transition: all 0.3s ease; /* Transición suave para los efectos */
+}
+
+/*
+ * Efecto hover para el botón 'Confirmar Pedido'
+ */
+.btn-confirm-order:hover {
+    background-color: #495057; /* Un tono más claro en hover */
+    border-color: #495057;
+    transform: translateY(-2px); /* Mueve el botón ligeramente hacia arriba */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/*
+ * Estilos para el botón cuando está deshabilitado
+ */
+.btn-confirm-order:disabled {
+    background-color: #e9ecef; /* Un color más claro cuando no se puede usar */
+    border-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
