@@ -51,7 +51,7 @@ const ProductCard = ({ product, handleAddToCart }) => {
                     className="card-img-top product-image" 
                     alt={product.name}
                     onMouseEnter={handleImageHover}
-                    onMouseLeave={handleImageLeave}
+                    onOnMouseLeave={handleImageLeave}
                 />
                 <div className="card-body text-center">
                     <h5 className="product-card-title">{product.name}</h5>
@@ -96,10 +96,14 @@ export const Demo = () => {
     const handleShowCart = () => setShowCart(true);
     const handleCloseCart = () => setShowCart(false);
 
+    // ESTADOS DE FILTROS ACTUALIZADOS
     const initialCategory = location.state?.category ? [location.state.category] : [];
     const [filteredProducts, setFilteredProducts] = useState([]); 
     const [priceRange, setPriceRange] = useState([0, 8000000]);
     const [selectedCategories, setSelectedCategories] = useState(initialCategory);
+    // ✅ NUEVOS ESTADOS DE FILTRO
+    const [selectedSubcategories, setSelectedSubcategories] = useState([]);
+    const [selectedReferences, setSelectedReferences] = useState([]); 
     const [selectedColors, setSelectedColors] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState('default');
@@ -107,7 +111,13 @@ export const Demo = () => {
 
     // ✅ CÁLCULO DINÁMICO: Aseguramos que se actualicen al cargar 'products'.
     const uniqueCategories = [...new Set(products.map(p => p.category))].filter(Boolean);
+    
+    // ✅ CORRECCIÓN CLAVE: Usamos 'subcategoria' (sin acento) para coincidir con la API de Google Script.
+    const uniqueSubcategories = [...new Set(products.map(p => p.subcategoria || p.subcategory))].filter(Boolean); 
+    
+    const uniqueReferences = [...new Set(products.map(p => p.reference))].filter(Boolean);
     const uniqueColors = [...new Set(products.flatMap(p => p.colors || []))].filter(Boolean);
+
 
     // =============================================================
     // 🚨 2. EFECTO PARA CARGAR LOS PRODUCTOS DE LA API (CLAVE)
@@ -148,7 +158,7 @@ export const Demo = () => {
     const runFilters = useCallback(() => {
         let tempProducts = [...products]; 
 
-        // 1. Filtrar por búsqueda
+        // 1. Filtrar por búsqueda (Referencia y Nombre)
         if (searchTerm) {
             tempProducts = tempProducts.filter(product =>
                 product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -161,15 +171,25 @@ export const Demo = () => {
             tempProducts = tempProducts.filter(product => selectedCategories.includes(product.category));
         }
 
-        // 3. Filtrar por colores
+        // ✅ 3. Filtrar por subcategorías (Usando la propiedad corregida o la anterior)
+        if (selectedSubcategories.length > 0) {
+            tempProducts = tempProducts.filter(product => selectedSubcategories.includes(product.subcategoria || product.subcategory));
+        }
+
+        // ✅ 4. Filtrar por referencias
+        if (selectedReferences.length > 0) {
+            tempProducts = tempProducts.filter(product => selectedReferences.includes(product.reference));
+        }
+
+        // 5. Filtrar por colores
         if (selectedColors.length > 0) {
             tempProducts = tempProducts.filter(product => product.colors.some(color => selectedColors.includes(color)));
         }
 
-        // 4. Filtrar por rango de precio
+        // 6. Filtrar por rango de precio
         tempProducts = tempProducts.filter(product => product.price >= priceRange[0] && product.price <= priceRange[1]);
 
-        // 5. Ordenar los productos
+        // 7. Ordenar los productos
         if (sortBy === 'price_asc') {
             tempProducts.sort((a, b) => a.price - b.price);
         } else if (sortBy === 'price_desc') {
@@ -179,17 +199,34 @@ export const Demo = () => {
         }
 
         setFilteredProducts(tempProducts);
-    }, [selectedCategories, selectedColors, priceRange, searchTerm, sortBy, products]); 
+    }, [selectedCategories, selectedSubcategories, selectedReferences, selectedColors, priceRange, searchTerm, sortBy, products]); 
 
     useEffect(() => {
         runFilters();
     }, [runFilters, location.state]);
 
     // ✅ HANDLERS COMPLETOS: Lógica necesaria para marcar/desmarcar checkboxes
+
     const handleCategoryChange = (e) => {
         const { value, checked } = e.target;
         setSelectedCategories(prev =>
             checked ? [...prev, value] : prev.filter(cat => cat !== value)
+        );
+    };
+
+    // ✅ NUEVO HANDLER: Subcategoría
+    const handleSubcategoryChange = (e) => {
+        const { value, checked } = e.target;
+        setSelectedSubcategories(prev =>
+            checked ? [...prev, value] : prev.filter(subcat => subcat !== value)
+        );
+    };
+
+    // ✅ NUEVO HANDLER: Referencia
+    const handleReferenceChange = (e) => {
+        const { value, checked } = e.target;
+        setSelectedReferences(prev =>
+            checked ? [...prev, value] : prev.filter(ref => ref !== value)
         );
     };
 
@@ -250,11 +287,11 @@ export const Demo = () => {
                     <small>$8000000+</small>
                 </div>
             </div>
-
+            
+            {/* Filtro de Categoría existente */}
             <div className="filter-group mb-4 pb-3 border-bottom">
                 <h5 className="filter-heading">Categoría</h5>
-                <div className="category-list">
-                    {/* ✅ Mapeo de categorías con la lista única */}
+                <div className="category-list filter-scroll-box">
                     {uniqueCategories.map(category => (
                         <div key={category} className="form-check">
                             <input
@@ -262,7 +299,6 @@ export const Demo = () => {
                                 type="checkbox"
                                 value={category}
                                 id={`cat-${category}`}
-                                // ✅ Usar selectedCategories para ver si debe estar marcado
                                 checked={selectedCategories.includes(category)} 
                                 onChange={handleCategoryChange}
                             />
@@ -274,6 +310,55 @@ export const Demo = () => {
                 </div>
             </div>
 
+            {/* ✅ FILTRO: Talla (Referencia) */}
+            {uniqueReferences.length > 0 && (
+                <div className="filter-group mb-4 pb-3 border-bottom">
+                    <h5 className="filter-heading">Talla</h5>
+                    <div className="reference-list filter-scroll-box">
+                        {uniqueReferences.map(reference => (
+                            <div key={reference} className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    value={reference}
+                                    id={`ref-${reference}`}
+                                    checked={selectedReferences.includes(reference)} 
+                                    onChange={handleReferenceChange}
+                                />
+                                <label className="form-check-label" htmlFor={`ref-${reference}`}>
+                                    {reference}
+                                </label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+            
+            {/* ✅ FILTRO: Subcategoría (Debe aparecer con la corrección de la propiedad) */}
+            {uniqueSubcategories.length > 0 && (
+                <div className="filter-group mb-4 pb-3 border-bottom">
+                    <h5 className="filter-heading">Rin</h5>
+                    <div className="subcategory-list filter-scroll-box">
+                        {uniqueSubcategories.map(subcategory => (
+                            <div key={subcategory} className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    value={subcategory}
+                                    id={`subcat-${subcategory}`}
+                                    checked={selectedSubcategories.includes(subcategory)} 
+                                    onChange={handleSubcategoryChange}
+                                />
+                                <label className="form-check-label" htmlFor={`subcat-${subcategory}`}>
+                                    {subcategory}
+                                </label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* Filtro de Color existente */}
             <div className="filter-group mb-4 pb-3 border-bottom">
                 <h5 className="filter-heading">Color</h5>
                 <div className="color-filter-grid">
@@ -349,7 +434,10 @@ export const Demo = () => {
                 {/* 2. Columna de Filtros de Escritorio */}
                 <aside className="col-lg-3 d-none d-lg-block filters-column">
                     <h4 className="filters-title mb-4">Filtrar Por</h4>
-                    {renderFilterContent()}
+                    {/* ✅ DIV DEL SCROLL AÑADIDO AQUÍ */}
+                    <div className="filters-content-scroll">
+                        {renderFilterContent()}
+                    </div>
                 </aside>
 
                 {/* 3. Contenedor Principal de Productos */}
@@ -378,8 +466,10 @@ export const Demo = () => {
                                 <p className="lead">No se encontraron productos con los filtros seleccionados.</p>
                                 <button className="btn btn-outline-secondary" onClick={() => {
                                     setSelectedCategories([]);
+                                    setSelectedSubcategories([]); // ✅ Limpiar subcategorías
+                                    setSelectedReferences([]); // ✅ Limpiar referencias
                                     setSelectedColors([]);
-                                    setPriceRange([0, 300000]);
+                                    setPriceRange([0, 8000000]); // Ajustado a max de 8M
                                     setSearchTerm('');
                                     setSortBy('default');
                                 }}>
@@ -435,7 +525,7 @@ export const Demo = () => {
                     )}
                 </button>
                 <a 
-                    href="https://wa.me/573225109005" 
+                    href="https://wa.me/573143563567" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="btn floating-btn whatsapp-btn"
