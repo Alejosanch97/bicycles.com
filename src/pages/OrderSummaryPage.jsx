@@ -1,5 +1,3 @@
-// src/pages/OrderSummaryPage.jsx
-
 import React, { useState, useEffect } from 'react';
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom"; 
@@ -30,13 +28,20 @@ export const OrderSummaryPage = () => {
     const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
 
     const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-    const discount = subtotal > 4000000 ? subtotal * 0.10 : 0;
+    const discount = subtotal > 5000000 ? subtotal * 0.05 : 0;
     const total = subtotal - discount;
 
     const formatPrice = (price) => {
         return price.toLocaleString('es-CO', {
             style: 'currency',
             currency: 'COP',
+            minimumFractionDigits: 0,
+        });
+    };
+    
+    // Función auxiliar para formatear precio sin símbolo ni decimales (útil para el template)
+    const formatValue = (price) => {
+        return price.toLocaleString('es-CO', {
             minimumFractionDigits: 0,
         });
     };
@@ -50,14 +55,22 @@ export const OrderSummaryPage = () => {
         e.preventDefault();
         setLoading(true);
 
-        const cartItems = cart.map(item => ({
-            item_name: item.name,
-            item_price: formatPrice(item.price), 
-            item_color: item.selectedColor,
-            item_image: item.image 
+        // 1. CREAR EL ARRAY 'orders' con las variables que la plantilla espera
+        const orderItems = cart.map(item => ({
+            // Template espera 'image_url' (usamos la URL de la imagen del carrito)
+            image_url: item.image, 
+            // Template espera 'name'
+            name: item.name,        
+            // Template espera 'units'
+            units: 1,               
+            // Template espera 'price' (usamos el valor sin símbolo de moneda)
+            price: formatValue(item.price), 
+            color: item.selectedColor 
         }));
 
+        // 2. CONSTRUIR templateParams con las estructuras de la plantilla
         const templateParams = {
+            // Datos del formulario
             email: formData.correo,
             nombre: formData.nombre,
             celular: formData.celular,
@@ -66,9 +79,22 @@ export const OrderSummaryPage = () => {
             direccion: formData.direccion,
             codigoPostal: formData.codigoPostal,
             notas: formData.notas,
-            cart_items: cartItems,
+            
+            // La plantilla espera 'orders' para el bucle de productos
+            orders: orderItems, 
+            
+            // La plantilla espera 'order_id'
+            order_id: `ORD-${Date.now()}`,
+            
+            // La plantilla espera los totales anidados en 'cost'
+            cost: {
+                shipping: 'GRATIS', 
+                tax: formatValue(0), // No estás calculando impuestos
+                total: formatValue(total), // El total final sin símbolo COP
+            },
+            
+            // Variables opcionales, si decides usar el Subtotal y Descuento por separado en el futuro:
             subtotal: formatPrice(subtotal),
-            total: formatPrice(total),
             discount: formatPrice(discount),
         };
 
@@ -84,11 +110,13 @@ export const OrderSummaryPage = () => {
             setTimeout(() => {
                 setShowSuccessMessage(false);
                 dispatch({ type: "clear_cart" });
+                // Redirecciona solo después del éxito
                 window.location.href = "/"; 
             }, 3000);
         })
         .catch((err) => {
             console.error("❌ Error al enviar el correo:", err);
+            // Mostrar el mensaje de error para el usuario
             alert("Hubo un error al registrar tu pedido. Intenta nuevamente.");
         })
         .finally(() => {
@@ -137,7 +165,7 @@ export const OrderSummaryPage = () => {
                                 </div>
                                 {discount > 0 && (
                                     <div className="d-flex justify-content-between mb-1">
-                                        <span className="text-success">Descuento (10%):</span>
+                                        <span className="text-success">Descuento (5%):</span>
                                         <span className="text-success">- {formatPrice(discount)}</span>
                                     </div>
                                 )}

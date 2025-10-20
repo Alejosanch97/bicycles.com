@@ -325,11 +325,105 @@ export const Home = () => {
                                     </div>
                                 </div>
                             </div>
+                            {/* 3. Testimonio Ejemplo 3: Servicio al Cliente y Variedad */}
+                            <div className="carousel-item">
+                                <div className="testimonial-box">
+                                    <i className="fa-solid fa-quote-left testimonial-icon"></i>
+                                    <p className="testimonial-text">"El servicio al cliente es excepcional. Tenía dudas sobre la talla y me asesoraron perfectamente. La variedad de productos es enorme, encontré todo lo que necesitaba para mi bici."</p>
+                                    <div className="testimonial-author-rating">
+                                        <span className="testimonial-author">— Juan P. Gómez</span>
+                                        <div className="star-rating">
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* 4. Testimonio Ejemplo 4: Rapidez y Empaque */}
+                            <div className="carousel-item">
+                                <div className="testimonial-box">
+                                    <i className="fa-solid fa-quote-left testimonial-icon"></i>
+                                    <p className="testimonial-text">"¡Increíblemente rápido! Mi pedido llegó al día siguiente y el empaque era perfecto, todo protegido. La calidad de los repuestos Shimano es la esperada. Volveré a comprar sin dudarlo."</p>
+                                    <div className="testimonial-author-rating">
+                                        <span className="testimonial-author">— Laura V. M.</span>
+                                        <div className="star-rating">
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* 5. Testimonio Ejemplo 5: Precios y Facilidad de Compra */}
+                            <div className="carousel-item">
+                                <div className="testimonial-box">
+                                    <i className="fa-solid fa-quote-left testimonial-icon"></i>
+                                    <p className="testimonial-text">"Los mejores precios que encontré online para accesorios Specialized. La página web es muy fácil de usar y el proceso de pago fue muy simple. Excelente experiencia de compra."</p>
+                                    <div className="testimonial-author-rating">
+                                        <span className="testimonial-author">— Carlos A. Restrepo</span>
+                                        <div className="star-rating">
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* 6. Testimonio Ejemplo 6: Productos Específicos y Confianza */}
+                            <div className="carousel-item">
+                                <div className="testimonial-box">
+                                    <i className="fa-solid fa-quote-left testimonial-icon"></i>
+                                    <p className="testimonial-text">"Compré un grupo SRAM y superó mis expectativas. Es difícil encontrar estos componentes con tanta garantía. Totalmente confiables y serios con los tiempos de entrega."</p>
+                                    <div className="testimonial-author-rating">
+                                        <span className="testimonial-author">— Sofía G. P.</span>
+                                        <div className="star-rating">
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* 7. Testimonio Ejemplo 7: Ideal para Principiantes y Asesoría */}
+                            <div className="carousel-item">
+                                <div className="testimonial-box">
+                                    <i className="fa-solid fa-quote-left testimonial-icon"></i>
+                                    <p className="testimonial-text">"Como principiante, estaba perdida, pero el chat de soporte me ayudó a elegir la bicicleta perfecta para empezar. ¡Muy agradecida por la paciencia y la excelente atención!"</p>
+                                    <div className="testimonial-author-rating">
+                                        <span className="testimonial-author">— Daniel J. B.</span>
+                                        <div className="star-rating">
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star"></i>
+                                            <i className="fa-solid fa-star-half-stroke"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         {/* Indicadores (Opcional, si quieres ver en qué slide estás) */}
                         <div className="carousel-indicators testimonial-indicators">
                             <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
                         </div>
                     </div>
                 </div>

@@ -199,7 +199,7 @@ const documents = {
             {
                 icon: 'fab fa-instagram',
                 title: 'Síguenos en Instagram',
-                value: '@avanaleather',
+                value: '@bicimania',
                 link: 'https://www.instagram.com//'
             }
         ]

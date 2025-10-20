@@ -59,7 +59,7 @@ export const CartModal = ({ show, handleClose }) => {
     };
 
     const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-    const discount = subtotal > 4000000 ? subtotal * 0.10 : 0;
+    const discount = subtotal > 5000000 ? subtotal * 0.05 : 0;
     const total = subtotal - discount;
 
     const formatPrice = (price) => {
@@ -141,7 +141,7 @@ export const CartModal = ({ show, handleClose }) => {
                                         <h6>{formatPrice(subtotal)}</h6>
                                     </div>
                                     <div className="d-flex justify-content-between">
-                                        <h6 className="text-success">Descuento (10%):</h6>
+                                        <h6 className="text-success">Descuento (5%):</h6>
                                         <h6 className="text-success">- {formatPrice(discount)}</h6>
                                     </div>
                                     <div className="d-flex justify-content-between mt-2">

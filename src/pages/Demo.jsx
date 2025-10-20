@@ -238,7 +238,7 @@ export const Demo = () => {
                     <input
                         type="range"
                         min="0"
-                        max="300000"
+                        max="8000000"
                         value={priceRange[0]}
                         name="minPrice"
                         onChange={handlePriceRangeChange}
@@ -247,7 +247,7 @@ export const Demo = () => {
                 </div>
                 <div className="d-flex justify-content-between mt-2">
                     <small>$0</small>
-                    <small>$300.000+</small>
+                    <small>$8000000+</small>
                 </div>
             </div>
 
