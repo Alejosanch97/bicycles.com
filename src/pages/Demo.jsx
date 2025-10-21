@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useGlobalReducer from '../hooks/useGlobalReducer.jsx';
 import { CartModal } from "../components/CartModal.jsx";
+import { ToastContainer, toast } from 'react-toastify'; // 👈 IMPORTADO: Toast
+import 'react-toastify/dist/ReactToastify.css'; // 👈 IMPORTADO: Estilos de Toastify
 import '../Styles/demo.css';
 
 // 🚨🚨🚨 1. DEFINIR LA URL DE LA API AQUI 🚨🚨🚨
@@ -51,7 +53,7 @@ const ProductCard = ({ product, handleAddToCart }) => {
                     className="card-img-top product-image" 
                     alt={product.name}
                     onMouseEnter={handleImageHover}
-                    onOnMouseLeave={handleImageLeave}
+                    onMouseLeave={handleImageLeave}
                 />
                 <div className="card-body text-center">
                     <h5 className="product-card-title">{product.name}</h5>
@@ -242,7 +244,7 @@ export const Demo = () => {
         setPriceRange(prev => [parseInt(value), prev[1]]);
     };
     
-    // Función para añadir al carrito (Sin cambios)
+    // Función para añadir al carrito (MODIFICADA para incluir la notificación)
     const handleAddToCart = (product, color) => {
         const formattedColor = color.toLowerCase().replace(/\s/g, '');
         const itemToAdd = {
@@ -260,6 +262,17 @@ export const Demo = () => {
         dispatch({
             type: "ADD_TO_CART",
             payload: itemToAdd,
+        });
+
+        // 🚨 AQUÍ ESTÁ LA NOTIFICACIÓN 🚨
+        toast.success(`✅ ${product.name} - ${color} agregado al carrito!`, {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
         });
     };
     
@@ -412,6 +425,9 @@ export const Demo = () => {
     // *** INICIO DEL RENDER PRINCIPAL (Si ya cargó y hay productos) ***
     return (
         <div className="demo-page container-fluid py-5">
+            {/* 🚨 AÑADIR ToastContainer AQUÍ 🚨 */}
+            <ToastContainer />
+            
             <nav aria-label="breadcrumb" className="mb-4">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><a href="/">Inicio</a></li>
