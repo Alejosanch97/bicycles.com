@@ -93,6 +93,7 @@ export const Home = () => {
                                 <source src="./6420515-hd_1920_1080_24fps.mp4" type="video/mp4" />
                                 Tu navegador no soporta videos.
                             </video>
+                            
                             <div className="carousel-caption">
                                 <h1>Libera la Velocidad</h1>
                                 <p>Diseñadas para devorar kilómetros. Encuentra la máquina perfecta para tu próxima aventura.</p>
@@ -109,6 +110,9 @@ export const Home = () => {
                             {/* Contenedor principal del texto y las cards */}
                             <div className="custom-caption-overlay d-flex flex-column align-items-center justify-content-center text-center text-white px-4">
                                 {/* Título principal */}
+                                <h1 className="avana-title">
+                                    BICICLETAS NEVADA
+                                </h1>
 
                                 {/* Contenedor de las mini cards */}
                                 <div className="container info-boxes-container">

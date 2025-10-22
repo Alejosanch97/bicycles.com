@@ -7,11 +7,11 @@ const documents = {
     'terminos-y-condiciones': {
         title: 'Términos y Condiciones',
         content: `
-        <h2>BIENVENIDO AL SITIO WEB DE BICIMANÍA.</h2>
-        <p>La venta a distancia de bicicletas, componentes y accesorios de la marca BiciManía a través de este sitio web se rige por los siguientes Términos y Condiciones. Por favor, lea detenidamente los siguientes términos y condiciones de uso antes de utilizarlo.</p>
+        <h2>BIENVENIDO AL SITIO WEB DE BICICLETAS NEVADA.</h2>
+        <p>La venta a distancia de bicicletas, componentes y accesorios de la marca Bicicletas Nevada a través de este sitio web se rige por los siguientes Términos y Condiciones. Por favor, lea detenidamente los siguientes términos y condiciones de uso antes de utilizarlo.</p>
         
         <h3>1. ACEPTACIÓN DE TÉRMIMOS Y CONDICIONES</h3>
-        <p>Al acceder, navegar y/o usar este sitio, el usuario admite haber leído y entendido estos Términos de Uso y estar de acuerdo en sujetarse a los mismos y cumplir con todas las leyes y regulaciones aplicables. BiciManía no se responsabiliza de que el material en este Sitio sea apropiado o esté disponible para su uso en otros lugares, estando prohibido su acceso desde territorios donde su contenido sea ilegal. En caso de que el usuario no esté de acuerdo con estos términos, favor abstenerse de usar este Sitio. Estos términos y condiciones están sujetos a cambios sin previo aviso en cualquier momento, bajo el principio de autonomía de la voluntad.</p>
+        <p>Al acceder, navegar y/o usar este sitio, el usuario admite haber leído y entendido estos Términos de Uso y estar de acuerdo en sujetarse a los mismos y cumplir con todas las leyes y regulaciones aplicables. Bicicletas Nevada no se responsabiliza de que el material en este Sitio sea apropiado o esté disponible para su uso en otros lugares, estando prohibido su acceso desde territorios donde su contenido sea ilegal. En caso de que el usuario no esté de acuerdo con estos términos, favor abstenerse de usar este Sitio. Estos términos y condiciones están sujetos a cambios sin previo aviso en cualquier momento, bajo el principio de autonomía de la voluntad.</p>
         
         <h3>2. PROCESO DE COMPRA</h3>
         <p>2.1. Cada Producto (Bicicleta, repuesto o accesorio) ofrecido para la venta en el Sitio Web puede verse siguiendo un enlace dedicado que muestra las imágenes, el precio unitario y los colores.</p>
@@ -21,25 +21,25 @@ const documents = {
             <li>La "Compra rápida" solicita datos personales, método de envío y método de pago.</li>
         </ol>
         <p>2.4. Antes de confirmar el pedido, el cliente debe comprobar la exactitud del contenido del carrito y rellenar el formulario de pedido.</p>
-        <p>2.5. El proceso de compra se completa tan pronto como el cliente pulsa el botón de confirmación final, validando así su pedido, que se remitirá directamente a BiciManía. Después de este paso, el cliente no podrá modificar el contenido del pedido.</p>
+        <p>2.5. El proceso de compra se completa tan pronto como el cliente pulsa el botón de confirmación final, validando así su pedido, que se remitirá directamente a Bicicletas Nevada. Después de este paso, el cliente no podrá modificar el contenido del pedido.</p>
         <p>2.6. El proceso de compra debe completarse totalmente, de lo contrario el pedido no se podrá enviar.</p>
-        <p>2.7. Cada pedido y los datos del cliente serán almacenados por BiciManía durante el periodo de tiempo previsto en las leyes aplicables.</p>
+        <p>2.7. Cada pedido y los datos del cliente serán almacenados por Bicicletas Nevada durante el periodo de tiempo previsto en las leyes aplicables.</p>
         <p>2.8. El Cliente es responsable de la exactitud y veracidad de cualquier dato introducido en el Sitio Web.</p>
         
         <h3>3. POLÍTICA DE PRIVACIDAD</h3>
-        <p>BiciManía se compromete a proteger la información que es proporcionada por los usuarios. Al solicitarle información personal, aseguramos que solo se empleará de acuerdo con los términos de este documento.</p>
+        <p>Bicicletas Nevada se compromete a proteger la información que es proporcionada por los usuarios. Al solicitarle información personal, aseguramos que solo se empleará de acuerdo con los términos de este documento.</p>
         <p>3.1 Información</p>
         <p>Podemos recoger información personal como: Nombre, información de contacto (dirección de correo, teléfono) e información demográfica. También se puede requerir información específica para procesar pedidos, entregas o facturación. Esta información no será compartida con terceros.</p>
         <p>3.2 Uso de la información recogida</p>
         <p>La información se emplea para proporcionar el mejor servicio posible, mantener un registro de usuarios y pedidos, y mejorar nuestros productos. Es posible que enviemos correos electrónicos con ofertas especiales y nuevos productos, que podrán ser cancelados en cualquier momento por el usuario.</p>
         <p>3.3 Control de la información personal</p>
-        <p>BiciManía no venderá, cederá ni distribuirá la información personal recopilada sin su consentimiento, a menos que sea requerido por un juez. Nos reservamos el derecho de cambiar esta Política de Privacidad en cualquier momento.</p>
+        <p>Bicicletas Nevada no venderá, cederá ni distribuirá la información personal recopilada sin su consentimiento, a menos que sea requerido por un juez. Nos reservamos el derecho de cambiar esta Política de Privacidad en cualquier momento.</p>
         
         <h3>4. ERRORES SISTEMÁTICOS</h3>
-        <p>En el caso en que un producto aparezca con un precio incorrecto debido a un error tipográfico o de sistema, BiciManía tendrá derecho a denegar o cancelar cualquier orden. El error será comunicado al cliente y se aplicará la política de devoluciones o cambios.</p>
+        <p>En el caso en que un producto aparezca con un precio incorrecto debido a un error tipográfico o de sistema, Bicicletas Nevada tendrá derecho a denegar o cancelar cualquier orden. El error será comunicado al cliente y se aplicará la política de devoluciones o cambios.</p>
         
         <h3>5. DERECHOS DE AUTOR</h3>
-        <p>Reservamos todos los derechos de todas las imágenes, diseño del sitio, ilustraciones y gráficos, los cuales son propiedad de BiciManía. El contenido del sitio solo podrá ser usado para propósitos de uso personal, no comerciales.</p>
+        <p>Reservamos todos los derechos de todas las imágenes, diseño del sitio, ilustraciones y gráficos, los cuales son propiedad de Bicicletas Nevada. El contenido del sitio solo podrá ser usado para propósitos de uso personal, no comerciales.</p>
         
         <h3>6. COLORES</h3>
         <p>Se realiza un esfuerzo para que las bicicletas y accesorios se muestren de la forma más cercana a la realidad. No obstante, el color de los artículos que aparece en pantalla están sujetos a variaciones dependiendo de la calidad del monitor del computador o dispositivos móvil.</p>
@@ -52,7 +52,7 @@ const documents = {
         title: 'Política de Privacidad',
         content: `
         <h2>POLÍTICA DE PRIVACIDAD DE DATOS</h2>
-        <p>En **BiciManía**, nos comprometemos a proteger y respetar su privacidad. Esta política establece la base sobre la cual procesaremos cualquier dato personal que nos proporcione.</p>
+        <p>En **Bicicletas Nevada**, nos comprometemos a proteger y respetar su privacidad. Esta política establece la base sobre la cual procesaremos cualquier dato personal que nos proporcione.</p>
         <h3>1. Información que recopilamos</h3>
         <p>Podemos recopilar y procesar los siguientes datos sobre usted:</p>
         <ul>
@@ -81,11 +81,11 @@ const documents = {
         title: 'Política de Reembolso',
         content: `
         <h2>POLÍTICA DE REEMBOLSO Y DEVOLUCIONES</h2>
-        <p>En **BiciManía**, su satisfacción es nuestra prioridad. Si no está completamente satisfecho con su compra de bicicleta o accesorio, le ofrecemos un proceso de reembolso claro y sencillo.</p>
+        <p>En **Bicicletas Nevada**, su satisfacción es nuestra prioridad. Si no está completamente satisfecho con su compra de bicicleta o accesorio, le ofrecemos un proceso de reembolso claro y sencillo.</p>
         <h3>1. Condiciones para la devolución</h3>
         <p>Tiene un plazo de **5 días hábiles** a partir de la fecha de entrega para solicitar una devolución. El producto debe estar en su estado original, **sin ensamblar (en el caso de bicicletas)**, sin usar, con todas las etiquetas, manuales y embalajes intactos.</p>
         <h3>2. Proceso de solicitud</h3>
-        <p>Para iniciar un proceso de reembolso, por favor, envíe su solicitud a nuestro equipo de servicio al cliente a través de nuestro correo electrónico (bicimania@gmail.com - *usé un correo nuevo*). La solicitud debe incluir su número de pedido y el motivo de la devolución.</p>
+        <p>Para iniciar un proceso de reembolso, por favor, envíe su solicitud a nuestro equipo de servicio al cliente a través de nuestro correo electrónico (bicicletasnevada1@gmail.com - *usé un correo nuevo*). La solicitud debe incluir su número de pedido y el motivo de la devolución.</p>
         <h3>3. Reembolso</h3>
         <p>Una vez que recibamos y revisemos el artículo devuelto, le enviaremos un correo electrónico para notificarle que hemos recibido su artículo. También le notificaremos sobre la aprobación o rechazo de su reembolso. Si es aprobado, su reembolso será procesado y se aplicará un crédito automáticamente a su método de pago original en un plazo máximo de **30 días hábiles**.</p>
         <h3>4. Costos de envío</h3>
@@ -96,7 +96,7 @@ const documents = {
         title: 'Política de Envío',
         content: `
         <h2>POLÍTICA DE ENVÍOS</h2>
-        <p>En **BiciManía**, nos esforzamos por garantizar que su pedido de bicicleta o accesorio llegue a usted de manera segura y oportuna.</p>
+        <p>En **Bicicletas Nevada**, nos esforzamos por garantizar que su pedido de bicicleta o accesorio llegue a usted de manera segura y oportuna.</p>
         <h3>1. Tiempos de entrega</h3>
         <p>Los tiempos de entrega comienzan a contar a partir de la confirmación del pago. Los plazos estimados son:</p>
         <ul>
@@ -117,10 +117,10 @@ const documents = {
         type: 'warranty', // Tipo para un diseño de tabla específico
         content: `
         <h2>POLÍTICAS DE GARANTÍA</h2>
-        <p>Gracias por elegir un producto BiciManía. Cada bicicleta y componente ha sido seleccionado por su calidad y rendimiento para brindarte seguridad y durabilidad.</p>
+        <p>Gracias por elegir un producto Bicicletas Nevada. Cada bicicleta y componente ha sido seleccionado por su calidad y rendimiento para brindarte seguridad y durabilidad.</p>
         <p>Recuerda que para realizar cualquier solicitud de cambio y garantía deberás tener en cuenta el siguiente horario y días hábiles:</p>
         <p>De Lunes a Viernes (Días Hábiles) de 10:00 AM a 5:00 PM. Estos horarios y días aplican para realizar cambio en tienda física o presencial.</p>
-        <p>BiciManía cuenta con diferentes tiempos de garantías, dependiendo del tipo de producto:</p>
+        <p>Bicicletas Nevada cuenta con diferentes tiempos de garantías, dependiendo del tipo de producto:</p>
         <table>
             <thead>
                 <tr>
@@ -169,8 +169,8 @@ const documents = {
         
         <h3>Para realizar una solicitud de garantía se podrán utilizar los siguientes medios:</h3>
         <ul>
-            <li>Contactarse con la línea de Servicio al cliente de BiciManía al 322 510 9005 (en horario de lunes a viernes de 8:00 am a 5:30 pm).</li>
-            <li>A través de nuestro correo bicimania@gmail.com.</li>
+            <li>Contactarse con la línea de Servicio al cliente de Bicicletas Nevada al 322 510 9005 (en horario de lunes a viernes de 8:00 am a 5:30 pm).</li>
+            <li>A través de nuestro correo bicicletasnevada1@gmail.com.</li>
         </ul>
         `,
     },
@@ -193,13 +193,13 @@ const documents = {
             {
                 icon: 'fas fa-envelope',
                 title: 'Correo Electrónico',
-                value: 'bicimania@gmail.com',
-                link: 'mailto:bicimania@gmail.com'
+                value: 'bicicletasnevada1@gmail.com',
+                link: 'mailto:bicicletasnevada1@gmail.com'
             },
             {
                 icon: 'fab fa-instagram',
                 title: 'Síguenos en Instagram',
-                value: '@bicimania',
+                value: '@bicicletasnevada1',
                 link: 'https://www.instagram.com//'
             }
         ]
@@ -217,7 +217,7 @@ const documents = {
                 'Programa un mantenimiento completo con un profesional cada 6 meses (o cada 1000 km).',
             ],
             cta: '¿Necesitas agendar un servicio de mantenimiento?',
-            contactEmail: 'bicimania@gmail.com'
+            contactEmail: 'bicicletasnevada1@gmail.com'
         }
     },
     'preguntas-frecuentes': {
@@ -253,20 +253,20 @@ const documents = {
     <div class="about-container">
         <div class="about-header">
             <h2>Nuestra Historia</h2>
-            <h3>BiciManía: Pasión, Velocidad y Apoyo al Talento</h3>
+            <h3>Bicicletas Nevada: Pasión, Velocidad y Apoyo al Talento</h3>
         </div>
         <div class="about-content">
-            <p><strong>BiciManía</strong> nace de un amor inquebrantable por el ciclismo. Somos un emprendimiento que se forjó en el asfalto y en los senderos, impulsado por la idea de que la bicicleta es más que un medio de transporte; es una herramienta de transformación, disciplina y aventura.</p>
+            <p><strong>Bicicletas Nevada</strong> nace de un amor inquebrantable por el ciclismo. Somos un emprendimiento que se forjó en el asfalto y en los senderos, impulsado por la idea de que la bicicleta es más que un medio de transporte; es una herramienta de transformación, disciplina y aventura.</p>
             
             <p>Nuestra historia comienza hace más de **quince años**, no en una tienda, sino pedaleando. Nuestro fundador creció inmerso en la cultura del ciclismo colombiano, una pasión que se convirtió en un sueño: crear un espacio que no solo vendiera bicicletas, sino que también **viviera y respirara el deporte**.</p>
             
             <p>Vimos en este emprendimiento la oportunidad perfecta para devolver a la comunidad ciclista todo lo que nos había dado. Entendimos que en cada joven que sueña con competir hay una necesidad de apoyo, de una bicicleta que no solo cumpla, sino que lo impulse a **cruzar la meta**.</p>
             
-            <p>Por eso, **BiciManía** tiene un compromiso social y deportivo claro: **apoyar a jóvenes talentos**. Creemos firmemente que el ciclismo es una vía para lograr metas y construir carácter. Cada compra que realizas con nosotros contribuye directamente a programas locales que equipan y asesoran a la próxima generación de campeones.</p>
+            <p>Por eso, **Bicicletas Nevada** tiene un compromiso social y deportivo claro: **apoyar a jóvenes talentos**. Creemos firmemente que el ciclismo es una vía para lograr metas y construir carácter. Cada compra que realizas con nosotros contribuye directamente a programas locales que equipan y asesoran a la próxima generación de campeones.</p>
             
             <p>Seleccionamos cuidadosamente cada modelo, desde la Mountain Bike más robusta hasta la bicicleta de Ruta más aerodinámica, trabajando solo con marcas líderes como **Optimus, GW, Trek y Giant**. Para nosotros, la calidad y el rendimiento son innegociables, asegurando que cada ciclista, sea amateur o profesional, tenga la máquina perfecta para su desafío.</p>
             
-            <p>Hoy, BiciManía es más que una tienda: es un punto de encuentro para la familia ciclista. Te invitamos a ser parte de nuestra historia. Cuando eliges una bicicleta aquí, no solo inviertes en un vehículo, inviertes en un sueño. **¡Únete a la aventura BiciManía!**</p>
+            <p>Hoy, Bicicletas Nevada es más que una tienda: es un punto de encuentro para la familia ciclista. Te invitamos a ser parte de nuestra historia. Cuando eliges una bicicleta aquí, no solo inviertes en un vehículo, inviertes en un sueño. **¡Únete a la aventura Bicicletas Nevada!**</p>
         </div>
         <div class="about-image-container">
             <img src="https://i.pinimg.com/736x/82/99/2a/82992aabb04d43f333bb0b9f74eb444b.jpg" alt="Ciclista en la meta o en una ruta" class="about-image"/>

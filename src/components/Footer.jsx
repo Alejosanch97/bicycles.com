@@ -46,7 +46,7 @@ export const Footer = () => (
                     <h5 className="footer-title">Contacto</h5>
                     <ul className="footer-links list-unstyled">
                         <li><a href="tel:+573143563567">Llámanos: +57 314 356 3567</a></li>
-                        <li><a href="mailto:avanaleather@gmail.com">Correo: bicimania@gmail.com</a></li>
+                        <li><a href="mailto:avanaleather@gmail.com">Correo: bicicletasnevada1@gmail.com</a></li>
                     </ul>
                 </div>
             </div>

@@ -116,7 +116,7 @@ export const Navbar = () => {
                     </div>
 
                     <Link to="/" className="navbar-brand position-absolute top-50 start-50 translate-middle">
-                        <img src="./carreras.png" alt="Avana Leather Logo" className="logo" />
+                        <img src="./logo.png" alt="Avana Leather Logo" className="logo" />
                     </Link>
 
                     <div className="d-flex align-items-center ms-auto">
