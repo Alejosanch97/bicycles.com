@@ -85,7 +85,7 @@ const documents = {
         <h3>1. Condiciones para la devolución</h3>
         <p>Tiene un plazo de **5 días hábiles** a partir de la fecha de entrega para solicitar una devolución. El producto debe estar en su estado original, **sin ensamblar (en el caso de bicicletas)**, sin usar, con todas las etiquetas, manuales y embalajes intactos.</p>
         <h3>2. Proceso de solicitud</h3>
-        <p>Para iniciar un proceso de reembolso, por favor, envíe su solicitud a nuestro equipo de servicio al cliente a través de nuestro correo electrónico (bicicletasnevada1@gmail.com - *usé un correo nuevo*). La solicitud debe incluir su número de pedido y el motivo de la devolución.</p>
+        <p>Para iniciar un proceso de reembolso, por favor, envíe su solicitud a nuestro equipo de servicio al cliente a través de nuestro correo electrónico (bicinevada_22@hotmail.com - *usé un correo nuevo*). La solicitud debe incluir su número de pedido y el motivo de la devolución.</p>
         <h3>3. Reembolso</h3>
         <p>Una vez que recibamos y revisemos el artículo devuelto, le enviaremos un correo electrónico para notificarle que hemos recibido su artículo. También le notificaremos sobre la aprobación o rechazo de su reembolso. Si es aprobado, su reembolso será procesado y se aplicará un crédito automáticamente a su método de pago original en un plazo máximo de **30 días hábiles**.</p>
         <h3>4. Costos de envío</h3>
@@ -170,7 +170,7 @@ const documents = {
         <h3>Para realizar una solicitud de garantía se podrán utilizar los siguientes medios:</h3>
         <ul>
             <li>Contactarse con la línea de Servicio al cliente de Bicicletas Nevada al 322 510 9005 (en horario de lunes a viernes de 8:00 am a 5:30 pm).</li>
-            <li>A través de nuestro correo bicicletasnevada1@gmail.com.</li>
+            <li>A través de nuestro correo bicinevada_22@hotmail.com.</li>
         </ul>
         `,
     },
@@ -181,20 +181,20 @@ const documents = {
             {
                 icon: 'fas fa-phone-alt',
                 title: 'Llámanos',
-                value: '+57 314 356 3567',
-                link: 'tel:+573143563567'
+                value: '+57 322 855 1469',
+                link: 'tel:+573228551469'
             },
             {
                 icon: 'fab fa-whatsapp',
                 title: 'Escríbenos por WhatsApp',
-                value: '+57 314 356 3567',
-                link: 'https://wa.me/573143563567'
+                value: '+57 322 855 1469',
+                link: 'https://wa.me/573228551469'
             },
             {
                 icon: 'fas fa-envelope',
                 title: 'Correo Electrónico',
-                value: 'bicicletasnevada1@gmail.com',
-                link: 'mailto:bicicletasnevada1@gmail.com'
+                value: 'bicinevada_22@hotmail.com',
+                link: 'mailto:bicinevada_22@hotmail.com'
             },
             {
                 icon: 'fab fa-instagram',
@@ -217,7 +217,7 @@ const documents = {
                 'Programa un mantenimiento completo con un profesional cada 6 meses (o cada 1000 km).',
             ],
             cta: '¿Necesitas agendar un servicio de mantenimiento?',
-            contactEmail: 'bicicletasnevada1@gmail.com'
+            contactEmail: 'bicinevada_22@hotmail.com'
         }
     },
     'preguntas-frecuentes': {

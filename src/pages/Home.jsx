@@ -86,6 +86,7 @@ export const Home = () => {
                         <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 3"></button>
                         <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="3" aria-label="Slide 4"></button>
                     </div>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
@@ -159,6 +160,13 @@ export const Home = () => {
                             <div className="carousel-caption">
                                 <h1>¡Descuentos Imperdibles!</h1>
                                 <p>Descubre referencias exclusivas de marcas como Optimus, GW, Trek, Specialized, Scott y Giant.</p>
+                            </div>
+                        </div>
+                        <div className="carousel-item">
+                            <img src="./bici4.png" className="d-block w-100 carousel-media" alt="Descuento especial" />  
+                            <div className="carousel-caption">
+                                <h1>¡Envios Gratis!</h1>
+                                <p>Envíos gratis en Bogotá 🚴‍♂️. ¡Aprovecha nuestro Super Sale y llévate tu bicicleta favorita al mejor precio!</p>
                             </div>
                         </div>
                     </div>
@@ -451,7 +459,7 @@ export const Home = () => {
                 </button>
                 {/* Botón de WhatsApp Flotante (Debajo) */}
                 <a
-                    href="https://wa.me/573143563567"
+                    href="https://wa.me/573228551469"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn floating-btn whatsapp-btn"

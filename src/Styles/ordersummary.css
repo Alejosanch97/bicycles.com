@@ -29,12 +29,6 @@ body {
   margin-bottom: 2rem !important;
 }
 
-.summary-logo {
-  max-width: 250px;
-  height: auto;
-  margin-bottom: 0.5rem !important;
-}
-
 h2.display-6 {
   font-weight: bold;
   color: var(--primary-color);
@@ -55,7 +49,7 @@ h2.display-6 {
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px); /* Reducido para que no se vea exagerado */
 }
 
 .card-title {
@@ -69,8 +63,8 @@ h2.display-6 {
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid #dee2e6;
-    padding-bottom: 1rem; /* Añade un padding inferior para mejor separación */
-    margin-bottom: 1rem; /* Añade un margen inferior */
+    padding-bottom: 1rem; 
+    margin-bottom: 1rem; 
 }
 
 .img-thumbnail {
@@ -84,7 +78,7 @@ h2.display-6 {
 }
 
 .img-thumbnail:hover {
-  transform: scale(1.05);
+  transform: scale(1.03); /* Reducido el efecto */
 }
 
 .item-name {
@@ -129,6 +123,13 @@ h2.display-6 {
   box-shadow: 0 0 0 0.25rem rgba(52, 58, 64, 0.25);
 }
 
+/* NUEVA REGLA: Espaciado en opciones de entrega */
+.delivery-options-group .form-check {
+    flex-basis: 50%; /* Ayuda a distribuir el espacio */
+    max-width: 50%;
+}
+
+
 /* Estilos del botón de confirmación */
 .btn-dark {
   background-color: var(--primary-color);
@@ -161,19 +162,89 @@ h2.display-6 {
   font-weight: 500;
 }
 
+/* --- Estilos para las Nuevas Secciones de Información --- */
+
+/* Contenedor general de mensajes informativos */
+.info-message {
+    border-radius: 0.75rem !important;
+    padding: 1.5rem !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Fondo para el mensaje de éxito (Envío Gratis) */
+.success-bg {
+    background-color: #e6f7e9; /* Verde muy claro */
+    color: #1e7e34; /* Texto verde oscuro */
+    border: 1px solid #d4edda;
+}
+
+/* Fondo para el mensaje de advertencia (Abono) */
+.warning-bg {
+    background-color: #fff3cd; /* Amarillo claro */
+    color: #856404; /* Texto amarillo oscuro */
+    border: 1px solid #ffeeba;
+}
+
+.warning-bg .fw-bold.text-dark {
+    color: var(--primary-color) !important; /* Asegura el color principal para el título */
+}
+
+/* Estilo para el recuadro de información de depósito */
+.deposit-info {
+    background-color: #ffffff; /* Fondo blanco para destacar */
+    border: 2px dashed #ffc107; /* Borde punteado amarillo */
+    padding: 1rem !important;
+    border-radius: 0.5rem !important;
+}
+
+.deposit-number {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Estilos para las etiquetas de método de pago */
+.badge {
+    padding: 0.4em 0.7em;
+    font-weight: 700; /* Asegura que el texto de Nequi/Daviplata sea más legible */
+    border-radius: 0.35rem;
+}
+
+.text-bg-nequi {
+    background-color: #ff0055;
+    color: white;
+}
+
+.text-bg-davi {
+    background-color: #ff6600;
+    color: white;
+}
+
+/* Estilo para el recuadro de información de recogida en tienda */
+.pickup-info {
+    background-color: #f0f8ff; /* Azul muy claro */
+    border: 1px solid #bce1ff;
+    color: var(--primary-color);
+}
+
+.pickup-info .fw-bold {
+    font-weight: 700;
+}
+
 /* Estilos para el mensaje de éxito */
 .success-message {
     position: fixed;
     top: -100px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #4CAF50;
+    background-color: #28a745; /* Verde para el nuevo mensaje */
     color: white;
     padding: 15px 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1050;
     transition: top 0.5s ease-in-out;
+    max-width: 90%; /* Limita el ancho en pantallas grandes */
+    text-align: center;
 }
 
 .success-message.show {
@@ -183,45 +254,42 @@ h2.display-6 {
 .success-message-content {
     display: flex;
     align-items: center;
+    justify-content: center; /* Centra el contenido */
     gap: 10px;
 }
 
 /* --- Media Queries para Responsividad en Móviles --- */
 @media (max-width: 767px) {
     .order-summary-page {
-        padding: 1rem; /* Reducir el padding en móviles */
-    }
-
-    .summary-logo {
-        max-width: 180px; /* Reducir el tamaño del logo */
+        padding: 1rem;
     }
 
     h2.display-6 {
-        font-size: 2rem; /* Tamaño de fuente más pequeño para títulos */
-        text-align: center; /* Centrar el título */
+        font-size: 2rem;
+        text-align: center;
     }
 
     .lead {
-        font-size: 0.9rem; /* Fuente más pequeña para el texto principal */
+        font-size: 0.9rem;
     }
 
     .card {
-        margin-bottom: 1.5rem; /* Espacio extra entre tarjetas */
+        margin-bottom: 1.5rem;
     }
     
     .product-item-container {
-        flex-direction: column; /* Apilar los elementos verticalmente */
-        align-items: center; /* Centrar los elementos apilados */
+        flex-direction: column; 
+        align-items: center; 
         text-align: center;
         margin-bottom: 1.5rem;
         padding-bottom: 1.5rem;
     }
     
     .img-thumbnail {
-        width: 100px; /* Aumentar el tamaño de la imagen para que sea más visible */
+        width: 100px; 
         height: 100px;
         margin-right: 0;
-        margin-bottom: 1rem; /* Espacio entre la imagen y el texto */
+        margin-bottom: 1rem; 
     }
 
     .item-name {
@@ -231,7 +299,7 @@ h2.display-6 {
 
     .item-price {
         font-size: 1.2rem;
-        margin-top: 0.5rem; /* Separación entre el nombre y el precio */
+        margin-top: 0.5rem; 
     }
 
     .form-control,
@@ -241,6 +309,17 @@ h2.display-6 {
     }
 
     .btn-dark {
-        width: 100%; /* El botón ocupa todo el ancho */
+        width: 100%;
     }
+
+    /* Ajuste de opciones de entrega en móvil */
+    .delivery-options-group {
+        flex-direction: column; /* Apila las opciones verticalmente en móvil */
+        gap: 1rem !important;
+    }
+    .delivery-options-group .form-check {
+        max-width: 100%;
+        flex-basis: auto;
+    }
+    
 }

@@ -541,7 +541,7 @@ export const Demo = () => {
                     )}
                 </button>
                 <a 
-                    href="https://wa.me/573143563567" 
+                    href="https://wa.me/573228551469" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="btn floating-btn whatsapp-btn"

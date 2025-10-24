@@ -100,7 +100,7 @@ export const Navbar = () => {
                                 </button>
                             </li>
                             <li className="nav-item d-lg-none d-flex justify-content-center mt-3">
-                                <a href="https://wa.me/573143563567" target="_blank" rel="noopener noreferrer" className="btn nav-icon-btn">
+                                <a href="https://wa.me/573228551469" target="_blank" rel="noopener noreferrer" className="btn nav-icon-btn">
                                     <i className="fa-brands fa-whatsapp"></i>
                                 </a>
                                 <button className="btn nav-icon-btn position-relative" onClick={handleShowCart}>
@@ -141,7 +141,7 @@ export const Navbar = () => {
                                     </span>
                                 )}
                             </button>
-                            <a href="https://wa.me/573143563567" target="_blank" rel="noopener noreferrer" className="btn nav-icon-btn">
+                            <a href="https://wa.me/573228551469" target="_blank" rel="noopener noreferrer" className="btn nav-icon-btn">
                                 <i className="fa-brands fa-whatsapp"></i>
                             </a>
                         </div>
