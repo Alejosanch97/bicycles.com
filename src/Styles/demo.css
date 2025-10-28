@@ -156,28 +156,44 @@
 }
 
 /* Definiciones de colores (sin cambios) */
-.color-salmon { background-color: #FA8072; }
-.color-naranja { background-color: #FFA500; }
+/* Colores Sólidos Comunes */
+.color-rojo { background-color: #DC143C; }
 .color-verde { background-color: #228B22; }
 .color-azul { background-color: #4169E1; }
 .color-negro { background-color: #000000; }
-.color-rojo { background-color: #DC143C; }
-.color-beige { background-color: #F5F5DC; }
-.color-cafe { background-color: #A0522D; }
-.color-marron { background-color: #8B4513; }
-.color-blanco { background-color: #FFFFFF; }
+.color-naranja { background-color: #FFA500; }
 .color-gris { background-color: #808080; }
 .color-dorado { background-color: #FFD700; }
-.color-azuloscuro { background-color: #000080; }
-.color-burdeos { background-color: #800020; }
-.color-grisclaro { background-color: #D3D3D3; }
-.color-coral { background-color: #FF7F50; }
-.color-rosa { background-color: #FFC0CB; }
-.color-azulclaro { background-color: #ADD8E6; }
-.color-plateado { background-color: #C0C0C0; }
-.color-camel { background-color: #C19A6B; }
 .color-morado { background-color: #800080; }
 .color-amarillo { background-color: #FFD400; }
+.color-rosa { background-color: #FFC0CB; }
+.color-magenta { background-color: #FF00FF; }
+.color-lila { background-color: #C8A2C8; }
+.color-purpura { background-color: #800080; } /* Igual que morado */
+
+/* Nuevos Colores de Tierra y Metálicos */
+.color-salmon { background-color: #FA8072; }
+.color-cafe { background-color: #A0522D; }
+.color-beige { background-color: #F5F5DC; }
+.color-camel { background-color: #C19A6B; }
+.color-plateado { background-color: #C0C0C0; }
+.color-melon { background-color: #FDBCB4; }
+
+/* Colores que requieren borde para verse (claro) */
+.color-blanco { 
+    background-color: #FFFFFF;
+    border: 1px solid #ccc; /* Asegura que sea visible */
+}
+
+/* Colores Compuestos (Usando Gradientes) */
+.color-mentanegro {
+    /* Ejemplo de gradiente diagonal: Menta y Negro */
+    background: linear-gradient(45deg, #3DCC91 50%, #000 50%);
+}
+
+.color-naranjagris {
+    /* Ejemplo de gradiente: Naranja y Gris */
+    background: linear-gradient(45deg, #FFA500 50%, #808080 50%);
 
 /* Columna de Productos */
 .products-grid-container {
