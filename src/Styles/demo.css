@@ -1,502 +1,964 @@
 /* src/Styles/demo.css */
 
+
+
 /* --- ENCABEZADO Y BREADCRUMB FIJOS --- */
 
+
+
 /* Contenedor principal para la página de demostración */
+
 .demo-page {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    background-color: #f8f8f8;
-    position: relative;
-    z-index: 1;
+
+padding-top: 3rem;
+
+padding-bottom: 3rem;
+
+background-color: #f8f8f8;
+
+position: relative;
+
+z-index: 1;
+
 }
+
+
 
 /* Breadcrumb - Aseguramos que se mantenga fijo al bajar */
+
 .breadcrumb {
-    background-color: transparent;
-    padding: 0;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    position: sticky;
-    top: 0; 
-    z-index: 500;
-    background-color: #fff; 
+
+background-color: transparent;
+
+padding: 0;
+
+margin-left: 1rem;
+
+margin-right: 1rem;
+
+position: sticky;
+
+top: 0;
+
+z-index: 500;
+
+background-color: #fff;
+
 }
+
+
 
 .breadcrumb-item a {
-    color: #8b4513;
-    text-decoration: none;
+
+color: #8b4513;
+
+text-decoration: none;
+
 }
+
+
 
 .breadcrumb-item.active {
-    color: #333;
+
+color: #333;
+
 }
+
+
 
 /* --- COLUMNA DE FILTROS FIJA Y MEJORADA (ESCRITORIO) --- */
+
 .filters-column {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    position: sticky;
-    top: 5rem; 
-    align-self: flex-start;
-    z-index: 100;
+
+background-color: #fff;
+
+padding: 2rem;
+
+border-radius: 10px;
+
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+position: sticky;
+
+top: 5rem;
+
+align-self: flex-start;
+
+z-index: 100;
+
 }
+
+
 
 .filters-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    color: #333;
-    font-size: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 1.5rem;
+
+font-family: 'Playfair Display', serif;
+
+font-weight: 700;
+
+color: #333;
+
+font-size: 2rem;
+
+padding-bottom: 1rem;
+
+border-bottom: 1px solid #ddd;
+
+margin-bottom: 1.5rem;
+
 }
+
+
 
 .filter-group {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #eee;
+
+margin-bottom: 2rem;
+
+padding-bottom: 1.5rem;
+
+border-bottom: 1px solid #eee;
+
 }
+
+
 
 .filter-heading {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #444;
-    margin-bottom: 1rem;
+
+font-size: 1.2rem;
+
+font-weight: 600;
+
+color: #444;
+
+margin-bottom: 1rem;
+
 }
+
+
 
 /* Filtro de Precio */
+
 .price-range-display {
-    font-weight: 500;
-    color: #333;
-    text-align: center;
+
+font-weight: 500;
+
+color: #333;
+
+text-align: center;
+
 }
+
+
 
 .form-range {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 8px;
-    background: #e0e0e0;
-    border-radius: 5px;
-    outline: none;
-    opacity: 0.8;
-    transition: opacity .2s;
+
+-webkit-appearance: none;
+
+width: 100%;
+
+height: 8px;
+
+background: #e0e0e0;
+
+border-radius: 5px;
+
+outline: none;
+
+opacity: 0.8;
+
+transition: opacity .2s;
+
 }
+
+
 
 .form-range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #8b4513;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+-webkit-appearance: none;
+
+appearance: none;
+
+width: 20px;
+
+height: 20px;
+
+background: #8b4513;
+
+border-radius: 50%;
+
+cursor: pointer;
+
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
 }
+
+
 
 .form-range::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: #8b4513;
-    border-radius: 50%;
-    cursor: pointer;
+
+width: 20px;
+
+height: 20px;
+
+background: #8b4513;
+
+border-radius: 50%;
+
+cursor: pointer;
+
 }
+
+
 
 /* Filtro de Categoría */
+
 .category-list .form-check {
-    margin-bottom: 0.5rem;
+
+margin-bottom: 0.5rem;
+
 }
+
+
 
 .form-check-label {
-    cursor: pointer;
-    color: #666;
+
+cursor: pointer;
+
+color: #666;
+
 }
+
+
 
 .form-check-input:checked + .form-check-label {
-    font-weight: 500;
-    color: #333;
+
+font-weight: 500;
+
+color: #333;
+
 }
+
+
 
 /* Filtro de Color */
+
 .color-filter-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+
+display: grid;
+
+grid-template-columns: repeat(4, 1fr);
+
+gap: 15px;
+
 }
+
+
 
 .color-dot-label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
+
+display: flex;
+
+align-items: center;
+
+gap: 5px;
+
+cursor: pointer;
+
 }
+
+
 
 .color-dot-label input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+width: 18px;
+
+height: 18px;
+
+cursor: pointer;
+
+border: 1px solid #ccc;
+
+border-radius: 4px;
+
 }
+
+
 
 .color-dot-label input[type="checkbox"]:checked + .color-dot {
-    border: 3px solid #8b4513;
-    box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.3);
+
+border: 3px solid #8b4513;
+
+box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.3);
+
 }
+
+
 
 .color-dot {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    display: block;
-    transition: all 0.2s ease-in-out;
-    border: 1px solid #ccc;
+
+width: 25px;
+
+height: 25px;
+
+border-radius: 50%;
+
+display: block;
+
+transition: all 0.2s ease-in-out;
+
+border: 1px solid #ccc;
+
 }
+
+
 
 /* Definiciones de colores (sin cambios) */
-/* Colores Sólidos Comunes */
-.color-rojo { background-color: #DC143C; }
-.color-verde { background-color: #228B22; }
-.color-azul { background-color: #4169E1; }
-.color-negro { background-color: #000000; }
-.color-naranja { background-color: #FFA500; }
-.color-gris { background-color: #808080; }
-.color-dorado { background-color: #FFD700; }
-.color-morado { background-color: #800080; }
-.color-amarillo { background-color: #FFD400; }
-.color-rosa { background-color: #FFC0CB; }
-.color-magenta { background-color: #FF00FF; }
-.color-lila { background-color: #C8A2C8; }
-.color-purpura { background-color: #800080; } /* Igual que morado */
 
-/* Nuevos Colores de Tierra y Metálicos */
 .color-salmon { background-color: #FA8072; }
-.color-cafe { background-color: #A0522D; }
+
+.color-naranja { background-color: #FFA500; }
+
+.color-verde { background-color: #228B22; }
+
+.color-azul { background-color: #4169E1; }
+
+.color-negro { background-color: #000000; }
+
+.color-rojo { background-color: #DC143C; }
+
 .color-beige { background-color: #F5F5DC; }
-.color-camel { background-color: #C19A6B; }
-.color-plateado { background-color: #C0C0C0; }
-.color-melon { background-color: #FDBCB4; }
 
-/* Colores que requieren borde para verse (claro) */
-.color-blanco { 
-    background-color: #FFFFFF;
-    border: 1px solid #ccc; /* Asegura que sea visible */
-}
+.color-cafe { background-color: #A0522D; }
 
-/* Colores Compuestos (Usando Gradientes) */
+.color-marron { background-color: #8B4513; }
+
+.color-blanco { background-color: #FFFFFF; }
+
+.color-gris { background-color: #808080; }
+
+.color-dorado { background-color: #FFD700; }
+
+.color-magenta { background-color: #FF00FF; }
+
+.color-lila { background-color: #C8A2C8; }
+
+.color-grisclaro { background-color: #D3D3D3; }
+
+.color-coral { background-color: #FF7F50; }
+
+.color-rosa { background-color: #FFC0CB; }
+
 .color-mentanegro {
-    /* Ejemplo de gradiente diagonal: Menta y Negro */
     background: linear-gradient(45deg, #3DCC91 50%, #000 50%);
 }
 
-.color-naranjagris {
-    /* Ejemplo de gradiente: Naranja y Gris */
-    background: linear-gradient(45deg, #FFA500 50%, #808080 50%);
+.color-plateado { background-color: #C0C0C0; }
+
+.color-melon { background-color: #FDBCB4; }
+
+.color-morado { background-color: #800080; }
+
+.color-amarillo { background-color: #FFD400; }
+
+
 
 /* Columna de Productos */
+
 .products-grid-container {
-    padding-left: 1rem;
+
+padding-left: 1rem;
+
 }
+
+
 
 .product-count {
-    color: #666;
+
+color: #666;
+
 }
+
+
 
 .sort-by-group .form-select {
-    width: auto;
-    min-width: 150px;
-    border-color: #ccc;
+
+width: auto;
+
+min-width: 150px;
+
+border-color: #ccc;
+
 }
+
+
 
 .product-cards-grid {
-    margin-top: 1rem;
+
+margin-top: 1rem;
+
 }
+
+
 
 /* --- TARJETA DE PRODUCTO MEJORADA (Sin cambios) --- */
+
 .product-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
+
+border: 1px solid #e0e0e0;
+
+border-radius: 12px;
+
+overflow: hidden;
+
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+background-color: #fff;
+
+display: flex;
+
+flex-direction: column;
+
 }
+
+
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+
+transform: translateY(-8px);
+
+box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+
 }
+
+
 
 .product-image {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-bottom: 1px solid #eee;
+
+width: 100%;
+
+height: 280px;
+
+object-fit: cover;
+
+border-bottom: 1px solid #eee;
+
 }
+
+
 
 .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1.5rem 1rem;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+text-align: center;
+
+padding: 1.5rem 1rem;
+
 }
+
+
 
 .product-card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
+
+font-family: 'Playfair Display', serif;
+
+font-size: 1.6rem;
+
+font-weight: 700;
+
+color: #333;
+
+margin-bottom: 0.5rem;
+
+line-height: 1.2;
+
 }
+
+
 
 .product-reference {
-    font-size: 0.9rem;
-    color: #999;
-    margin-bottom: 0.8rem;
+
+font-size: 0.9rem;
+
+color: #999;
+
+margin-bottom: 0.8rem;
+
 }
+
+
 
 .product-colors {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 1rem;
+
+display: flex;
+
+justify-content: center;
+
+gap: 8px;
+
+margin-bottom: 1rem;
+
 }
+
+
 
 .product-price {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #8b4513;
-    margin-bottom: 1rem;
-    letter-spacing: -0.5px;
-    transition: color 0.3s ease;
+
+font-size: 1.8rem;
+
+font-weight: 700;
+
+color: #8b4513;
+
+margin-bottom: 1rem;
+
+letter-spacing: -0.5px;
+
+transition: color 0.3s ease;
+
 }
+
+
 
 .btn-buy-product {
-    background-color: #8b4513;
-    color: white;
-    border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+background-color: #8b4513;
+
+color: white;
+
+border: none;
+
+padding: 0.8rem 2rem;
+
+border-radius: 50px;
+
+transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+font-weight: 600;
+
+letter-spacing: 1px;
+
+text-transform: uppercase;
+
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
 }
+
+
 
 .btn-buy-product:hover {
-    background-color: #a0522d;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+
+background-color: #a0522d;
+
+transform: translateY(-2px);
+
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+
 }
+
+
 
 .product-colors .color-dot {
-    transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+
+transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+
 }
 
+
+
 .product-colors .color-dot:hover {
-    transform: scale(1.2);
-    border: 2px solid #333;
+
+transform: scale(1.2);
+
+border: 2px solid #333;
+
 }
+
+
 
 /* --- NUEVOS ESTILOS PARA FILTROS MÓVILES (Offcanvas/Modal) --- */
 
+
+
 /* Estiliza el botón de activación para que coincida con el tema */
+
 .mobile-filter-btn {
-    background-color: #8b4513;
-    border-color: #8b4513;
-    font-weight: 600;
-    padding: 0.75rem;
-    /* Aseguramos que el botón se vea bien en todos los anchos */
-    font-size: 1rem; 
-    transition: background-color 0.3s ease;
+
+background-color: #8b4513;
+
+border-color: #8b4513;
+
+font-weight: 600;
+
+padding: 0.75rem;
+
+/* Aseguramos que el botón se vea bien en todos los anchos */
+
+font-size: 1rem;
+
+transition: background-color 0.3s ease;
+
 }
+
+
 
 .mobile-filter-btn:hover {
-    background-color: #a0522d;
-    border-color: #a0522d;
+
+background-color: #a0522d;
+
+border-color: #a0522d;
+
 }
+
+
 
 /* Overlay (Fondo oscuro transparente) */
+
 .mobile-filters-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2000; 
-    display: flex;
-    justify-content: flex-end; /* Deslizar desde la derecha */
-    align-items: flex-start;
-    overflow-y: hidden; /* Evita doble scroll */
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+background-color: rgba(0, 0, 0, 0.6);
+
+z-index: 2000;
+
+display: flex;
+
+justify-content: flex-end; /* Deslizar desde la derecha */
+
+align-items: flex-start;
+
+overflow-y: hidden; /* Evita doble scroll */
+
 }
+
+
 
 /* Contenido del filtro (El "Offcanvas" deslizante) */
+
 .filters-content-modal {
-    background-color: #fff;
-    width: 85%; 
-    max-width: 400px; 
-    height: 100%;
-    padding: 2rem 1.5rem;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-    overflow-y: auto; /* Permite scroll dentro del modal si hay muchos filtros */
-    animation: slideInRight 0.3s forwards;
+
+background-color: #fff;
+
+width: 85%;
+
+max-width: 400px;
+
+height: 100%;
+
+padding: 2rem 1.5rem;
+
+box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+
+overflow-y: auto; /* Permite scroll dentro del modal si hay muchos filtros */
+
+animation: slideInRight 0.3s forwards;
+
 }
 
+
+
 /* Botón de 'Ver Productos' dentro del modal */
+
 .filters-content-modal .btn-buy-product {
-    /* Usamos el mismo estilo del botón de comprar, pero aseguramos la visibilidad */
-    display: block;
-    margin-top: 2rem !important;
+
+/* Usamos el mismo estilo del botón de comprar, pero aseguramos la visibilidad */
+
+display: block;
+
+margin-top: 2rem !important;
+
 }
+
+
 
 /* --- SCROLLBAR PARA LA SECCIÓN DE FILTROS (ESCRITORIO) --- */
 
+
+
 .filters-content-scroll {
-    /* Define una altura máxima para el contenido de filtros.
-       '70vh' significa 70% de la altura de la ventana. Ajusta si es necesario. */
-    max-height: 70vh; 
-    
-    /* ¡CLAVE! Activa el scroll vertical cuando el contenido exceda el max-height */
-    overflow-y: auto; 
-    
-    /* Agregamos padding para que el scrollbar no se pegue al borde derecho */
-    padding-right: 15px; 
+
+/* Define una altura máxima para el contenido de filtros.
+
+'70vh' significa 70% de la altura de la ventana. Ajusta si es necesario. */
+
+max-height: 70vh;
+
+
+/* ¡CLAVE! Activa el scroll vertical cuando el contenido exceda el max-height */
+
+overflow-y: auto;
+
+
+/* Agregamos padding para que el scrollbar no se pegue al borde derecho */
+
+padding-right: 15px;
+
 }
+
+
 
 /* Opcional: Estilos para personalizar el scrollbar en navegadores WebKit (Chrome, Safari) */
+
 .filters-content-scroll::-webkit-scrollbar {
-    width: 8px;
+
+width: 8px;
+
 }
+
+
 
 .filters-content-scroll::-webkit-scrollbar-thumb {
-    /* Usamos tu color principal */
-    background-color: #8b4513; 
-    border-radius: 4px;
+
+/* Usamos tu color principal */
+
+background-color: #8b4513;
+
+border-radius: 4px;
+
 }
 
+
+
 .filters-content-scroll::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Fondo claro para el track */
+
+background: #f1f1f1; /* Fondo claro para el track */
+
 }
+
+
+
 
 
 /* Animación de entrada Offcanvas */
+
 @keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
+
+from {
+
+transform: translateX(100%);
+
 }
+
+to {
+
+transform: translateX(0);
+
+}
+
+}
+
+
+
 
 
 /* --- RESPONSIVIDAD RE-OPTIMIZADA (Ajustes para iPhone 11/Tablets) --- */
 
+
+
 /* Estilos para pantallas de tablet y móviles grandes (768px a 991px) */
+
 @media (max-width: 991.98px) {
-    /* Ocultamos la columna de filtros original (se hace principalmente con d-lg-none en JSX) */
-    .filters-column {
-        display: none; 
-    }
-    
-    /* El contenedor de productos ocupa todo el ancho */
-    .products-grid-container {
-        padding-left: 0.5rem; 
-        padding-right: 0.5rem;
-        width: 100%;
-    }
-    
-    /* Ajustes para el grid de tarjetas en tablets (2 columnas) */
-    .product-cards-grid .col-xl-4, .product-cards-grid .col-lg-6 {
-        /* Para que en MD (768px+) se vean 2 por fila (col-md-6) */
-        width: 50%;
-    }
-    
-    .product-image {
-        height: 250px;
-    }
+
+/* Ocultamos la columna de filtros original (se hace principalmente con d-lg-none en JSX) */
+
+.filters-column {
+
+display: none;
+
 }
+
+
+/* El contenedor de productos ocupa todo el ancho */
+
+.products-grid-container {
+
+padding-left: 0.5rem;
+
+padding-right: 0.5rem;
+
+width: 100%;
+
+}
+
+
+/* Ajustes para el grid de tarjetas en tablets (2 columnas) */
+
+.product-cards-grid .col-xl-4, .product-cards-grid .col-lg-6 {
+
+/* Para que en MD (768px+) se vean 2 por fila (col-md-6) */
+
+width: 50%;
+
+}
+
+
+.product-image {
+
+height: 250px;
+
+}
+
+}
+
+
 
 /* Estilos para pantallas de móviles pequeños (iPhone 11, Pro, Pro Max: 375px - 767px) */
+
 @media (max-width: 767.98px) {
-    .demo-page {
-        padding: 1rem 0.5rem; /* Padding más compacto en los lados */
-    }
-    
-    /* El breadcrumb también necesita ajuste en el padding lateral */
-    .breadcrumb {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-    }
-    
-    /* Ajustamos el grid de productos para una columna en móviles */
-    .product-cards-grid .col-sm-6, .product-cards-grid .col-md-6, .product-cards-grid .col-lg-6 {
-        width: 100%; /* Una columna por producto en móvil */
-    }
 
-    .product-image {
-        height: 280px; /* Tamaño de imagen más grande para que se luzca en una sola columna */
-    }
-    
-    /* Reducción de fuentes para mejor legibilidad */
-    .product-card-title {
-        font-size: 1.4rem;
-    }
-    .product-price {
-        font-size: 1.6rem;
-    }
-    .btn-buy-product {
-        padding: 0.6rem 1.5rem; 
-        font-size: 0.9rem;
-    }
+.demo-page {
 
-    /* Offcanvas ocupa todo el ancho en móviles pequeños */
-    .filters-content-modal {
-        width: 100%; 
-        max-width: none;
-    }
-    
-    /* Ajuste del filtro de color para dispositivos pequeños */
-    .color-filter-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas en móviles */
-        gap: 10px;
-    }
-    .color-dot-label input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
-    }
-    .color-dot {
-        width: 20px;
-        height: 20px;
-    }
+padding: 1rem 0.5rem; /* Padding más compacto en los lados */
+
 }
 
+
+/* El breadcrumb también necesita ajuste en el padding lateral */
+
+.breadcrumb {
+
+margin-left: 0.5rem;
+
+margin-right: 0.5rem;
+
+}
+
+
+/* Ajustamos el grid de productos para una columna en móviles */
+
+.product-cards-grid .col-sm-6, .product-cards-grid .col-md-6, .product-cards-grid .col-lg-6 {
+
+width: 100%; /* Una columna por producto en móvil */
+
+}
+
+
+
+.product-image {
+
+height: 280px; /* Tamaño de imagen más grande para que se luzca en una sola columna */
+
+}
+
+
+/* Reducción de fuentes para mejor legibilidad */
+
+.product-card-title {
+
+font-size: 1.4rem;
+
+}
+
+.product-price {
+
+font-size: 1.6rem;
+
+}
+
+.btn-buy-product {
+
+padding: 0.6rem 1.5rem;
+
+font-size: 0.9rem;
+
+}
+
+
+
+/* Offcanvas ocupa todo el ancho en móviles pequeños */
+
+.filters-content-modal {
+
+width: 100%;
+
+max-width: none;
+
+}
+
+
+/* Ajuste del filtro de color para dispositivos pequeños */
+
+.color-filter-grid {
+
+grid-template-columns: repeat(3, 1fr); /* 3 columnas en móviles */
+
+gap: 10px;
+
+}
+
+.color-dot-label input[type="checkbox"] {
+
+width: 16px;
+
+height: 16px;
+
+}
+
+.color-dot {
+
+width: 20px;
+
+height: 20px;
+
+}
+
+}
+
+
+
 /* Media Query para pantallas muy pequeñas (menos de 375px) */
+
 @media (max-width: 374.98px) {
-    /* Ajustes mínimos para asegurar que el texto no se desborde */
-    .filters-title, .filter-heading {
-        font-size: 1.2rem;
-    }
-    .product-card-title {
-        font-size: 1.3rem;
-    }
-    .product-price {
-        font-size: 1.5rem;
-    }
-    .btn-buy-product {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-    }
-    .color-filter-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas para el filtro de color */
-        gap: 8px;
-    }
+
+/* Ajustes mínimos para asegurar que el texto no se desborde */
+
+.filters-title, .filter-heading {
+
+font-size: 1.2rem;
+
+}
+
+.product-card-title {
+
+font-size: 1.3rem;
+
+}
+
+.product-price {
+
+font-size: 1.5rem;
+
+}
+
+.btn-buy-product {
+
+padding: 0.5rem 1rem;
+
+font-size: 0.8rem;
+
+}
+
+.color-filter-grid {
+
+grid-template-columns: repeat(2, 1fr); /* 2 columnas para el filtro de color */
+
+gap: 8px;
+
+}
+
 }
