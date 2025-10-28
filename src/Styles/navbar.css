@@ -8,6 +8,63 @@
   z-index: 1020;
 }
 
+/* --- ESTILO PARA EL MENSAJE DE ÉXITO --- */
+/* --- ESTILO PARA EL MENSAJE DE ÉXITO (OPTIMIZADO) --- */
+
+.success-message {
+    /* 1. Posicionamiento Fijo y Centrado Horizontal */
+    position: fixed;
+    top: 20px; /* Separación del borde superior */
+    left: 50%;
+    
+    /* 2. Ancho y Centrado */
+    max-width: 400px; /* Limita el ancho en escritorio */
+    width: 90%; /* Asegura que ocupe espacio en móvil */
+    transform: translate(-50%, -150%); /* Centra horizontalmente (-50%) y lo oculta verticalmente (-150%) */
+    
+    /* 3. Estilo Visual */
+    background-color: #8b4513; /* Fondo Color Café Principal */
+    color: white;
+    padding: 12px 20px;
+    z-index: 1050; 
+    text-align: center;
+    font-weight: 600;
+    border-radius: 8px; /* Bordes suaves */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra para que flote */
+    font-size: 1rem; /* Tamaño de fuente más apropiado */
+    
+    /* 4. Animación */
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+}
+
+/* 🚨 CLAVE 2: MOSTRAR SOLO CUANDO TIENE LA CLASE 'show' 🚨 */
+.success-message.show {
+    transform: translate(-50%, 0); /* Centrado horizontal (-50%) y visible (0) */
+    opacity: 1;
+}
+
+.success-message-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Estilo para el ícono */
+.success-message-content .fas.fa-check-circle {
+    font-size: 1.1rem; 
+}
+
+/* --- RESPONSIVIDAD ADICIONAL PARA MÓVILES --- */
+
+@media (max-width: 500px) {
+    .success-message {
+        top: 10px; /* Más cerca del borde superior en móviles */
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
 
 /* Contenedor del logo */
 .avana-navbar .navbar-brand {
