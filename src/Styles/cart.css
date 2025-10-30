@@ -1,12 +1,10 @@
-/*
- * Este CSS cambia el color de la 'X' en los botones de cierre
- * de los modales de Bootstrap.
- */
+/* --------------------------------------
+ * ESTILOS DE COMPONENTES BÁSICOS
+ * -------------------------------------- */
 
 /* Botón de cierre personalizado */
-/* Forzar visibilidad del botón de cierre */
 .btn-close {
-  background: none !important; /* Quita el SVG default de Bootstrap */
+  background: none !important; 
   width: 1.5rem;
   height: 1.5rem;
   opacity: 1 !important;
@@ -14,47 +12,41 @@
 }
 
 .btn-close::before {
-  content: "✕"; /* Carácter X */
+  content: "✕"; 
   font-size: 1.5rem;
-  color: #212529; /* Negro muy oscuro */
+  color: #212529; 
   font-weight: bold;
   line-height: 1;
 }
 
 .btn-close:hover::before {
-  color: #8B4513; /* Marrón cuero al hacer hover */
+  color: #8B4513; 
 }
 
-
-
-/*
- * Estilos para el botón 'Confirmar Pedido'
- */
+/* Estilos para el botón 'Confirmar Pedido' */
 .btn-confirm-order {
-    background-color: #343a40; /* Un gris oscuro para que resalte */
+    background-color: #343a40; 
     border-color: #343a40;
     color: #fff;
     font-weight: bold;
-    border-radius: 0.5rem; /* Bordes ligeramente redondeados */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
-    transition: all 0.3s ease; /* Transición suave para los efectos */
+    border-radius: 0.5rem; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    width: 100%; /* Ocupa todo el ancho en el footer */
+    max-width: 350px; /* Limita el ancho máximo en desktop */
 }
 
-/*
- * Efecto hover para el botón 'Confirmar Pedido'
- */
+/* Efecto hover para el botón 'Confirmar Pedido' */
 .btn-confirm-order:hover {
-    background-color: #495057; /* Un tono más claro en hover */
+    background-color: #495057; 
     border-color: #495057;
-    transform: translateY(-2px); /* Mueve el botón ligeramente hacia arriba */
+    transform: translateY(-2px); 
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
-/*
- * Estilos para el botón cuando está deshabilitado
- */
+/* Estilos para el botón cuando está deshabilitado */
 .btn-confirm-order:disabled {
-    background-color: #e9ecef; /* Un color más claro cuando no se puede usar */
+    background-color: #e9ecef; 
     border-color: #e9ecef;
     color: #6c757d;
     cursor: not-allowed;
@@ -62,3 +54,233 @@
     transform: none;
 }
 
+
+/* --------------------------------------
+ * ESTILOS DE LOS PUNTOS DE COLOR (MEJORADO)
+ * -------------------------------------- */
+
+.color-dot-small {
+    display: inline-block;
+    width: 28px; /* Tamaño aumentado */
+    height: 28px; /* Tamaño aumentado */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, border 0.2s;
+    border: 1px solid #ccc; /* Borde sutil por defecto */
+    margin-right: 6px; /* Espaciado entre puntos */
+    flex-shrink: 0; /* Evita que se encojan en layouts flex */
+}
+
+.color-dot-small:hover {
+    transform: scale(1.1);
+}
+
+/* NUEVO: Destacar el color seleccionado */
+.color-dot-small.selected {
+    border: 3px solid #343a40; /* Borde oscuro más grueso para selección */
+    box-shadow: 0 0 0 2px #fff; /* Sombra blanca para que resalte sobre fondos oscuros */
+}
+
+
+/* Definiciones de colores */
+.color-verde { background-color: #2ecc71; } 
+.color-rojo { background-color: #e74c3c; } 
+.color-azul { background-color: #3498db; } 
+.color-negro { background-color: #000000; } 
+.color-morado { background-color: #9b59b6; } 
+.color-blanco { background-color: #ffffff; border: 1px solid #6c757d; } /* Borde más visible para el blanco */
+.color-naranja { background-color: #f39c12; } 
+.color-cafe { background-color: #6f4e37; } 
+.color-salmon { background-color: #fa8072; } 
+.color-plateado { 
+    background: linear-gradient(145deg, #e0e0e0, #f9f9f9); 
+    border: 1px solid #b3b3b3; 
+} 
+.color-rosa { background-color: #ffb6c1; } 
+
+
+/* --------------------------------------
+ * ESTILOS DE ESTRUCTURA Y RESPONSIVE (MEJORADO)
+ * -------------------------------------- */
+
+.modal-dialog.modal-lg {
+    max-width: 750px; /* Un poco más grande para mejor espacio en desktop */
+}
+
+.modal-content {
+    border-radius: 16px; /* Bordes más suaves */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra mejorada */
+}
+
+.header-cart {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 1rem 1.5rem;
+}
+
+.footer-cart {
+    border-top: 1px solid #e0e0e0; /* Separación sutil del resumen */
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    justify-content: center; /* Centrar el botón de pago */
+}
+
+.cart-item-image {
+    border-radius: 8px;
+    object-fit: cover;
+    width: 100%;
+    height: 90px; 
+    margin-bottom: 10px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra ligera en la imagen */
+}
+
+/* Estilos para el contenedor de cada item del carrito */
+.cart-item {
+    padding: 20px 0; /* Más espacio vertical */
+    border-bottom: 1px solid #f0f0f0; /* Separador ligero entre productos */
+    display: flex; 
+    flex-wrap: wrap; 
+    align-items: flex-start; /* Alineación superior para el contenido */
+}
+
+/* Selector de talla */
+.form-select-sm {
+    padding: 0.375rem 0.75rem; /* Tamaño más estándar */
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+}
+
+/* Contenedor de la lista de puntos de color */
+.color-options-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+}
+
+/* --- Resumen de Precios --- */
+.summary-box {
+    background-color: #f4f6f8; /* Fondo más claro y moderno */
+    border-radius: 12px;
+    padding: 2rem !important; /* Aún más padding para que respire */
+    margin-top: 1.5rem !important;
+}
+
+.summary-title {
+    color: #2c3e50; /* Gris más oscuro */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.total-line {
+    border-top: 2px solid #343a40; /* Línea sólida más fuerte para total */
+    padding-top: 15px;
+    margin-top: 15px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* Texto de descripción de producto */
+.product-details p {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+
+/* =========================================================
+ * RESPONSIVE DESIGN (MÓVIL, TABLET, DESKTOP)
+ * ========================================================= */
+
+/* Diseño para MÓVILES (hasta 576px) */
+@media (max-width: 575.98px) {
+    .cart-item {
+        /* Estructura mejorada para apilamiento */
+        display: grid;
+        grid-template-areas: 
+            "image details"
+            "image selectors"
+            "remove remove";
+        grid-template-columns: 30% 70%;
+        gap: 10px 15px;
+    }
+
+    .cart-item .col-2:nth-child(1) { 
+        grid-area: image; 
+        text-align: left;
+    } 
+    .cart-item .col-5 { 
+        grid-area: details; 
+    } 
+    .cart-item .col-3 { 
+        grid-area: selectors; 
+        padding-top: 5px;
+    } 
+    .cart-item .col-2:last-child {
+        grid-area: remove;
+        text-align: right;
+        padding-top: 10px;
+        display: block; /* Hacemos visible el botón eliminar en su propia fila */
+    }
+
+    .cart-item-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 0;
+    }
+    
+    /* Asegurar que la talla y el color se muestren bien en móvil */
+    .cart-item .col-3 .d-flex {
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* Diseño para TABLETS y Desktop Pequeño (576px - 991px) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .modal-dialog.modal-lg {
+        max-width: 90%; 
+    }
+    
+    .cart-item-image {
+        height: 80px; 
+    }
+    
+    .cart-item .col-5 {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Diseño para DESKTOP (992px y superior) */
+@media (min-width: 992px) {
+    /* Ajustes específicos de distribución en desktop para optimizar espacio */
+    .cart-item .col-2:first-child { 
+        max-width: 15%; /* Imagen más compacta */
+        flex: 0 0 15%;
+    }
+    
+    .cart-item .col-5 {
+        max-width: 35%; /* Detalles del producto */
+        flex: 0 0 35%;
+    }
+    
+    .cart-item .col-3 {
+        max-width: 30%; /* Selectores de talla y color */
+        flex: 0 0 30%;
+    }
+    
+    .cart-item .col-2:last-child {
+        max-width: 20%; /* Botón eliminar */
+        flex: 0 0 20%;
+        text-align: right;
+    }
+}

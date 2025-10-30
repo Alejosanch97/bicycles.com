@@ -2,18 +2,28 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useGlobalReducer from '../hooks/useGlobalReducer.jsx';
 import { CartModal } from "../components/CartModal.jsx";
-import { ToastContainer, toast } from 'react-toastify'; // 👈 IMPORTADO: Toast
-import 'react-toastify/dist/ReactToastify.css'; // 👈 IMPORTADO: Estilos de Toastify
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 import '../Styles/demo.css';
 
 // 🚨🚨🚨 1. DEFINIR LA URL DE LA API AQUI 🚨🚨🚨
 const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxqUoCMBgc7pNT7AWH3f1bguHlRB_IzEpO6SKIPDQ-lJ6uIMAlywB6EzWOzXLqpEu89/exec";
 
-// Componente individual de la tarjeta de producto (sin cambios)
+// =============================================================
+// ✅ COMPONENTE: ProductCard (Modificado para selección de Talla)
+// =============================================================
 const ProductCard = ({ product, handleAddToCart }) => {
-    // ... (ProductCard se mantiene igual)
+    // La columna 'Referencia' (talla) viene como una cadena que puede tener múltiples opciones (XS, S, M, L)
+    const availableSizes = product.reference.split(',').map(s => s.trim()).filter(s => s);
+    
+    // Si hay tallas múltiples o solo "Unica", usamos la primera como inicial.
+    const initialSize = availableSizes.length > 0 ? availableSizes[0] : 'Unica'; 
+    const initialColor = product.colors && product.colors.length > 0 ? product.colors[0] : '';
+    
     const [currentImage, setCurrentImage] = useState(product.mainImage);
-    const [currentColor, setCurrentColor] = useState(product.colors[0]);
+    const [currentColor, setCurrentColor] = useState(initialColor);
+    // ✅ ESTADO: Talla seleccionada (de la columna Referencia)
+    const [selectedSize, setSelectedSize] = useState(initialSize); 
 
     const handleImageHover = () => {
         if (product.hoverImage) {
@@ -27,7 +37,6 @@ const ProductCard = ({ product, handleAddToCart }) => {
 
     const handleColorHover = (color) => {
         const formattedColor = color.toLowerCase().replace(/\s/g, '');
-        // Asegúrate de que 'images' exista antes de acceder
         const imageToDisplay = product.images?.[formattedColor];
         if (imageToDisplay) {
             setCurrentImage(imageToDisplay);
@@ -39,7 +48,8 @@ const ProductCard = ({ product, handleAddToCart }) => {
     };
     
     const handleAddClick = () => {
-        handleAddToCart(product, currentColor);
+        // ✅ Pasamos la talla seleccionada
+        handleAddToCart(product, currentColor, selectedSize); 
     };
 
     return (
@@ -47,7 +57,6 @@ const ProductCard = ({ product, handleAddToCart }) => {
             <div 
                 className="product-card h-100 position-relative"
             >
-                {/* Usar currentImage, que es dinámica */}
                 <img 
                     src={currentImage} 
                     className="card-img-top product-image" 
@@ -55,11 +64,36 @@ const ProductCard = ({ product, handleAddToCart }) => {
                     onMouseEnter={handleImageHover}
                     onMouseLeave={handleImageLeave}
                 />
-                <div className="card-body text-center">
+                <div className="card-body text-center d-flex flex-column">
                     <h5 className="product-card-title">{product.name}</h5>
-                    <p className="product-reference text-muted">{product.reference}</p>
+                    {/* Mostramos el Rin (Subcategoría) y la Referencia (Talla) */}
+                    <p className="product-info text-muted">
+                        {product.subcategoria} | Tallas: {product.reference}
+                    </p>
+                    
+                    {/* ✅ SELECTOR DE TALLA: Solo si hay más de una opción o si es "Unica" */}
+                    {availableSizes.length > 1 || availableSizes[0] === 'Unica' ? (
+                        <div className="mb-3 d-flex justify-content-center align-items-center">
+                            <label htmlFor={`size-select-${product.id}`} className="me-2 text-muted fw-bold" style={{fontSize: '0.9rem'}}>Talla:</label>
+                            <select 
+                                id={`size-select-${product.id}`}
+                                className="form-select form-select-sm"
+                                value={selectedSize}
+                                onChange={(e) => setSelectedSize(e.target.value)}
+                                style={{maxWidth: '100px'}}
+                            >
+                                {availableSizes.map(size => (
+                                    <option key={size} value={size}>{size}</option>
+                                ))}
+                            </select>
+                        </div>
+                    ) : (
+                        // Si solo hay una talla (ej. 'rin 29' en las MTB que tienen talla en Referencia), no mostramos el selector.
+                         <div style={{height: '38px'}}></div> 
+                    )}
+
+
                     <div className="product-colors mb-2">
-                        {/* Iterar sobre product.colors, que viene de la API */}
                         {product.colors.map(color => (
                             <span 
                                 key={color} 
@@ -70,8 +104,8 @@ const ProductCard = ({ product, handleAddToCart }) => {
                             ></span>
                         ))}
                     </div>
-                    {/* toLocaleString para formato de moneda */}
-                    <p className="product-price">$ {product.price.toLocaleString('es-CO')}</p> 
+                    
+                    <p className="product-price mt-1">$ {product.price.toLocaleString('es-CO')}</p> 
                     <button 
                         className="btn btn-buy-product mt-auto"
                         onClick={handleAddClick}
@@ -103,21 +137,29 @@ export const Demo = () => {
     const [filteredProducts, setFilteredProducts] = useState([]); 
     const [priceRange, setPriceRange] = useState([0, 8000000]);
     const [selectedCategories, setSelectedCategories] = useState(initialCategory);
-    // ✅ NUEVOS ESTADOS DE FILTRO
-    const [selectedSubcategories, setSelectedSubcategories] = useState([]);
-    const [selectedReferences, setSelectedReferences] = useState([]); 
+    
+    // ✅ NUEVOS ESTADOS DE FILTRO: Talla (Referencia) y Rin (Subcategoría)
+    const [selectedRins, setSelectedRins] = useState([]); // Subcategoría
+    const [selectedSizes, setSelectedSizes] = useState([]); // Referencia
     const [selectedColors, setSelectedColors] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState('default');
     const [showMobileFilters, setShowMobileFilters] = useState(false); 
 
-    // ✅ CÁLCULO DINÁMICO: Aseguramos que se actualicen al cargar 'products'.
+    // =============================================================
+    // ✅ CÁLCULO DINÁMICO: Usando Referencia para Talla y Subcategoría para Rin
+    // =============================================================
     const uniqueCategories = [...new Set(products.map(p => p.category))].filter(Boolean);
     
-    // ✅ CORRECCIÓN CLAVE: Usamos 'subcategoria' (sin acento) para coincidir con la API de Google Script.
-    const uniqueSubcategories = [...new Set(products.map(p => p.subcategoria || p.subcategory))].filter(Boolean); 
+    // 1. Tallas (Basado en la columna Referencia)
+    const uniqueSizes = [...new Set(
+        products.flatMap(p => p.reference.split(',').map(s => s.trim()))
+    )].filter(s => s); 
     
-    const uniqueReferences = [...new Set(products.map(p => p.reference))].filter(Boolean);
+    // 2. Rines (Basado en la columna Subcategoría)
+    // ✅ Corrección: Usamos 'subcategoria' (sin acento) o 'subcategory' para coincidir con la API.
+    const uniqueRins = [...new Set(products.map(p => p.subcategoria || p.subcategory))].filter(Boolean);
+
     const uniqueColors = [...new Set(products.flatMap(p => p.colors || []))].filter(Boolean);
 
 
@@ -173,15 +215,22 @@ export const Demo = () => {
             tempProducts = tempProducts.filter(product => selectedCategories.includes(product.category));
         }
 
-        // ✅ 3. Filtrar por subcategorías (Usando la propiedad corregida o la anterior)
-        if (selectedSubcategories.length > 0) {
-            tempProducts = tempProducts.filter(product => selectedSubcategories.includes(product.subcategoria || product.subcategory));
+        // ✅ 3. Filtrar por TALLA (Columna Referencia)
+        if (selectedSizes.length > 0) {
+            tempProducts = tempProducts.filter(product => {
+                const availableSizesForProduct = product.reference.split(',').map(s => s.trim());
+                return availableSizesForProduct.some(size => selectedSizes.includes(size));
+            });
         }
 
-        // ✅ 4. Filtrar por referencias
-        if (selectedReferences.length > 0) {
-            tempProducts = tempProducts.filter(product => selectedReferences.includes(product.reference));
+        // ✅ 4. Filtrar por RIN (Columna Subcategoría)
+        if (selectedRins.length > 0) {
+            tempProducts = tempProducts.filter(product => {
+                const subcat = product.subcategoria || product.subcategory;
+                return selectedRins.includes(subcat);
+            });
         }
+
 
         // 5. Filtrar por colores
         if (selectedColors.length > 0) {
@@ -201,13 +250,13 @@ export const Demo = () => {
         }
 
         setFilteredProducts(tempProducts);
-    }, [selectedCategories, selectedSubcategories, selectedReferences, selectedColors, priceRange, searchTerm, sortBy, products]); 
+    }, [selectedCategories, selectedRins, selectedSizes, selectedColors, priceRange, searchTerm, sortBy, products]); 
 
     useEffect(() => {
         runFilters();
     }, [runFilters, location.state]);
 
-    // ✅ HANDLERS COMPLETOS: Lógica necesaria para marcar/desmarcar checkboxes
+    // ✅ HANDLERS:
 
     const handleCategoryChange = (e) => {
         const { value, checked } = e.target;
@@ -216,19 +265,19 @@ export const Demo = () => {
         );
     };
 
-    // ✅ NUEVO HANDLER: Subcategoría
-    const handleSubcategoryChange = (e) => {
+    // ✅ NUEVO HANDLER: Talla (Referencia)
+    const handleSizeChange = (e) => {
         const { value, checked } = e.target;
-        setSelectedSubcategories(prev =>
-            checked ? [...prev, value] : prev.filter(subcat => subcat !== value)
+        setSelectedSizes(prev =>
+            checked ? [...prev, value] : prev.filter(size => size !== value)
         );
     };
 
-    // ✅ NUEVO HANDLER: Referencia
-    const handleReferenceChange = (e) => {
+    // ✅ NUEVO HANDLER: Rin (Subcategoría)
+    const handleRinChange = (e) => {
         const { value, checked } = e.target;
-        setSelectedReferences(prev =>
-            checked ? [...prev, value] : prev.filter(ref => ref !== value)
+        setSelectedRins(prev =>
+            checked ? [...prev, value] : prev.filter(rin => rin !== value)
         );
     };
 
@@ -244,19 +293,25 @@ export const Demo = () => {
         setPriceRange(prev => [parseInt(value), prev[1]]);
     };
     
-    // Función para añadir al carrito (MODIFICADA para incluir la notificación)
-    const handleAddToCart = (product, color) => {
+    // Función para añadir al carrito (MODIFICADA para incluir la talla)
+    const handleAddToCart = (product, color, size) => {
         const formattedColor = color.toLowerCase().replace(/\s/g, '');
+        // Usamos una combinación de ID, color y talla para hacer el artículo único
+        const uniqueId = `${product.id}-${formattedColor}-${size}`; 
+        
         const itemToAdd = {
-            id: product.id,
+            id: uniqueId, 
+            productId: product.id, 
             name: product.name,
-            reference: product.reference,
+            reference: product.reference, // Guardamos la referencia original (tallas disponibles)
             price: product.price,
-            // Usamos product.images, que viene de la API
             image: product.images[formattedColor] || product.mainImage, 
             selectedColor: color,
+            selectedSize: size, // ✅ Talla seleccionada
             colors: product.colors,
             images: product.images,
+            // Guardamos todas las tallas disponibles (de la columna Referencia)
+            availableSizes: product.reference.split(',').map(s => s.trim()), 
         };
 
         dispatch({
@@ -264,8 +319,9 @@ export const Demo = () => {
             payload: itemToAdd,
         });
 
+        const sizeDisplay = size && size !== 'Unica' ? ` - Talla ${size}` : '';
         // 🚨 AQUÍ ESTÁ LA NOTIFICACIÓN 🚨
-        toast.success(`✅ ${product.name} - ${color} agregado al carrito!`, {
+        toast.success(`✅ ${product.name} - ${color}${sizeDisplay} agregado al carrito!`, {
             position: "bottom-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -324,22 +380,23 @@ export const Demo = () => {
             </div>
 
             {/* ✅ FILTRO: Talla (Referencia) */}
-            {uniqueReferences.length > 0 && (
+            {uniqueSizes.length > 0 && (
                 <div className="filter-group mb-4 pb-3 border-bottom">
                     <h5 className="filter-heading">Talla</h5>
                     <div className="reference-list filter-scroll-box">
-                        {uniqueReferences.map(reference => (
-                            <div key={reference} className="form-check">
+                        {/* Mapeamos las tallas únicas de la columna Referencia */}
+                        {uniqueSizes.map(size => (
+                            <div key={size} className="form-check">
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    value={reference}
-                                    id={`ref-${reference}`}
-                                    checked={selectedReferences.includes(reference)} 
-                                    onChange={handleReferenceChange}
+                                    value={size}
+                                    id={`size-${size}`}
+                                    checked={selectedSizes.includes(size)} 
+                                    onChange={handleSizeChange}
                                 />
-                                <label className="form-check-label" htmlFor={`ref-${reference}`}>
-                                    {reference}
+                                <label className="form-check-label" htmlFor={`size-${size}`}>
+                                    {size}
                                 </label>
                             </div>
                         ))}
@@ -347,23 +404,24 @@ export const Demo = () => {
                 </div>
             )}
             
-            {/* ✅ FILTRO: Subcategoría (Debe aparecer con la corrección de la propiedad) */}
-            {uniqueSubcategories.length > 0 && (
+            {/* ✅ FILTRO: Rin (Subcategoría) */}
+            {uniqueRins.length > 0 && (
                 <div className="filter-group mb-4 pb-3 border-bottom">
                     <h5 className="filter-heading">Rin</h5>
                     <div className="subcategory-list filter-scroll-box">
-                        {uniqueSubcategories.map(subcategory => (
-                            <div key={subcategory} className="form-check">
+                         {/* Mapeamos los rines únicos de la columna Subcategoría */}
+                        {uniqueRins.map(rin => (
+                            <div key={rin} className="form-check">
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    value={subcategory}
-                                    id={`subcat-${subcategory}`}
-                                    checked={selectedSubcategories.includes(subcategory)} 
-                                    onChange={handleSubcategoryChange}
+                                    value={rin}
+                                    id={`rin-${rin}`}
+                                    checked={selectedRins.includes(rin)} 
+                                    onChange={handleRinChange}
                                 />
-                                <label className="form-check-label" htmlFor={`subcat-${subcategory}`}>
-                                    {subcategory}
+                                <label className="form-check-label" htmlFor={`rin-${rin}`}>
+                                    {rin}
                                 </label>
                             </div>
                         ))}
@@ -375,7 +433,6 @@ export const Demo = () => {
             <div className="filter-group mb-4 pb-3 border-bottom">
                 <h5 className="filter-heading">Color</h5>
                 <div className="color-filter-grid">
-                    {/* ✅ Mapeo de colores con la lista única */}
                     {uniqueColors.map(color => (
                         <div key={color} className="form-check form-check-inline">
                             <input
@@ -383,7 +440,6 @@ export const Demo = () => {
                                 type="checkbox"
                                 value={color}
                                 id={`color-${color}`}
-                                // ✅ Usar selectedColors para ver si debe estar marcado
                                 checked={selectedColors.includes(color)}
                                 onChange={handleColorChange}
                             />
@@ -482,8 +538,8 @@ export const Demo = () => {
                                 <p className="lead">No se encontraron productos con los filtros seleccionados.</p>
                                 <button className="btn btn-outline-secondary" onClick={() => {
                                     setSelectedCategories([]);
-                                    setSelectedSubcategories([]); // ✅ Limpiar subcategorías
-                                    setSelectedReferences([]); // ✅ Limpiar referencias
+                                    setSelectedRins([]); 
+                                    setSelectedSizes([]); 
                                     setSelectedColors([]);
                                     setPriceRange([0, 8000000]); // Ajustado a max de 8M
                                     setSearchTerm('');

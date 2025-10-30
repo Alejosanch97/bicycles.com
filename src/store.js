@@ -47,6 +47,7 @@ export default function storeReducer(store, action = {}) {
             };
 
         case "ADD_TO_CART":
+            // 🚨 Importante: Asume que action.payload incluye selectedSize y selectedColor
             const newCartItem = {
                 ...action.payload, 
                 cartId: uuidv4(),  
@@ -64,7 +65,7 @@ export default function storeReducer(store, action = {}) {
             };
         
         case "UPDATE_CART_ITEM_COLOR":
-            // La corrección clave: el reducer solo aplica el payload que viene del CartModal.
+            // Actualiza el color y la imagen del ítem en el carrito
             return {
                 ...store,
                 cart: store.cart.map(item => {
@@ -72,13 +73,29 @@ export default function storeReducer(store, action = {}) {
                         return {
                             ...item,
                             selectedColor: action.payload.newColor,
-                            // ✅ El reducer aplica la nueva imagen que calculó el componente
+                            // El reducer aplica la nueva imagen que calculó el componente
                             image: action.payload.newImage
                         };
                     }
                     return item; 
                 }),
             };
+            
+        // ✅ NUEVO CASE: Para cambiar la talla del ítem en el carrito
+        case "UPDATE_CART_ITEM_SIZE": {
+            // Action.payload: { itemCartId, newSize }
+            return {
+                ...store,
+                cart: store.cart.map(item =>
+                    item.cartId === action.payload.itemCartId
+                        ? {
+                            ...item,
+                            selectedSize: action.payload.newSize,
+                        }
+                        : item
+                ),
+            };
+        }
         
         default:
             return store;

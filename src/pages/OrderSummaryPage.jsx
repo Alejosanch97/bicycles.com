@@ -65,7 +65,9 @@ export const OrderSummaryPage = () => {
             name: item.name,        
             units: 1,               
             price: formatValue(item.price), 
-            color: item.selectedColor 
+            color: item.selectedColor,
+            // ✅ AGREGAMOS LA TALLA SELECCIONADA AL ARRAY DE ITEMS PARA EL EMAILJS
+            size: item.selectedSize || 'N/A' 
         }));
 
         const templateParams = {
@@ -137,7 +139,7 @@ export const OrderSummaryPage = () => {
             </div>
 
             <div className="row g-4">
-                {/* COLUMNA IZQUIERDA: RESUMEN Y MENSAJES INFORMATIVOS (SIN CAMBIOS) */}
+                {/* COLUMNA IZQUIERDA: RESUMEN Y MENSAJES INFORMATIVOS */}
                 <div className="col-md-6 d-flex flex-column"> 
                     
                     {/* 1. RESUMEN DE LA ORDEN */}
@@ -145,14 +147,18 @@ export const OrderSummaryPage = () => {
                         <div className="card-body">
                             <h5 className="card-title mb-3 fw-bold">Resumen de la Orden</h5>
                             {cart.map((item) => (
-                                <div key={item.id} className="product-item-container d-flex align-items-start mb-3 pb-2">
+                                <div key={item.id} className="product-item-container d-flex align-items-start mb-3 pb-2 border-bottom">
                                     <img src={item.image} alt={item.name} className="img-thumbnail" />
                                     <div className="d-flex flex-column flex-grow-1 ms-3">
                                         <div className="d-flex justify-content-between align-items-center mb-1">
                                             <h6 className="item-name mb-0">{item.name}</h6>
                                             <span className="item-price fw-bold">{formatPrice(item.price)}</span>
                                         </div>
-                                        <small className="text-muted d-block">Color: {item.selectedColor}</small>
+                                        <small className="text-muted d-block">
+                                            Color: {item.selectedColor} 
+                                            {/* ✅ MOSTRAR LA TALLA SELECCIONADA AQUÍ */}
+                                            {item.selectedSize && <span className="ms-3">Talla: {item.selectedSize}</span>}
+                                        </small>
                                     </div>
                                 </div>
                             ))}
@@ -210,7 +216,7 @@ export const OrderSummaryPage = () => {
 
                 </div>
 
-                {/* COLUMNA DERECHA: DATOS DE CONTACTO Y ENVÍO (REORGANIZADA) */}
+                {/* COLUMNA DERECHA: DATOS DE CONTACTO Y ENVÍO */}
                 <div className="col-md-6">
                     <div className="card shadow-sm h-100">
                         <div className="card-body">
@@ -262,7 +268,7 @@ export const OrderSummaryPage = () => {
                                     <textarea className="form-control" id="notas" name="notas" rows="3" value={formData.notas} onChange={handleInputChange}></textarea>
                                 </div>
 
-                                {/* 4. OPCIONES DE ENTREGA (MOVIDAS AL FINAL) */}
+                                {/* 4. OPCIONES DE ENTREGA */}
                                 <h5 className="card-title mb-3 fw-bold">Opciones de Entrega</h5>
                                 <div className="d-flex justify-content-start gap-4 mb-4 delivery-options-group">
                                     {/* Opción 1: Entrega a Domicilio */}

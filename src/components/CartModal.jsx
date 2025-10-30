@@ -1,14 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import '../Styles/cart.css';
+import '../Styles/cart.css'; 
 
 export const CartModal = ({ show, handleClose }) => {
     const { store, dispatch } = useGlobalReducer();
-    const { cart, allProducts } = store;
+    // Ya no necesitamos 'allProducts' si manejamos la imagen correctamente al cambiar el color
+    const { cart } = store; 
     const navigate = useNavigate();
 
-    // 1. Usar item.cartId (el ID único de la instancia en el carrito)
+    // 1. Manejar la eliminación por item.cartId
     const handleRemoveFromCart = (itemCartId) => {
         dispatch({
             type: "REMOVE_FROM_CART",
@@ -16,15 +17,10 @@ export const CartModal = ({ show, handleClose }) => {
         });
     };
 
-    // ✅ CORRECCIÓN CLAVE AQUÍ: Simplificamos la búsqueda de la imagen.
-    // Asumimos que el 'item' ya tiene el objeto 'images' completo.
+    // 2. Manejar el cambio de color
     const handleChangeColor = (item, newColor) => {
-        
         // Formatea el color exactamente como están las claves en tu objeto 'images' (minúsculas, sin espacios).
-        // Si tienes 'Blanco' en el array de colors, busca 'blanco' en el objeto images.
         const formattedColorKey = newColor.toLowerCase().replace(/\s/g, ''); 
-
-        // Usamos el objeto images directamente del item del carrito
         const newImage = item.images?.[formattedColorKey];
 
         if (newImage) {
@@ -33,29 +29,24 @@ export const CartModal = ({ show, handleClose }) => {
                 payload: {
                     itemCartId: item.cartId, // ID único de la instancia
                     newColor: newColor,
-                    newImage: newImage // ✅ URL correcta encontrada
+                    newImage: newImage 
                 }
             });
         } else {
-            // Manejo de error si la imagen no se encuentra (opcional, pero útil para depurar)
-            console.error(`Error: No se encontró la imagen para el color '${newColor}' (clave: '${formattedColorKey}') en el item con cartId: ${item.cartId}`);
-            
-            // Si no se encuentra, busca el producto base en allProducts como fallback (MÁS LENTO)
-            const product = allProducts.find(p => p.id === item.id);
-            if (product) {
-                 const fallbackImage = product.images?.[formattedColorKey];
-                 if (fallbackImage) {
-                      dispatch({
-                        type: "UPDATE_CART_ITEM_COLOR",
-                        payload: {
-                            itemCartId: item.cartId, 
-                            newColor: newColor,
-                            newImage: fallbackImage 
-                        }
-                    });
-                 }
-            }
+            console.error(`Error: No se encontró la imagen para el color '${newColor}'.`);
         }
+    };
+    
+    // ✅ 3. NUEVO HANDLER: Manejar el cambio de talla
+    const handleChangeSize = (item, newSize) => {
+        // Asegúrate de que tu reducer maneje la acción "UPDATE_CART_ITEM_SIZE"
+        dispatch({
+            type: "UPDATE_CART_ITEM_SIZE",
+            payload: {
+                itemCartId: item.cartId, // ID único de la instancia
+                newSize: newSize,
+            }
+        });
     };
 
     const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
@@ -87,38 +78,71 @@ export const CartModal = ({ show, handleClose }) => {
                 }
             }}
         >
-            <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title">Mi Carrito de Compras</h5>
+                    <div className="modal-header header-cart">
+                        <h5 className="modal-title"><i className="fa-solid fa-cart-shopping me-2"></i> Mi Carrito</h5>
                         <button type="button" className="btn-close" onClick={handleClose}></button>
                     </div>
-                    <div className="modal-body">
+                    <div className="modal-body p-4">
                         {cart.length === 0 ? (
-                            <p className="text-center text-muted">Tu carrito está vacío.</p>
+                            <div className="text-center py-5">
+                                <i className="fa-solid fa-box-open fa-3x text-muted mb-3"></i>
+                                <p className="text-muted lead">Tu carrito está vacío. ¡Añade algo!</p>
+                            </div>
                         ) : (
                             <div>
-                                {/* 3. Usamos item.cartId como la KEY única de React */}
+                                {/* Lista de Productos */}
                                 {cart.map((item) => (
-                                    <div key={item.cartId} className="d-flex align-items-center mb-3 border-bottom pb-2">
-                                        {/* Usamos item.image que contiene la URL actual (que cambia con el color) */}
-                                        <img src={item.image} alt={item.name} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '5px' }} />
-                                        <div className="ms-3 flex-grow-1">
-                                            <h6 className="mb-0">{item.name}</h6>
-                                            <small className="text-muted d-block">{`Color: ${item.selectedColor || 'N/A'}`}</small>
-                                            <small className="text-muted d-block">{formatPrice(item.price)}</small>
+                                    <div key={item.cartId} className="cart-item row align-items-center mb-3 pb-3 border-bottom">
+                                        
+                                        {/* Columna 1: Imagen */}
+                                        <div className="col-2">
+                                            <img src={item.image} alt={item.name} className="img-fluid cart-item-image" />
+                                        </div>
+                                        
+                                        {/* Columna 2: Info del Producto */}
+                                        <div className="col-5">
+                                            <h6 className="mb-0 fw-bold">{item.name}</h6>
+                                            <small className="text-muted d-block">Color: {item.selectedColor || 'N/A'}</small>
+                                            <small className="text-muted d-block">Talla: {item.selectedSize || 'N/A'}</small>
+                                            <small className="text-muted d-block fw-bold">{formatPrice(item.price)}</small>
+                                        </div>
+                                        
+                                        {/* Columna 3: Selectores (Color y Talla) */}
+                                        <div className="col-3 d-flex flex-column gap-2">
+                                            
+                                            {/* ✅ Selector de TALLA (Columna Referencia) */}
+                                            {/* Usamos item.availableSizes que se guardó en ADD_TO_CART */}
+                                            {(item.availableSizes && item.availableSizes.length > 0) && (
+                                                <div className="d-flex align-items-center">
+                                                    <label htmlFor={`size-select-${item.cartId}`} className="me-2 fw-bold" style={{fontSize: '0.8rem'}}>Talla:</label>
+                                                    <select
+                                                        id={`size-select-${item.cartId}`}
+                                                        className="form-select form-select-sm"
+                                                        value={item.selectedSize}
+                                                        onChange={(e) => handleChangeSize(item, e.target.value)}
+                                                        style={{maxWidth: '80px'}}
+                                                    >
+                                                        {item.availableSizes.map(size => (
+                                                            <option key={size} value={size}>{size}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            )}
+                                            
+                                            {/* Selector de COLOR */}
                                             {item.colors && item.colors.length > 1 && (
-                                                <div className="mt-2">
-                                                    <small className="fw-bold d-block mb-1">Cambiar Color:</small>
+                                                <div className="mt-1">
+                                                    <small className="fw-bold d-block mb-1" style={{fontSize: '0.8rem'}}>Cambiar Color:</small>
                                                     <div className="d-flex gap-2">
                                                         {item.colors.map(color => (
                                                             <span
                                                                 key={color}
-                                                                // Asegúrate de que los estilos CSS para color-dot y color-X estén definidos
-                                                                className={`color-dot color-${color.toLowerCase().replace(/\s/g, '')}`}
+                                                                className={`color-dot-small color-${color.toLowerCase().replace(/\s/g, '')}`}
+                                                                title={color}
                                                                 style={{ 
-                                                                    border: item.selectedColor === color ? '2px solid #8b4513' : '1px solid #ccc', 
-                                                                    cursor: 'pointer' 
+                                                                    border: item.selectedColor === color ? '2px solid #3d3d3d' : '1px solid #ccc', 
                                                                 }}
                                                                 onClick={() => handleChangeColor(item, color)} 
                                                             ></span>
@@ -127,24 +151,32 @@ export const CartModal = ({ show, handleClose }) => {
                                                 </div>
                                             )}
                                         </div>
-                                        <button 
-                                            className="btn btn-sm btn-outline-danger"
-                                            onClick={() => handleRemoveFromCart(item.cartId)} 
-                                        >
-                                            Eliminar
-                                        </button>
+                                        
+                                        {/* Columna 4: Botón Eliminar */}
+                                        <div className="col-2 text-end">
+                                            <button 
+                                                className="btn btn-sm btn-outline-danger"
+                                                onClick={() => handleRemoveFromCart(item.cartId)} 
+                                                title="Eliminar producto"
+                                            >
+                                                <i className="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 ))}
-                                <div className="mt-4 pt-3 border-top">
-                                    <div className="d-flex justify-content-between">
+                                
+                                {/* Resumen de Precios */}
+                                <div className="mt-4 pt-3 border-top summary-box p-3">
+                                    <h5 className="mb-3 text-center summary-title">Resumen del Pedido</h5>
+                                    <div className="d-flex justify-content-between mb-2">
                                         <h6 className="text-muted">Subtotal:</h6>
                                         <h6>{formatPrice(subtotal)}</h6>
                                     </div>
                                     <div className="d-flex justify-content-between">
-                                        <h6 className="text-success">Descuento (5%):</h6>
+                                        <h6 className="text-success">Descuento (5% por compras > $5M):</h6>
                                         <h6 className="text-success">- {formatPrice(discount)}</h6>
                                     </div>
-                                    <div className="d-flex justify-content-between mt-2">
+                                    <div className="d-flex justify-content-between mt-3 total-line">
                                         <h4>Total:</h4>
                                         <h4>{formatPrice(total)}</h4>
                                     </div>
@@ -152,14 +184,14 @@ export const CartModal = ({ show, handleClose }) => {
                             </div>
                         )}
                     </div>
-                    <div className="modal-footer justify-content-center">
+                    <div className="modal-footer justify-content-center footer-cart">
                         <button 
                             type="button" 
                             className="btn btn-lg btn-confirm-order" 
                             disabled={cart.length === 0}
                             onClick={handleConfirmOrder}
                         >
-                            Confirmar Pedido
+                            <i className="fa-solid fa-truck me-2"></i> Procesar Pago
                         </button>
                     </div>
                 </div>

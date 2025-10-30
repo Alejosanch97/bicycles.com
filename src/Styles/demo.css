@@ -422,7 +422,27 @@ flex-direction: column;
 
 }
 
+/* Nos enfocamos en el selector dentro de la tarjeta de producto */
+.product-card .form-select-sm {
+    /* Establece un ancho mínimo y un ancho fijo (importante) para dar espacio */
+    width: 90px !important; /* Aumentamos el ancho, puedes ajustarlo */
+    min-width: 90px !important;
+    
+    /* Aumentamos el padding a la derecha para empujar el texto lejos de la flecha */
+    padding-right: 1.8rem; 
+    
+    /* Reducimos el tamaño de fuente para que la palabra 'Talla' quepa mejor */
+    font-size: 0.75rem; 
+    
+    /* Ajustamos la altura de la línea para centrar verticalmente el texto */
+    line-height: 1.2;
+}
 
+/* Ajustamos también el ancho del contenedor de la talla para evitar desbordamiento */
+.product-card .d-flex.justify-content-center.align-items-center {
+    /* Aseguramos que este div no se haga demasiado pequeño */
+    min-height: 38px;
+}
 
 .product-card:hover {
 
