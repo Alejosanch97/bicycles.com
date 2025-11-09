@@ -25,6 +25,8 @@ const ProductCard = ({ product, handleAddToCart }) => {
     // ✅ ESTADO: Talla seleccionada (de la columna Referencia)
     const [selectedSize, setSelectedSize] = useState(initialSize); 
 
+    const productRin = product.subcategoria || product.Subcategoria || product.subcategory || '';
+
     const handleImageHover = () => {
         if (product.hoverImage) {
             setCurrentImage(product.hoverImage);
@@ -68,7 +70,7 @@ const ProductCard = ({ product, handleAddToCart }) => {
                     <h5 className="product-card-title">{product.name}</h5>
                     {/* Mostramos el Rin (Subcategoría) y la Referencia (Talla) */}
                     <p className="product-info text-muted">
-                        {product.subcategoria} | Tallas: {product.reference}
+                        ** {productRin}** | Tallas: {product.reference}
                     </p>
                     
                     {/* ✅ SELECTOR DE TALLA: Solo si hay más de una opción o si es "Unica" */}
