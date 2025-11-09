@@ -308,7 +308,7 @@ export const OrderSummaryPage = () => {
                                     <div className="pickup-info p-3 rounded-3 mb-4">
                                         <p className="fw-bold mb-1">Punto de Recogida:</p>
                                         <p className="mb-0">📍 **Bicicletas Nevada** - Calle 13 # 22 - 11, Bogotá, Colombia.</p>
-                                        <p className="mb-0">Horario: Lunes a Viernes de 8:00 AM a 6:00 PM.</p>
+                                        <p className="mb-0">Horario: Lunes a Domingo de 10:00 AM a 5:00 PM.</p>
                                     </div>
                                 )}
 
