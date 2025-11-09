@@ -137,7 +137,7 @@ export const Demo = () => {
     // ESTADOS DE FILTROS ACTUALIZADOS
     const initialCategory = location.state?.category ? [location.state.category] : [];
     const [filteredProducts, setFilteredProducts] = useState([]); 
-    const [priceRange, setPriceRange] = useState([0, 8000000]);
+    const [priceRange, setPriceRange] = useState([0, 3000000]);
     const [selectedCategories, setSelectedCategories] = useState(initialCategory);
     
     // ✅ NUEVOS ESTADOS DE FILTRO: Talla (Referencia) y Rin (Subcategoría)
