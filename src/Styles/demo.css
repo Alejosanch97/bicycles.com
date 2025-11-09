@@ -360,6 +360,11 @@ border: 1px solid #ccc;
 
 .color-amarillo { background-color: #FFD400; }
 
+.color-negronaranja {
+    
+    background: linear-gradient(45deg, #000 50%, #FF8C00 50%);
+}
+
 
 
 /* Columna de Productos */
