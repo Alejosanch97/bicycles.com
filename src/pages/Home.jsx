@@ -22,14 +22,14 @@ export const Home = () => {
 
     // Datos de los Productos Destacados
     const products = [
-        { id: 1, name: 'GW Lynx R29 Aluminio', price: 1800000, category: 'Bicicletas MTB', image: 'https://todoparaciclismo.com/cdn/shop/products/Picsart_23-03-09_13-35-43-924_800x.jpg?v=1684603320' },
-        { id: 2, name: 'GW Alligator R29 Shimano Altus', price: 2200000, category: 'Bicicletas MTB', image: 'https://exitocol.vteximg.com.br/arquivos/ids/9945062/bicicleta-gw-alligator-275-shimano-altus-9-hid-bloqueo-iv.jpg?v=637671089239130000' },
-        { id: 3, name: 'GW Hyena R29 24V', price: 2400000, category: 'Bicicletas MTB', image: 'https://homesale.com.co/cdn/shop/products/gw-hyena-29-bicicleta-mtb-homesale-145629.jpg?v=1701700917' },
-        { id: 4, name: 'GW Flamma R29 Carbono', price: 3500000, category: 'Bicicletas MTB', image: 'https://cicloenergia.com.co/cdn/shop/files/FD.png?v=1728600376' },
-        { id: 5, name: 'Optimus Agressor R29', price: 1600000, category: 'Bicicletas MTB', image: 'https://www.optimusbikes.com/cdn/shop/products/Bicicleta-de-MTB-Tucana-10s-roja_1024x1024.jpg?v=1665782380' },
-        { id: 6, name: 'Optimus Venzo R29', price: 1900000, category: 'Bicicletas MTB', image: 'https://www.optimusbikes.com/cdn/shop/products/Tucana-9vel-roja_1024x1024.png?v=1626713680' },
-        { id: 7, name: 'Optimus Hawk R29 21V', price: 2100000, category: 'Bicicletas MTB', image: 'https://http2.mlstatic.com/D_NQ_NP_2X_751747-MCO53445463067_012023-T.webp' },
-        { id: 8, name: 'Optimus Fury R29 24V', price: 2600000, category: 'Bicicletas MTB', image: 'https://megabikes.co/853-pdt_771/bicicleta-optimus-tucana-m2021-r29-hidraulica-shimano-slx-monoplato-12vel.jpg' }
+        { id: 1, name: 'GW EXTREME DE IMPULSO', price: 240000, category: 'Bicicletas para Niños', image: 'https://i.pinimg.com/736x/d3/4a/20/d34a203eac36c7d20a8855544e276f44.jpg' },
+        { id: 2, name: 'GW CANDY Rin 12', price: 340000, category: 'Bicicletas para Niños', image: 'https://www.classbike.co/wp-content/uploads/2022/11/RIN-16-PWP.webp' },
+        { id: 3, name: 'GW LIGHTNING Rin 12', price: 350000, category: 'Bicicletas para Niños', image: 'https://tu360compras.bancolombia.com/624324-large_default/bicicleta-para-nios-rin-12-gw-lightning-lila-perla.jpg' },
+        { id: 4, name: 'GW PILOT Rin 16', price: 340000, category: 'Bicicletas para Niños', image: 'https://wuilpy.com/wp-content/uploads/2025/10/Bicicleta-para-ninos-Rin-12-Gw-Pilot-Rojo-Wuilpy-Bike-300x300.png' },
+        { id: 5, name: 'GW LINX 7X3 Rin 20', price: 630000, category: 'Bicicletas para Niños', image: 'https://http2.mlstatic.com/D_NQ_NP_2X_952673-MCO89228698842_082025-T.webp' },
+        { id: 6, name: 'GW MONKEY ALUMINIO 7 X 3 Riin 20', price: 630000, category: 'Bicicletas para Niños', image: 'https://www.cyclewear.com.co/cdn/shop/files/060728-77476-0-bf6c8515-11b9-4b9d-b7fb-fd9711b6344a_cc3d2400-03a9-4215-a8d7-a51609d105e1.jpg?v=1732595751' },
+        { id: 7, name: 'BICICLETA OPTIMUS TUCANA 12 VEL Rin 29', price: 1850000, category: 'Bicicletas MTB', image: 'https://www.optimusbikes.com/cdn/shop/products/Tucana-verde-1.png?v=1628696540' },
+        { id: 8, name: 'BICICLETA RIN 28 TURISMERA Rin 28', price: 780000, category: 'Bicicletas MTB', image: 'https://i.pinimg.com/736x/ec/1b/05/ec1b055014ac9ad48a71bddb7565ed32.jpg' }
     ];
 
     const categories = [
