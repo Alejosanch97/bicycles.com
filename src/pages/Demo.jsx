@@ -7,51 +7,104 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../Styles/demo.css';
 
 // 🚨🚨🚨 1. DEFINIR LA URL DE LA API AQUI 🚨🚨🚨
-const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxqUoCMBgc7pNT7AWH3f1bguHlRB_IzEpO6SKIPDQ-lJ6uIMAlywB6EzWOzXLqpEu89/exec";
+const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxqUoCMBgc7pNT7AWH3f1bguHlRB_IzEpO6SKIPDQ-lJ6uIMAlywB6EzWOzXLqpEu89/exec"; // Asegúrate que esta URL sea la de tu Apps Script implementado
 
 // =============================================================
-// ✅ COMPONENTE: ProductCard (Modificado para selección de Talla)
+// ✅ COMPONENTE: ProductCard (Lógica de stock y color activo)
 // =============================================================
 const ProductCard = ({ product, handleAddToCart }) => {
-    // La columna 'Referencia' (talla) viene como una cadena que puede tener múltiples opciones (XS, S, M, L)
+    
+    // 1. PROCESAR COLORES AGOTADOS
+    const outOfStockColorsList = product.colores_agotados ? 
+        product.colores_agotados.split(',').map(c => c.trim()).filter(c => c) : 
+        [];
+    const outOfStockColors = new Set(outOfStockColorsList);
+    
+    // 2. TALLAS Y COLORES INICIALES
     const availableSizes = product.reference.split(',').map(s => s.trim()).filter(s => s);
-    
-    // Si hay tallas múltiples o solo "Unica", usamos la primera como inicial.
     const initialSize = availableSizes.length > 0 ? availableSizes[0] : 'Unica'; 
-    const initialColor = product.colors && product.colors.length > 0 ? product.colors[0] : '';
     
+    const productColors = product.colors || [];
+    
+    // Define los colores DISPONIBLES (excluyendo los agotados)
+    const availableColors = productColors.filter(color => !outOfStockColors.has(color));
+    
+    // El color inicial debe ser el primer color DISPONIBLE. Si no hay, toma el primer color original.
+    const initialColor = availableColors.length > 0 ? availableColors[0] : (productColors.length > 0 ? productColors[0] : '');
+    
+    // ESTADOS
     const [currentImage, setCurrentImage] = useState(product.mainImage);
     const [currentColor, setCurrentColor] = useState(initialColor);
-    // ✅ ESTADO: Talla seleccionada (de la columna Referencia)
     const [selectedSize, setSelectedSize] = useState(initialSize); 
+    // Estado para guardar el color REALMENTE SELECCIONADO (activo)
+    const [activeColor, setActiveColor] = useState(initialColor); 
 
     const productRin = product.subcategoria || product.Subcategoria || product.subcategory || '';
+    
+    // Bandera para deshabilitar la compra si el color ACTIVO está agotado 
+    const isActiveColorOutOfStock = outOfStockColors.has(activeColor) || availableColors.length === 0;
 
-    const handleImageHover = () => {
+    // Efecto para inicializar la imagen al color disponible (si existe)
+    useEffect(() => {
+        const initialFormattedColor = initialColor.toLowerCase().replace(/\s/g, '');
+        const initialImage = product.images?.[initialColor] || product.images?.[initialFormattedColor] || product.mainImage;
+        setCurrentImage(initialImage);
+    }, [product.id, initialColor, product.images, product.mainImage]); 
+
+    // Mantiene la imagen principal/secundaria en hover sobre la CARD
+    const handleImageCardHover = () => {
         if (product.hoverImage) {
             setCurrentImage(product.hoverImage);
         }
     };
 
-    const handleImageLeave = () => {
-        setCurrentImage(product.mainImage);
+    const handleImageCardLeave = () => {
+        // Vuelve a la imagen del color activo
+        const activeFormattedColor = activeColor.toLowerCase().replace(/\s/g, '');
+        const activeImage = product.images?.[activeColor] || product.images?.[activeFormattedColor] || product.mainImage;
+        setCurrentImage(activeImage);
     };
 
-    const handleColorHover = (color) => {
+    // Función para manejar el CLICK de selección de color (Solo se ejecuta en colores disponibles)
+    const handleColorClick = (color) => {
+        setActiveColor(color);
+        setCurrentColor(color);
+        
         const formattedColor = color.toLowerCase().replace(/\s/g, '');
-        const imageToDisplay = product.images?.[formattedColor];
-        if (imageToDisplay) {
-            setCurrentImage(imageToDisplay);
-            setCurrentColor(color);
-        } else {
-            setCurrentImage(product.mainImage);
-            setCurrentColor(product.colors[0]);
-        }
+        const imageToDisplay = product.images?.[color] || product.images?.[formattedColor]; 
+        setCurrentImage(imageToDisplay || product.mainImage);
+    };
+
+    // Función para previsualizar al pasar el ratón (HOVER)
+    const handleColorHover = (color) => {
+        setCurrentColor(color);
+        
+        // Muestra la imagen
+        const formattedColor = color.toLowerCase().replace(/\s/g, '');
+        const imageToDisplay = product.images?.[color] || product.images?.[formattedColor];
+        setCurrentImage(imageToDisplay || product.mainImage);
+    };
+    
+    // Función para volver al color ACTIVO al salir del ratón
+    const handleColorLeave = () => {
+        setCurrentColor(activeColor); 
+        
+        // Vuelve a la imagen de ese color activo
+        const activeFormattedColor = activeColor.toLowerCase().replace(/\s/g, '');
+        const activeImage = product.images?.[activeColor] || product.images?.[activeFormattedColor] || product.mainImage;
+        setCurrentImage(activeImage);
     };
     
     const handleAddClick = () => {
-        // ✅ Pasamos la talla seleccionada
-        handleAddToCart(product, currentColor, selectedSize); 
+        if (isActiveColorOutOfStock) {
+             toast.error(`❌ El color ${activeColor} está agotado. Por favor, selecciona otro.`, {
+                position: "bottom-right",
+                autoClose: 3000,
+            });
+            return;
+        }
+        // Usamos activeColor para la compra
+        handleAddToCart(product, activeColor, selectedSize); 
     };
 
     return (
@@ -59,21 +112,21 @@ const ProductCard = ({ product, handleAddToCart }) => {
             <div 
                 className="product-card h-100 position-relative"
             >
+                
                 <img 
                     src={currentImage} 
                     className="card-img-top product-image" 
                     alt={product.name}
-                    onMouseEnter={handleImageHover}
-                    onMouseLeave={handleImageLeave}
+                    onMouseEnter={handleImageCardHover}
+                    onMouseLeave={handleImageCardLeave}
                 />
                 <div className="card-body text-center d-flex flex-column">
                     <h5 className="product-card-title">{product.name}</h5>
-                    {/* Mostramos el Rin (Subcategoría) y la Referencia (Talla) */}
                     <p className="product-info text-muted">
                         ** {productRin}** | Tallas: {product.reference}
                     </p>
                     
-                    {/* ✅ SELECTOR DE TALLA: Solo si hay más de una opción o si es "Unica" */}
+                    {/* SELECTOR DE TALLA */}
                     {availableSizes.length > 1 || availableSizes[0] === 'Unica' ? (
                         <div className="mb-3 d-flex justify-content-center align-items-center">
                             <label htmlFor={`size-select-${product.id}`} className="me-2 text-muted fw-bold" style={{fontSize: '0.9rem'}}>Talla:</label>
@@ -90,29 +143,39 @@ const ProductCard = ({ product, handleAddToCart }) => {
                             </select>
                         </div>
                     ) : (
-                        // Si solo hay una talla (ej. 'rin 29' en las MTB que tienen talla en Referencia), no mostramos el selector.
                          <div style={{height: '38px'}}></div> 
                     )}
 
 
                     <div className="product-colors mb-2">
-                        {product.colors.map(color => (
-                            <span 
-                                key={color} 
-                                className={`color-dot color-${color.toLowerCase().replace(/\s/g, '')} ${currentColor === color ? 'active-color' : ''}`}
-                                title={color}
-                                onMouseEnter={() => handleColorHover(color)}
-                                onClick={() => handleColorHover(color)}
-                            ></span>
-                        ))}
+                        {/* Usar availableColors.map para iterar SOLO sobre los disponibles */}
+                        {availableColors.length > 0 ? (
+                            availableColors.map(color => {
+                                return (
+                                    <span 
+                                        key={color} 
+                                        className={`color-dot color-${color.toLowerCase().replace(/\s/g, '')} ${activeColor === color ? 'active-color' : ''}`}
+                                        title={color}
+                                        onClick={() => handleColorClick(color)}
+                                        onMouseEnter={() => handleColorHover(color)}
+                                        onMouseLeave={handleColorLeave} 
+                                    >
+                                    </span>
+                                );
+                            })
+                        ) : (
+                            <small className="text-danger">Agotado en todos los colores</small>
+                        )}
                     </div>
                     
                     <p className="product-price mt-1">$ {product.price.toLocaleString('es-CO')}</p> 
                     <button 
                         className="btn btn-buy-product mt-auto"
                         onClick={handleAddClick}
+                        // Deshabilita el botón si no hay colores disponibles, o si el color activo está agotado
+                        disabled={isActiveColorOutOfStock} 
                     >
-                        Comprar
+                        {availableColors.length === 0 ? 'AGOTADO' : 'Comprar'}
                     </button>
                 </div>
             </div>
@@ -140,33 +203,37 @@ export const Demo = () => {
     const [priceRange, setPriceRange] = useState([0, 3000000]);
     const [selectedCategories, setSelectedCategories] = useState(initialCategory);
     
-    // ✅ NUEVOS ESTADOS DE FILTRO: Talla (Referencia) y Rin (Subcategoría)
-    const [selectedRins, setSelectedRins] = useState([]); // Subcategoría
-    const [selectedSizes, setSelectedSizes] = useState([]); // Referencia
+    const [selectedRins, setSelectedRins] = useState([]); 
+    const [selectedSizes, setSelectedSizes] = useState([]); 
     const [selectedColors, setSelectedColors] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState('default');
     const [showMobileFilters, setShowMobileFilters] = useState(false); 
 
     // =============================================================
-    // ✅ CÁLCULO DINÁMICO: Usando Referencia para Talla y Subcategoría para Rin
+    // ✅ CÁLCULO DINÁMICO DE FILTROS (MODIFICADO para excluir colores agotados globalmente)
     // =============================================================
     const uniqueCategories = [...new Set(products.map(p => p.category))].filter(Boolean);
     
-    // 1. Tallas (Basado en la columna Referencia)
     const uniqueSizes = [...new Set(
         products.flatMap(p => p.reference.split(',').map(s => s.trim()))
     )].filter(s => s); 
     
-    // 2. Rines (Basado en la columna Subcategoría)
-    // ✅ Corrección: Usamos 'subcategoria' (sin acento) o 'subcategory' para coincidir con la API.
     const uniqueRins = [...new Set(products.map(p => p.subcategoria || p.subcategory))].filter(Boolean);
-
-    const uniqueColors = [...new Set(products.flatMap(p => p.colors || []))].filter(Boolean);
+    
+    // Calcular colores únicos disponibles en AL MENOS un producto
+    const availableColorsAcrossAllProducts = products.flatMap(p => {
+        const allColors = p.colors || [];
+        const outOfStock = p.colores_agotados ? new Set(p.colores_agotados.split(',').map(c => c.trim())) : new Set();
+        // Solo retorna los colores que NO están en la lista de agotados de ese producto
+        return allColors.filter(color => !outOfStock.has(color));
+    });
+    
+    const uniqueColors = [...new Set(availableColorsAcrossAllProducts)].filter(Boolean);
 
 
     // =============================================================
-    // 🚨 2. EFECTO PARA CARGAR LOS PRODUCTOS DE LA API (CLAVE)
+    // 2. EFECTO PARA CARGAR LOS PRODUCTOS DE LA API
     // =============================================================
     useEffect(() => {
         const fetchProducts = async () => {
@@ -186,7 +253,7 @@ export const Demo = () => {
                 }
 
                 setProducts(data); 
-                setFilteredProducts(data); // Inicializar productos filtrados
+                setFilteredProducts(data); 
             } catch (error) {
                 console.error("Error al cargar los productos:", error);
                 setProducts([]); 
@@ -200,11 +267,11 @@ export const Demo = () => {
         window.scrollTo(0, 0); 
     }, []); 
 
-    // Función de filtrado
+    // Función de filtrado 
     const runFilters = useCallback(() => {
         let tempProducts = [...products]; 
 
-        // 1. Filtrar por búsqueda (Referencia y Nombre)
+        // 1. Filtrar por búsqueda
         if (searchTerm) {
             tempProducts = tempProducts.filter(product =>
                 product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -217,7 +284,7 @@ export const Demo = () => {
             tempProducts = tempProducts.filter(product => selectedCategories.includes(product.category));
         }
 
-        // ✅ 3. Filtrar por TALLA (Columna Referencia)
+        // 3. Filtrar por TALLA
         if (selectedSizes.length > 0) {
             tempProducts = tempProducts.filter(product => {
                 const availableSizesForProduct = product.reference.split(',').map(s => s.trim());
@@ -225,7 +292,7 @@ export const Demo = () => {
             });
         }
 
-        // ✅ 4. Filtrar por RIN (Columna Subcategoría)
+        // 4. Filtrar por RIN
         if (selectedRins.length > 0) {
             tempProducts = tempProducts.filter(product => {
                 const subcat = product.subcategoria || product.subcategory;
@@ -234,9 +301,17 @@ export const Demo = () => {
         }
 
 
-        // 5. Filtrar por colores
+        // 5. Filtrar por colores (CONSIDERA EL STOCK)
         if (selectedColors.length > 0) {
-            tempProducts = tempProducts.filter(product => product.colors.some(color => selectedColors.includes(color)));
+            tempProducts = tempProducts.filter(product => {
+                const outOfStockColors = product.colores_agotados ? 
+                    new Set(product.colores_agotados.split(',').map(c => c.trim())) : new Set();
+                
+                return product.colors.some(color => 
+                    selectedColors.includes(color) && 
+                    !outOfStockColors.has(color)
+                );
+            });
         }
 
         // 6. Filtrar por rango de precio
@@ -258,7 +333,7 @@ export const Demo = () => {
         runFilters();
     }, [runFilters, location.state]);
 
-    // ✅ HANDLERS:
+    // HANDLERS:
 
     const handleCategoryChange = (e) => {
         const { value, checked } = e.target;
@@ -267,7 +342,6 @@ export const Demo = () => {
         );
     };
 
-    // ✅ NUEVO HANDLER: Talla (Referencia)
     const handleSizeChange = (e) => {
         const { value, checked } = e.target;
         setSelectedSizes(prev =>
@@ -275,7 +349,6 @@ export const Demo = () => {
         );
     };
 
-    // ✅ NUEVO HANDLER: Rin (Subcategoría)
     const handleRinChange = (e) => {
         const { value, checked } = e.target;
         setSelectedRins(prev =>
@@ -295,25 +368,43 @@ export const Demo = () => {
         setPriceRange(prev => [parseInt(value), prev[1]]);
     };
     
-    // Función para añadir al carrito (MODIFICADA para incluir la talla)
+    // Función para añadir al carrito (CORREGIDA)
     const handleAddToCart = (product, color, size) => {
+        // 1. Obtener la lista completa de colores agotados (ARRAY)
+        const outOfStockColorsList = product.colores_agotados ? 
+            product.colores_agotados.split(',').map(c => c.trim()).filter(c => c) : 
+            [];
+        // 2. Crear el Set para búsquedas rápidas (como la verificación de stock)
+        const outOfStockColorsSet = new Set(outOfStockColorsList); 
+        
+        // 3. Verifica stock por seguridad
+        if (outOfStockColorsSet.has(color)) {
+            toast.error(`❌ El color ${color} de ${product.name} está agotado.`, {
+                position: "bottom-right",
+                autoClose: 3000,
+            });
+            return;
+        }
+
         const formattedColor = color.toLowerCase().replace(/\s/g, '');
-        // Usamos una combinación de ID, color y talla para hacer el artículo único
         const uniqueId = `${product.id}-${formattedColor}-${size}`; 
         
         const itemToAdd = {
             id: uniqueId, 
             productId: product.id, 
             name: product.name,
-            reference: product.reference, // Guardamos la referencia original (tallas disponibles)
+            reference: product.reference, 
             price: product.price,
-            image: product.images[formattedColor] || product.mainImage, 
+            image: product.images[color] || product.images[formattedColor] || product.mainImage, 
             selectedColor: color,
-            selectedSize: size, // ✅ Talla seleccionada
+            selectedSize: size, 
             colors: product.colors,
             images: product.images,
-            // Guardamos todas las tallas disponibles (de la columna Referencia)
             availableSizes: product.reference.split(',').map(s => s.trim()), 
+            
+            // 🚨 CORRECCIÓN CLAVE: Envía la lista COMPLETA de colores agotados del producto.
+            // Esto permite que el CartModal filtre correctamente las opciones y verifique el stock.
+            outOfStockColors: outOfStockColorsList, 
         };
 
         dispatch({
@@ -322,7 +413,6 @@ export const Demo = () => {
         });
 
         const sizeDisplay = size && size !== 'Unica' ? ` - Talla ${size}` : '';
-        // 🚨 AQUÍ ESTÁ LA NOTIFICACIÓN 🚨
         toast.success(`✅ ${product.name} - ${color}${sizeDisplay} agregado al carrito!`, {
             position: "bottom-right",
             autoClose: 2000,
@@ -346,7 +436,7 @@ export const Demo = () => {
                     <input
                         type="range"
                         min="0"
-                        max="8000000"
+                        max="3000000"
                         value={priceRange[0]}
                         name="minPrice"
                         onChange={handlePriceRangeChange}
@@ -355,11 +445,10 @@ export const Demo = () => {
                 </div>
                 <div className="d-flex justify-content-between mt-2">
                     <small>$0</small>
-                    <small>$8000000+</small>
+                    <small>$3000000+</small>
                 </div>
             </div>
             
-            {/* Filtro de Categoría existente */}
             <div className="filter-group mb-4 pb-3 border-bottom">
                 <h5 className="filter-heading">Categoría</h5>
                 <div className="category-list filter-scroll-box">
@@ -381,12 +470,10 @@ export const Demo = () => {
                 </div>
             </div>
 
-            {/* ✅ FILTRO: Talla (Referencia) */}
             {uniqueSizes.length > 0 && (
                 <div className="filter-group mb-4 pb-3 border-bottom">
                     <h5 className="filter-heading">Talla</h5>
                     <div className="reference-list filter-scroll-box">
-                        {/* Mapeamos las tallas únicas de la columna Referencia */}
                         {uniqueSizes.map(size => (
                             <div key={size} className="form-check">
                                 <input
@@ -406,12 +493,10 @@ export const Demo = () => {
                 </div>
             )}
             
-            {/* ✅ FILTRO: Rin (Subcategoría) */}
             {uniqueRins.length > 0 && (
                 <div className="filter-group mb-4 pb-3 border-bottom">
                     <h5 className="filter-heading">Rin</h5>
                     <div className="subcategory-list filter-scroll-box">
-                         {/* Mapeamos los rines únicos de la columna Subcategoría */}
                         {uniqueRins.map(rin => (
                             <div key={rin} className="form-check">
                                 <input
@@ -431,7 +516,6 @@ export const Demo = () => {
                 </div>
             )}
 
-            {/* Filtro de Color existente */}
             <div className="filter-group mb-4 pb-3 border-bottom">
                 <h5 className="filter-heading">Color</h5>
                 <div className="color-filter-grid">
@@ -455,9 +539,6 @@ export const Demo = () => {
         </>
     );
 
-    // =============================================================
-    // 🚨 3. MANEJAR ESTADO DE CARGA (LOADING)
-    // =============================================================
     if (loading) {
         return (
             <div className="demo-page container-fluid py-5 text-center">
@@ -469,7 +550,6 @@ export const Demo = () => {
         );
     }
     
-    // Si ya cargó y no hay productos
     if (!loading && products.length === 0) {
         return (
             <div className="demo-page container-fluid py-5 text-center">
@@ -480,10 +560,8 @@ export const Demo = () => {
     }
 
 
-    // *** INICIO DEL RENDER PRINCIPAL (Si ya cargó y hay productos) ***
     return (
         <div className="demo-page container-fluid py-5">
-            {/* 🚨 AÑADIR ToastContainer AQUÍ 🚨 */}
             <ToastContainer />
             
             <nav aria-label="breadcrumb" className="mb-4">
@@ -495,7 +573,6 @@ export const Demo = () => {
 
             <div className="row">
                 
-                {/* 1. Botón de Filtro para Móviles */}
                 <div className="col-12 d-lg-none mb-4">
                     <button 
                         className="btn btn-primary w-100 mobile-filter-btn"
@@ -505,16 +582,13 @@ export const Demo = () => {
                     </button>
                 </div>
 
-                {/* 2. Columna de Filtros de Escritorio */}
                 <aside className="col-lg-3 d-none d-lg-block filters-column">
                     <h4 className="filters-title mb-4">Filtrar Por</h4>
-                    {/* ✅ DIV DEL SCROLL AÑADIDO AQUÍ */}
                     <div className="filters-content-scroll">
                         {renderFilterContent()}
                     </div>
                 </aside>
 
-                {/* 3. Contenedor Principal de Productos */}
                 <main className="col-lg-9 col-12 products-grid-container">
                     <div className="d-flex justify-content-between align-items-center mb-4">
                         <p className="product-count mb-0">Hay {filteredProducts.length} productos</p>
@@ -543,7 +617,7 @@ export const Demo = () => {
                                     setSelectedRins([]); 
                                     setSelectedSizes([]); 
                                     setSelectedColors([]);
-                                    setPriceRange([0, 8000000]); // Ajustado a max de 8M
+                                    setPriceRange([0, 8000000]); 
                                     setSearchTerm('');
                                     setSortBy('default');
                                 }}>
@@ -563,7 +637,7 @@ export const Demo = () => {
                 </main>
             </div>
             
-            {/* 4. Overlay/Offcanvas para Filtros Móviles (renderFilterContent) */}
+            {/* Overlay/Offcanvas para Filtros Móviles */}
             {showMobileFilters && (
                 <div className="mobile-filters-overlay d-lg-none">
                     <div className="filters-content-modal">
@@ -584,7 +658,7 @@ export const Demo = () => {
                 </div>
             )}
             
-            {/* 5. Botones Flotantes */}
+            {/* Botones Flotantes */}
             <div className="floating-buttons-container">
                 <button 
                     className="btn floating-btn cart-btn position-relative" 
@@ -609,7 +683,7 @@ export const Demo = () => {
                 </a>
             </div>
 
-            {/* 6. Modal del Carrito */}
+            {/* Modal del Carrito */}
             <CartModal show={showCart} handleClose={handleCloseCart} />
 
         </div>

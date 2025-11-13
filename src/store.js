@@ -47,10 +47,12 @@ export default function storeReducer(store, action = {}) {
             };
 
         case "ADD_TO_CART":
-            // 🚨 Importante: Asume que action.payload incluye selectedSize y selectedColor
+            // 🚨🚨🚨 CASE CORREGIDO: Incluye 'outOfStockColors' en el ítem del carrito 🚨🚨🚨
             const newCartItem = {
                 ...action.payload, 
-                cartId: uuidv4(),  
+                cartId: uuidv4(),
+                // ✅ CLAVE: Se guarda la lista de colores agotados para que el CartModal pueda verificar el stock actual.
+                outOfStockColors: action.payload.outOfStockColors || [], 
             };
 
             return {
@@ -73,7 +75,7 @@ export default function storeReducer(store, action = {}) {
                         return {
                             ...item,
                             selectedColor: action.payload.newColor,
-                            // El reducer aplica la nueva imagen que calculó el componente
+                            // El reducer aplica la nueva imagen que calculó el componente (CartModal)
                             image: action.payload.newImage
                         };
                     }
@@ -81,7 +83,7 @@ export default function storeReducer(store, action = {}) {
                 }),
             };
             
-        // ✅ NUEVO CASE: Para cambiar la talla del ítem en el carrito
+        // ✅ CASE EXISTENTE: Para cambiar la talla del ítem en el carrito
         case "UPDATE_CART_ITEM_SIZE": {
             // Action.payload: { itemCartId, newSize }
             return {
@@ -100,4 +102,4 @@ export default function storeReducer(store, action = {}) {
         default:
             return store;
     }
-};
+}
