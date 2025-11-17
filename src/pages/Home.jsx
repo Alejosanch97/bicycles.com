@@ -244,7 +244,7 @@ export const Home = () => {
                             <img src="./bici2.png" className="d-block w-100 carousel-media" alt="Descuento especial" />
                             <div className="carousel-caption">
                                 <h1>¡Descuentos Imperdibles!</h1>
-                                <p>Descubre referencias exclusivas de marcas como Optimus, GW, Benson.</p>
+                                <p>Descubre referencias exclusivas de marcas como Optimus, GW, Venzo.</p>
                             </div>
                         </div>
 
