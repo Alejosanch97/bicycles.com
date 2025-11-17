@@ -183,8 +183,8 @@ export const Home = () => {
                                                 <div className="info-icon mb-2">
                                                     <FaMobileAlt size={32} />
                                                 </div>
-                                                <h3 className="info-box-title">DAVIPLATA / NEQUI</h3>
-                                                <p className="info-box-text">+57 322 855 1469</p>
+                                                <h3 className="info-box-title">DAVIPLATA</h3>
+                                                <p className="info-box-text">+57 314 356 35 67</p>
                                             </div>
                                         </div>
 
@@ -194,8 +194,8 @@ export const Home = () => {
                                                 <div className="info-icon mb-2">
                                                     <FaCreditCard size={32} />
                                                 </div>
-                                                <h3 className="info-box-title">TARJETA</h3>
-                                                <p className="info-box-text">Débito y Crédito</p>
+                                                <h3 className="info-box-title">TARJETAS Y TRANSFERENCIAS</h3>
+                                                <p className="info-box-text">Débito / Crédito Y Transferencia (Cuenta de Ahorros)</p>
                                             </div>
                                         </div>
 
