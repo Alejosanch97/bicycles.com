@@ -1,12 +1,11 @@
-// src/pages/Home.jsx
-
 import React, { useState } from 'react'; // 👈 IMPORTADO: useState
 import { useNavigate } from 'react-router-dom';
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../Styles/home.css';
-import { FaShippingFast, FaCalendarCheck, FaCheckCircle, FaMoneyBillWave } from 'react-icons/fa';
+// Se agregaron íconos para la nueva sección de pagos
+import { FaShippingFast, FaCalendarCheck, FaMoneyBillWave, FaMobileAlt, FaCreditCard, FaLink, FaStore, FaPhoneAlt } from 'react-icons/fa'; 
 import { CartModal } from "../components/CartModal.jsx"; // 👈 IMPORTADO: CartModal (Ajusta la ruta si es necesario)
 
 
@@ -82,28 +81,22 @@ export const Home = () => {
             {/* Sección del Carrusel (Carousel de Bootstrap) */}
             <section className="carousel-section">
                 <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
+                    {/* Indicadores: Ajustados para 5 slides (antes había 4, ahora hay 5 con la nueva) */}
                     <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1 (Bicicletas Nevada)"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2 (Medios de Pago)"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3 (Envios Gratis)"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="3" aria-label="Slide 4 (Video)"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="4" aria-label="Slide 5 (Descuentos)"></button>
                     </div>
+
                     <div className="carousel-inner">
+                        
+                        {/* 1. SLIDE: BICICLETAS NEVADA (Original 2, ahora 1) - ACTIVA */}
                         <div className="carousel-item active">
-                            <video className="d-block w-100 carousel-media" autoPlay muted loop playsInline>
-                                <source src="./6420515-hd_1920_1080_24fps.mp4" type="video/mp4" />
-                                Tu navegador no soporta videos.
-                            </video>
-                            
-                            <div className="carousel-caption">
-                                <h1>Libera la Velocidad</h1>
-                                <p>Diseñadas para devorar kilómetros. Encuentra la máquina perfecta para tu próxima aventura.</p>
-                            </div>
-                        </div>
-                        <div className="carousel-item">
                             {/* La imagen de fondo */}
                             <img
-                                src="./bici1.jpg"
+                                src="./bici1.jpg" // Utiliza la imagen que tenías antes
                                 className="d-block w-100 carousel-media"
                                 alt="Avana Leather Banner"
                             />
@@ -115,15 +108,14 @@ export const Home = () => {
                                     BICICLETAS NEVADA
                                 </h1>
 
-                                {/* Contenedor de las mini cards */}
+                                {/* Contenedor de las mini cards (ENVIOS, ENTREGAS, PAGOS) */}
                                 <div className="container info-boxes-container">
-                                    <div className="row g-3 justify-content-center"> {/* g-3 para un gap más pequeño */}
+                                    <div className="row g-3 justify-content-center">
                                         {/* 1️⃣ Envíos */}
-                                        {/* col-md-3 es correcto para 4 en línea */}
-                                        <div className="col-12 col-sm-6 col-md-3">
+                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
                                             <div className="info-box d-flex flex-column align-items-center p-3">
                                                 <div className="info-icon mb-2">
-                                                    <FaShippingFast size={32} /> {/* Íconos un poco más pequeños */}
+                                                    <FaShippingFast size={32} />
                                                 </div>
                                                 <h3 className="info-box-title">ENVIOS</h3>
                                                 <p className="info-box-text">Cobertura en todo el país</p>
@@ -131,7 +123,7 @@ export const Home = () => {
                                         </div>
 
                                         {/* 2️⃣ Entregas */}
-                                        <div className="col-12 col-sm-6 col-md-3">
+                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
                                             <div className="info-box d-flex flex-column align-items-center p-3">
                                                 <div className="info-icon mb-2">
                                                     <FaCalendarCheck size={32} />
@@ -141,8 +133,8 @@ export const Home = () => {
                                             </div>
                                         </div>
 
-                                        {/* 4️⃣ Pagos */}
-                                        <div className="col-12 col-sm-6 col-md-3">
+                                        {/* 3️⃣ Pago Contra Entrega */}
+                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
                                             <div className="info-box d-flex flex-column align-items-center p-3">
                                                 <div className="info-icon mb-2">
                                                     <FaMoneyBillWave size={32} />
@@ -155,13 +147,8 @@ export const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="carousel-item">
-                            <img src="./bici2.png" className="d-block w-100 carousel-media" alt="Descuento especial" />
-                            <div className="carousel-caption">
-                                <h1>¡Descuentos Imperdibles!</h1>
-                                <p>Descubre referencias exclusivas de marcas como Optimus, GW, Trek, Specialized, Scott y Giant.</p>
-                            </div>
-                        </div>
+
+                        {/* 2. SLIDE: ENVIOS GRATIS (Original 4, ahora 3) */}
                         <div className="carousel-item">
                             <img src="./bici4.png" className="d-block w-100 carousel-media" alt="Descuento especial" />  
                             <div className="carousel-caption">
@@ -169,6 +156,98 @@ export const Home = () => {
                                 <p>Envíos gratis en Bogotá 🚴‍♂️. ¡Aprovecha nuestro Super Sale y llévate tu bicicleta favorita al mejor precio!</p>
                             </div>
                         </div>
+
+                        {/* 3. SLIDE: MEDIOS DE PAGO (NUEVO) */}
+                        <div className="carousel-item">
+                            {/* La imagen de fondo. Usamos una imagen de pagos/bici. */}
+                            <img
+                                src="./bici5.jpg" // Reutilizamos esta imagen para el fondo
+                                className="d-block w-100 carousel-media"
+                                alt="Medios de Pago"
+                            />
+
+                            {/* Contenedor principal del texto y las cards */}
+                            <div className="custom-caption-overlay d-flex flex-column align-items-center justify-content-center text-center text-white px-4">
+                                {/* Título principal */}
+                                <h1 className="avana-title">
+                                    MEDIOS DE PAGO
+                                </h1>
+
+                                {/* Contenedor de las mini cards (PAGOS) */}
+                                <div className="container info-boxes-container">
+                                    <div className="row g-3 justify-content-center">
+                                        
+                                        {/* 1️⃣ Daviplata y Nequi */}
+                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+                                            <div className="info-box d-flex flex-column align-items-center p-3">
+                                                <div className="info-icon mb-2">
+                                                    <FaMobileAlt size={32} />
+                                                </div>
+                                                <h3 className="info-box-title">DAVIPLATA / NEQUI</h3>
+                                                <p className="info-box-text">+57 322 855 1469</p>
+                                            </div>
+                                        </div>
+
+                                        {/* 2️⃣ Tarjeta (Débito/Crédito) */}
+                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+                                            <div className="info-box d-flex flex-column align-items-center p-3">
+                                                <div className="info-icon mb-2">
+                                                    <FaCreditCard size={32} />
+                                                </div>
+                                                <h3 className="info-box-title">TARJETA</h3>
+                                                <p className="info-box-text">Débito y Crédito</p>
+                                            </div>
+                                        </div>
+
+                                        {/* 3️⃣ Link de Pago */}
+                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+                                            <div className="info-box d-flex flex-column align-items-center p-3">
+                                                <div className="info-icon mb-2">
+                                                    <FaLink size={32} />
+                                                </div>
+                                                <h3 className="info-box-title">LINK DE PAGO</h3>
+                                                <p className="info-box-text">Fácil y Seguro</p>
+                                            </div>
+                                        </div>
+                                        
+                                        {/* 4️⃣ Sistecredito y Addi (Canales Presenciales) */}
+                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+                                            <div className="info-box d-flex flex-column align-items-center p-3">
+                                                <div className="info-icon mb-2">
+                                                    <FaStore size={32} />
+                                                </div>
+                                                <h3 className="info-box-title">CRÉDITO</h3>
+                                                <p className="info-box-text">Sistecredito / Addi (Presencial)</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 4. SLIDE: VIDEO (Original 1, ahora 4) */}
+                        <div className="carousel-item">
+                            <video className="d-block w-100 carousel-media" autoPlay muted loop playsInline>
+                                <source src="./6420515-hd_1920_1080_24fps.mp4" type="video/mp4" />
+                                Tu navegador no soporta videos.
+                            </video>
+                            
+                            <div className="carousel-caption">
+                                <h1>Libera la Velocidad</h1>
+                                <p>Diseñadas para devorar kilómetros. Encuentra la máquina perfecta para tu próxima aventura.</p>
+                            </div>
+                        </div>
+
+                        {/* 5. SLIDE: DESCUENTOS IMPERDIBLES (Original 3, ahora 5) */}
+                        <div className="carousel-item">
+                            <img src="./bici2.png" className="d-block w-100 carousel-media" alt="Descuento especial" />
+                            <div className="carousel-caption">
+                                <h1>¡Descuentos Imperdibles!</h1>
+                                <p>Descubre referencias exclusivas de marcas como Optimus, GW, Benson.</p>
+                            </div>
+                        </div>
+
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
