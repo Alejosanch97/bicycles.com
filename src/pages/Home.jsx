@@ -195,7 +195,6 @@ export const Home = () => {
                                                     <FaCreditCard size={32} />
                                                 </div>
                                                 <h3 className="info-box-title">TARJETAS Y TRANSFERENCIAS</h3>
-                                                <p className="info-box-text">Débito / Crédito Y Transferencia (Cuenta de Ahorros)</p>
                                             </div>
                                         </div>
 
