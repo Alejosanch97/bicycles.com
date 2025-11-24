@@ -1,5 +1,9 @@
 /* src/Styles/home.css */
 
+/* ========================================================= */
+/* 1. ESTILOS GENERALES Y BASE */
+/* ========================================================= */
+
 .home-container {
   max-width: 100%;
   overflow-x: hidden;
@@ -7,30 +11,33 @@
   background-color: #ffffff; 
 }
 
-/* -------------------------------------------------------------------------- */
-/* --- SECCIONES GENERALES Y TIPOGRAFÍA --- */
-/* -------------------------------------------------------------------------- */
-
-/* AJUSTE: section-wrapper solo controla el padding vertical y ocupa todo el ancho */
-.section-wrapper {
-  padding: 3rem 0; /* Padding vertical, sin padding lateral */
-  width: 100%; /* Ocupa todo el ancho */
+.top-banner-envios {
+    background-color: #750901ff;
+    color: rgb(248, 246, 246); 
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
 }
 
-/* AJUSTE: El .container define el ancho máximo y el padding lateral del contenido */
+.banner-text-envios {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.section-wrapper {
+  padding: 3rem 0; 
+  width: 100%; 
+}
+
 .container {
   max-width: 1200px;
-  margin: 0 auto; /* Centra el contenido */
-  padding: 0 1rem; /* Pequeño padding lateral para que el contenido no toque los bordes */
+  margin: 0 auto; 
+  padding: 0 1rem; 
 }
 
-.bg-light-gray {
-  background-color: #f8f8f8;
-}
-
-.bg-white {
-  background-color: #ffffff;
-}
+.bg-light-gray { background-color: #f8f8f8; }
+.bg-white { background-color: #ffffff; }
 
 .section-title {
   font-size: 3.5rem;
@@ -48,7 +55,7 @@
   margin-top: 0;
 }
 
-/* Estilo para los botones de acción (Comprar, Ver Más) */
+/* Botones */
 .btn {
   font-weight: bold;
   border-radius: 5px;
@@ -71,13 +78,10 @@
   color: white;
 }
 
-
-/* -------------------------------------------------------------------------- */
-/* --- CARRUSEL PRINCIPAL --- */
-/* -------------------------------------------------------------------------- */
-.carousel-section {
-  padding: 0;
-}
+/* ========================================================= */
+/* 2. CARRUSEL PRINCIPAL (Desktop y Estilos Base) */
+/* ========================================================= */
+.carousel-section { padding: 0; }
 
 .carousel-item {
   height: 65vh;
@@ -92,937 +96,285 @@
   object-position: center;
 }
 
+/* ---------------------------------------------------- */
+/* CAPTION PARA SLIDES DE SOLO TEXTO (Video / Envíos) */
+/* ---------------------------------------------------- */
 .carousel-caption {
-  background-color: rgba(0, 0, 0, 0.6); 
-  padding: 2.5rem;
-  border-radius: 8px;
+  /* Transparencia sutil y elegante */
+  background-color: rgba(0, 0, 0, 0.4); 
+  /* Padding equilibrado en Desktop */
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  /* Centrado absoluto */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 650px;
-  box-sizing: border-box;
+  width: auto; /* Se ajusta al contenido */
+  max-width: 700px; /* Pero no se pasa de ancho */
+  min-width: 40%;
   text-align: center;
   color: white;
   z-index: 2;
-  word-wrap: break-word;
+  backdrop-filter: blur(5px);
+  /* Eliminamos bottom por defecto de bootstrap */
+  bottom: auto; 
 }
 
 .carousel-caption h1 {
-  font-size: 3.3rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
+  line-height: 1.1;
 }
 
 .carousel-caption p {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: white;
+  margin-bottom: 0;
+  line-height: 1.4;
 }
 
-/* --- Overlay "AVANA LEATHER" --- */
+/* ---------------------------------------------------- */
+/* OVERLAY PARA SLIDES CON MINI-CARDS (Iconos) */
+/* ---------------------------------------------------- */
 .custom-caption-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  padding: 2rem 1rem;
-  background-color: transparent;
-  z-index: 2;
-}
-
-.avana-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.2rem;
-  font-weight: bold;
-  letter-spacing: 1rem;
-  margin-bottom: 3.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-/* --- Cuadros con íconos --- */
-.info-boxes-container {
-  width: 100%;
-  max-width: 960px;
-  margin-top: 2rem;
-  overflow-x: hidden;
-}
-
-.info-boxes-container .row {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: nowrap;
-}
-
-.info-box {
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  color: white;
-  flex: 1 1 22%;
-  min-width: 200px;
-  padding: 1rem;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.info-box:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-.info-box .info-icon svg {
-  font-size: 2.5rem;
-}
-
-.info-box-title {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 0.5rem;
-  margin-bottom: 0.3rem;
-}
-
-.info-box-text {
-  font-size: 0.8rem;
-}
-
-/* Flechas del carrusel */
-.carousel-control-prev,
-.carousel-control-next {
-  z-index: 10;
-}
-/* -------------------------------------------------------------------------- */
-/* --- FIN CARRUSEL PRINCIPAL --- */
-/* -------------------------------------------------------------------------- */
-
-
-/* -------------------------------------------------------------------------- */
-/* --- SECCIÓN "HECHO EN PASTO" (FONDO GRIS) --- */
-/* -------------------------------------------------------------------------- */
-.info-section.section-wrapper {
-  background-color: #f8f8f8; /* Aplica el color bg-light-gray */
-}
-
-.info-section .section-title {
-  font-size: 2.5rem;
-}
-
-.info-section .info-text {
-  font-size: 1.2rem;
-  color: #555;
-  max-width: 700px;
-  margin: 0.5rem auto 0;
-}
-
-.info-section .text-colombia {
-  color: #8b4513;
-}
-
-
-/* -------------------------------------------------------------------------- */
-/* --- SECCIÓN DE CATEGORÍAS Y PRODUCTOS DESTACADOS --- */
-/* -------------------------------------------------------------------------- */
-
-/* Aseguramos que el padding inferior se reduzca para la fusión de secciones */
-.categories-section.section-wrapper,
-.featured-products.section-wrapper {
-  padding-bottom: 0; 
-}
-
-.category-card,
-.product-card {
-  /* Fondo muy sutil para diferenciar del blanco de la página */
-  background-color: #f9f3eb; 
-  /* Borde suave para definir los límites */
-  border: 1px solid #E0E0E0; 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.category-card:hover,
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.category-image,
-.product-image {
-  height: 300px;
-  object-fit: cover;
-  width: 100%;
-}
-
-.category-name,
-.product-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #444;
-}
-
-.product-price {
-  font-size: 1.1rem;
-  color: #8b4513;
-  font-weight: bold;
-}
-
-/* AJUSTE: Ajustes para el carrusel de productos (featured-products) */
-.featured-products .carousel-inner {
-  padding: 1rem 0; /* Eliminamos el padding lateral del inner */
-}
-
-.featured-products .carousel-control-prev,
-.featured-products .carousel-control-next {
-  width: 5%; 
-  color: #8b4513;
-  /* Posicionamos las flechas un poco más arriba y las centramos verticalmente */
-  top: 40%; 
-  transform: translateY(-50%);
-}
-
-.featured-products .carousel-control-prev-icon,
-.featured-products .carousel-control-next-icon {
-  background-image: none;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.featured-products .carousel-control-prev-icon::before {
-  content: '‹';
-  font-size: 2rem;
-  line-height: 1;
-  color: white;
-}
-
-.featured-products .carousel-control-next-icon::before {
-  content: '›';
-  font-size: 2rem;
-  line-height: 1;
-  color: white;
-}
-
-
-/* -------------------------------------------------------------------------- */
-/* --- SECCIÓN DE CALIDAD (DETALLES) --- */
-/* -------------------------------------------------------------------------- */
-.quality-item {
-  padding: 1rem;
-  border-left: 3px solid #8b4513;
-  margin-bottom: 2rem;
-}
-
-.quality-item p {
-  color: #555;
-  line-height: 1.6;
-}
-
-.central-image {
-  max-height: 600px;
-  object-fit: contain;
-}
-
-
-/* -------------------------------------------------------------------------- */
-/* --- SECCIÓN GIFT CARD (FUSIÓN COMPLETA) --- */
-/* -------------------------------------------------------------------------- */
-
-/* Eliminamos padding y margen superior para una fusión perfecta con la sección de productos */
-.gift-card-section {
-  position: relative;
-  height: 50vh; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: transparent; 
-  padding: 0; 
-  margin-top: 0; 
-}
-
-.gift-card-media {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.gift-card-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.gift-card-box {
-  background-color: rgba(50, 50, 50, 0.7); 
-  padding: 2.5rem 3.5rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  color: white; 
-}
-
-.gift-card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: white; 
-  margin-bottom: 0.5rem;
-}
-
-.gift-card-subtitle {
-  font-size: 1.2rem;
-  color: #c08764; 
-  letter-spacing: 0.3rem;
-  margin-bottom: 1.5rem;
-  font-weight: bold;
-}
-
-.gift-card-button {
-  background-color: white; 
-  color: #333;
-  padding: 0.75rem 2rem;
-  text-decoration: none;
-  font-size: 1.1rem;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.gift-card-button .arrow {
-  margin-left: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: normal;
-  transition: margin-left 0.3s ease;
-}
-
-.gift-card-button:hover {
-  background-color: #eee;
-}
-
-.gift-card-button:hover .arrow {
-  margin-left: 1rem;
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- SECCIÓN DE TESTIMONIOS (Reviews) --- */
-/* -------------------------------------------------------------------------- */
-
-.testimonials-section {
-  padding: 4rem 1rem;
-  /* El fondo 'bg-light-gray' debe ser el mismo que uses en tu página */
-  background-color: #f8f8f8; 
-}
-
-.testimonials-section .section-title {
-  color: #212121;
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.testimonials-section .section-subtitle {
-  color: #555;
-  font-size: 1.1rem;
-  margin-bottom: 3rem;
-}
-
-/* Contenedor del Testimonio */
-.testimonial-box {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2.5rem;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  border-top: 5px solid #1976D2; /* Azul para confianza */
   text-align: center;
+  color: white;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.1);
+  z-index: 2;
 }
 
-.testimonial-icon {
-  font-size: 2.5rem;
-  color: #F9A825; /* Amarillo de acento */
-  margin-bottom: 1rem;
+/* Título de las secciones con Cards (MEDIOS DE PAGO) */
+.avana-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: bold;
+  letter-spacing: 1rem;
+  margin-bottom: 5rem; 
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 }
 
-.testimonial-text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 1.5rem;
-  font-style: italic;
+/* --- CONTENEDOR DE CAJAS --- */
+.info-boxes-container {
+  width: 100%;
+  max-width: 1000px;
 }
 
-.testimonial-author-rating {
+.info-boxes-container .row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; 
+  gap: 15px;
+  flex-wrap: nowrap !important; 
+}
+
+/* Estilo de la Caja Individual (Desktop) */
+.info-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex: 1; 
+  min-width: 0;
 }
 
-.testimonial-author {
-  font-weight: 600;
-  color: #212121;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+.info-box:hover {
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Estrellas de Calificación */
-.star-rating i {
-  color: #F9A825; /* Color amarillo para las estrellas */
-  margin: 0 1px;
-}
+.info-box .info-icon svg { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.info-box-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.2rem; }
+.info-box-text { font-size: 0.9rem; }
 
-/* Estilos para los indicadores del carrusel */
-.testimonial-indicators {
-    bottom: -30px; 
-}
+.carousel-control-prev, .carousel-control-next { z-index: 10; }
 
-.testimonial-indicators button {
-    background-color: #1976D2; 
-    opacity: 0.5;
-    transition: opacity 0.3s;
-}
+/* ========================================================= */
+/* 3. SECCIONES DE CONTENIDO */
+/* ========================================================= */
+.info-section.section-wrapper { background-color: #f8f8f8; }
+.info-section .info-text { font-size: 1.2rem; color: #555; max-width: 700px; margin: 0.5rem auto 0; }
+.info-section .text-colombia { color: #8b4513; }
 
-.testimonial-indicators button.active {
-    opacity: 1;
-}
+.categories-section.section-wrapper,
+.featured-products.section-wrapper { padding-bottom: 0; }
 
-/* 🧭 RESPONSIVE */
-@media (max-width: 768px) {
-  .testimonial-box {
-    padding: 2rem 1rem;
-  }
-  .testimonial-text {
-    font-size: 1rem;
-  }
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- SECCIÓN HISTORIA DE LA MARCA (AJUSTE DE PADDING INTERNO) --- */
-/* -------------------------------------------------------------------------- */
-.brand-story.section-wrapper {
-  padding: 4rem 0; /* Mantenemos padding vertical, quitamos lateral */
-  background-color: #ffffff; 
-}
-
-/* AJUSTE: Mantenemos el contenido de la historia centrado con el .container */
-.brand-story .container {
-    padding: 0 1rem; 
-}
-
-.brand-story .section-title {
-  text-align: left;
-  font-size: 2.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.brand-story p {
-  line-height: 1.7;
-  color: #555;
-  font-size: 1rem;
-}
-
-.brand-story p,
-.brand-story .lead {
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
-}
-
-.brand-story .lead {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #333;
-}
-
-.story-image {
+.category-card, .product-card {
+  background-color: #f9f3eb;
+  border: 1px solid #E0E0E0;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  max-width: 90%;
-  display: block;
-  margin: 0 auto;
-  max-height: 500px;
-  object-fit: cover;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.category-card:hover, .product-card:hover { transform: translateY(-5px); }
+.category-image, .product-image { height: 300px; object-fit: cover; width: 100%; }
+.category-name, .product-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: #444; }
+.product-price { font-size: 1.1rem; color: #8b4513; font-weight: bold; }
+
+.featured-products .carousel-control-prev,
+.featured-products .carousel-control-next {
+  width: 5%; color: #8b4513; top: 40%; transform: translateY(-50%);
+}
+.featured-products .carousel-control-prev-icon,
+.featured-products .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); border-radius: 50%; width: 40px; height: 40px;
 }
 
+/* Calidad */
+.quality-item { padding: 1rem; border-left: 3px solid #8b4513; margin-bottom: 2rem; }
+.central-image { max-height: 600px; object-fit: contain; }
 
-/* -------------------------------------------------------------------------- */
-/* --- BOTONES FLOTANTES DE CARRITO Y WHATSAPP (CORREGIDO) --- */
-/* -------------------------------------------------------------------------- */
-.floating-buttons-container {
-    position: fixed;
-    bottom: 20px; /* Distancia desde la parte inferior */
-    right: 20px; /* Distancia desde la derecha */
-    display: none; /* <-- CLAVE: Ocultar por defecto en escritorio */
-    flex-direction: column-reverse; /* <-- CLAVE: Invierte el orden para que el Carrito (definido primero en HTML) quede ARRIBA */
-    align-items: flex-end; /* Alinea los elementos a la derecha */
-    z-index: 1050; /* Asegura que esté por encima de otros elementos, como los modales */
-}
+/* Gift Card */
+.gift-card-section { height: 50vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.gift-card-media { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.gift-card-content { position: relative; z-index: 2; text-align: center; }
+.gift-card-box { background-color: rgba(50, 50, 50, 0.7); padding: 2.5rem; border-radius: 10px; color: white; }
+.gift-card-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: white; }
+.gift-card-subtitle { font-size: 1.2rem; color: #c08764; letter-spacing: 0.3rem; font-weight: bold; }
+.gift-card-button { background-color: white; color: #333; padding: 0.75rem 2rem; display: inline-flex; align-items: center; text-decoration: none; }
 
-/* Estilos comunes para ambos botones flotantes */
-.floating-btn {
-    width: 50px; /* Tamaño del botón */
-    height: 50px; /* Tamaño del botón */
-    border-radius: 50%; /* Forma circular */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacarlo */
-    margin-top: 10px; /* Espacio ENTRE el carrito (arriba) y WhatsApp (abajo) */
-    margin-bottom: 0;
-    transition: transform 0.2s ease-in-out, background-color 0.2s ease;
-}
+/* Testimonios */
+.testimonials-section { padding: 4rem 1rem; background-color: #f8f8f8; }
+.testimonial-box { max-width: 800px; margin: 0 auto; padding: 2.5rem; background: white; border-radius: 12px; border-top: 5px solid #1976D2; text-align: center; }
+.testimonial-icon { font-size: 2.5rem; color: #F9A825; margin-bottom: 1rem; }
+.testimonial-text { font-size: 1.2rem; font-style: italic; color: #333; }
+.testimonial-author { font-weight: 600; font-size: 1rem; }
+.star-rating i { color: #F9A825; }
+.testimonial-indicators { bottom: -30px; }
+.testimonial-indicators button { background-color: #1976D2; }
 
-.floating-btn:hover {
-    transform: scale(1.05); /* Mantenemos el efecto de escala */
-}
+/* Historia */
+.brand-story.section-wrapper { padding: 4rem 0; }
+.story-image { border-radius: 10px; max-width: 90%; display: block; margin: 0 auto; }
 
-/* Estilo específico para el botón de WhatsApp (Verde) */
-.whatsapp-btn {
-    background-color: #25d366; /* WhatsApp Green */
-    color: white;
-    border: none;
-}
+/* Botones Flotantes */
+.floating-buttons-container { position: fixed; bottom: 20px; right: 20px; display: none; flex-direction: column-reverse; align-items: flex-end; z-index: 1050; }
+.floating-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; margin-top: 10px; transition: transform 0.2s; }
+.whatsapp-btn { background-color: #25d366; color: white; }
+.cart-btn { background-color: #8b4513; color: white; }
+.cart-btn .badge { position: absolute; top: -5px; right: -5px; padding: 5px 8px; font-size: 12px; }
 
-/* HOVER ESPECÍFICO PARA WHATSAPP: Color Verde Oscuro */
-.whatsapp-btn:hover {
-    background-color: #128c7e; 
-    color: white;
-}
+/* ========================================================= */
+/* 4. MEDIA QUERIES (RESPONSIVE) */
+/* ========================================================= */
 
-/* Estilo específico para el botón del Carrito (Color de marca) */
-.cart-btn {
-    background-color: #8b4513; /* Usando tu color principal de marca */
-    color: white;
-    border: none;
-}
-
-/* HOVER ESPECÍFICO PARA CARRITO: Color Marrón Oscuro */
-.cart-btn:hover {
-    background-color: #6a340f; 
-    color: white;
-}
-
-
-/* Estilo del badge de contador (como en la Navbar) */
-.cart-btn .badge {
-    position: absolute;
-    top: -5px; /* Ajusta la posición vertical del contador */
-    right: -5px; /* Ajusta la posición horizontal del contador */
-    padding: 5px 8px;
-    font-size: 12px;
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- MEDIA QUERIES (RESPONSIVE DESIGN) --- */
-/* -------------------------------------------------------------------------- */
-
-/* Escritorio grande */
-@media (min-width: 1200px) {
-  .avana-title {
-    font-size: 4rem;
-    letter-spacing: 1.2rem;
-  }
-}
-
-/* Tablets y PC pequeños (768px a 1199px) */
+/* TABLETS (768px a 1199px) */
 @media (min-width: 768px) and (max-width: 1199px) {
-  
-  .section-wrapper {
-    padding: 2.5rem 0; /* Quitamos padding lateral de aquí */
-  }
-
-  .container {
-    padding: 0 1rem; /* Aseguramos padding interno */
-  }
-  
-  .section-title {
-    font-size: 3rem;
-  }
-  
-  /* --- SECCIÓN GIFT CARD (RESPONSIVE) --- */
-  .gift-card-section {
-    height: 45vh; /* Levemente más alto en tablet */
-  }
+  .avana-title { font-size: 2.5rem; letter-spacing: 0.5rem; margin-bottom: 4rem; }
+  .info-box { padding: 1rem 0.5rem; }
+  .info-box-title { font-size: 0.9rem; }
+  .section-title { font-size: 3rem; }
+  .gift-card-section { height: 45vh; }
+  .carousel-caption { padding: 2rem; width: 70%; }
 }
 
-/* ✅ Móviles (Hasta 767px) */
+/* ========================================================= */
+/* 📱 MÓVIL (Hasta 767px) */
+/* ========================================================= */
 @media (max-width: 767px) {
   
-  .section-wrapper {
-    padding: 1.5rem 0; /* Quitamos padding lateral */
-  }
+  .section-title { font-size: 2rem; margin-bottom: 1.5rem; }
   
-  .container {
-    padding: 0 0.8rem; /* Aplicamos padding lateral solo al contenido en móvil */
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+  .carousel-item {
+    height: 60vh; 
+    min-height: 450px;
   }
 
-  /* ------------------- CARRUSEL (NO MODIFICADO) ------------------- */
-  .info-boxes-container .row {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 0.3rem;
-    padding: 0;
-    margin: 0 auto;
-    flex-wrap: nowrap;
-  }
-
-  .info-boxes-container .col-12.col-sm-6.col-md-3 {
-    flex: 0 0 auto;
-    width: auto;
-    max-width: none;
-    min-width: auto;
-  }
-
-  .info-box {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    padding: 0.4rem 0.6rem;
-    min-width: unset;
-    max-width: fit-content;
-    border-radius: 0.4rem;
-    text-align: center;
-  }
-
-  .info-box .info-icon svg {
-    font-size: 0.7rem !important;
-    margin-bottom: 0.1rem;
-  }
-
-  .info-box-title {
-    font-size: 0.45rem !important;
-    margin-bottom: 0.1rem;
-    white-space: nowrap;
-  }
-
-  .info-box-text {
-    font-size: 0.35rem !important;
+  /* --- SLIDES CON MINI CARDS --- */
+  .avana-title {
+    font-size: 1.8rem !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 3rem !important;
     line-height: 1.1;
-    white-space: nowrap;
+    width: 100%;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+  }
+
+  .info-boxes-container {
+    width: 100%;
+    padding: 0 4px; 
+  }
+
+  .info-boxes-container .row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    gap: 5px !important; 
+    margin: 0 !important;
+  }
+
+  .info-boxes-container .row > div {
+    flex: 1 1 0px !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 0 !important;
+    min-width: 0;
   }
 
   .info-box {
-    min-height: 70px;
+    padding: 0.5rem 0.2rem !important;
+    min-height: 80px;
+    background-color: rgba(0, 0, 0, 0.25) !important; 
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px); 
+    width: 100% !important;
+    border-radius: 6px;
   }
 
+  .info-box .info-icon svg { font-size: 1.2rem !important; margin-bottom: 3px; }
+  .info-box-title { font-size: 0.5rem !important; margin-bottom: 0; line-height: 1.1; white-space: normal; word-break: break-word; }
+  .info-box-text { font-size: 0.4rem !important; margin-top: 2px; line-height: 1; opacity: 0.9; }
+
+  /* --- 🔥 CORRECCIÓN SLIDES SOLO TEXTO (ENVÍOS / VIDEO) --- */
   .carousel-caption {
-    padding: 0.5rem 1rem;
-    max-width: 90%;
-    margin: 0 auto;
-    word-wrap: break-word;
-    text-align: center;
+    width: 85%; /* Menos ancho para que se vea compacto */
+    padding: 1.5rem 1rem; /* Padding ajustado para quitar espacios muertos */
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(4px);
   }
 
   .carousel-caption h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-    word-break: break-word;
-    white-space: normal;
+    font-size: 2.2rem; /* Letra GRANDE para llenar el espacio */
+    margin-bottom: 0.5rem;
   }
 
   .carousel-caption p {
-    font-size: 1.3rem;
+    font-size: 1.1rem; /* Texto descriptivo más grande y legible */
     line-height: 1.3;
-    margin-top: 0.5rem;
-    white-space: normal;
-  }
-  /* ------------------- FIN CARRUSEL ------------------- */
-
-
-  /* --- SECCIÓN CATEGORÍAS/PRODUCTOS --- */
-  .category-image,
-  .product-image {
-    height: 200px; /* Reducimos altura en móvil */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
-  .category-name,
-  .product-name {
-    font-size: 1.3rem;
-  }
-
-  .product-price {
-    font-size: 1rem;
-  }
-
-
-  /* ✅ CORRECCIÓN COMPLETA: PRODUCTOS DESTACADOS */
-  .featured-products .carousel-item {
-    padding-bottom: 2rem; /* Más espacio para el botón */
-  }
-
-  .featured-products .product-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    padding: 1rem 0.8rem;
-    background: #fff;
-    border-radius: 12px;
-    box-sizing: border-box;
-    text-align: center;
-    height: 100%;
-  }
-
-  .featured-products .product-image {
-    width: 100%;
-    height: 180px; /* Más pequeño en móvil */
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 0.8rem;
-  }
-
-  .featured-products .product-name {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0.4rem 0;
-  }
-
-  .featured-products .product-price {
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .featured-products .buy-button,
-  .featured-products .btn.buy-button {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: #8b4513;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: auto; /* Siempre al fondo */
-  }
-
-  .featured-products .buy-button:hover {
-    background-color: #a0522d;
-  }
-
-  .featured-products .carousel-control-prev,
-  .featured-products .carousel-control-next {
-    top: 30%; /* Baja flechas */
-  }
-  /* --- ✅ FIN PRODUCTOS DESTACADOS --- */
-
-
-  /* --- SECCIÓN DETALLES (CALIDAD) --- */
-  .quality-item {
-    padding: 0 0.5rem 0 1rem;
-    border-left: 2px solid #8b4513;
-    margin-bottom: 1.5rem;
-  }
-
-  .quality-item p {
-    font-size: 0.9rem;
-  }
-
-  .central-image {
-    margin: 2rem auto;
-  }
-
-  /* --- SECCIÓN GIFT CARD (RESPONSIVE) --- */
-  .gift-card-section {
-    height: 35vh;
-    padding: 0; 
-  }
-
-  .gift-card-box {
-    padding: 1.5rem 2rem;
-  }
-
-  .gift-card-title {
-    font-size: 2.5rem;
-    color: white; 
-  }
-
-  .gift-card-subtitle {
-    font-size: 1rem;
-    letter-spacing: 0.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .gift-card-button {
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  /* --- SECCIÓN HISTORIA --- */
-  .brand-story .section-title {
-    font-size: 2rem;
-    text-align: center;
-  }
-
-  .brand-story p {
-    font-size: 0.95rem;
-  }
-
-  .brand-story .lead {
-    font-size: 1.1rem;
-  }
-
-  .story-image {
-    max-width: 100%;
-    margin-top: 1.5rem;
-    max-height: 300px;
-    object-fit: contain; 
-  }
-
-  /* Ajuste del modal de contacto en pantallas pequeñas */
-  .modal-dialog {
-    max-width: 92%;
-    margin: 2rem auto !important;
-  }
-
-  .modal-content {
-    border-radius: 20px !important;
-    padding: 1.5rem !important;
-    background: linear-gradient(#ffffff 90%, #f8f8f8);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  }
-
-  .modal-content .form-control {
-    font-size: 1rem;
-    padding: 12px;
-  }
-
-  .modal-content .btn-dark {
-    font-size: 1rem;
-    padding: 12px;
-    border-radius: 10px;
-  }
-  
-  /* CLAVE: Mostrar los botones flotantes solo en móviles */
-  .floating-buttons-container {
-      display: flex; 
-  }
+  /* Ajustes generales móvil */
+  .carousel-control-prev, .carousel-control-next { width: 8%; }
+  .custom-caption-overlay { background-color: rgba(0,0,0,0.1); padding: 0 0.5rem; }
+  .category-image, .product-image { height: 200px; }
+  .floating-buttons-container { display: flex; }
+  .brand-story .col-md-6.text-center.text-md-start { padding: 0 1.5rem !important; }
 }
 
-/* 📱 Extra pequeño (<400px): más reducción */
-@media (max-width: 400px) {
-  
-  .gift-card-title {
-    font-size: 2rem;
-  }
-
-  .gift-card-subtitle {
-    font-size: 0.8rem;
-  }
-}
-
-.brand-story .col-md-6.text-center.text-md-start {
-    /* Aplica un padding interno de 1.5rem solo en horizontal */
-    padding-left: 5rem !important; 
-    padding-right: 5rem !important; 
-    
-    /* Nota: El !important solo debe usarse si falla la regla A y B */
-}
-
-.brand-story .row > .col-md-6 {
-    padding-left: 0; 
-    padding-right: 0; 
-}
-
-.top-banner-envios {
-    /* El color de fondo es el que mencionaste en el primer mensaje */
-    background-color: #f74b02; /* Color terracota/greige */
-    color: rgb(248, 246, 246); /* Color de texto blanco para contraste */
-    text-align: center;
-    padding: 10px 0; /* Espacio arriba y abajo */
-    width: 100%;
-    /* Opcional: Si quieres que el banner tenga el ancho completo de la ventana */
-    /* margin-left: calc(-50vw + 50%); */
-}
-
-.banner-text-envios {
-    margin: 0; /* Elimina el margen por defecto del párrafo */
-    font-size: 1rem; /* Ajusta el tamaño del texto si es necesario */
-    font-weight: 500; /* Peso de la fuente semi-bold */
-}
-
-/* 🛠️ Ajuste especial para portátiles con poca altura (ej: 1366x768) */
-@media screen and (min-width: 768px) and (max-height: 800px) {
-  .featured-products .product-card {
-    max-height: 80vh; /* un poco menos para dejar espacio entre secciones */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-    margin-bottom: 2.5rem; /* 💡 más separación inferior con la siguiente sección */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border-radius: 16px;
-    background: #fff;
-    transition: transform 0.3s ease;
-  }
-
-  .featured-products .product-card:hover {
-    transform: translateY(-4px);
-  }
-
-  .featured-products .product-image {
-    height: 200px; /* aún más compacta */
-    object-fit: cover;
-    border-radius: 12px;
-  }
-
-  .featured-products .product-name {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0.4rem 0;
-  }
-
-  .featured-products .product-price {
-    font-size: 1.05rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .featured-products .buy-button {
-    margin-top: auto;
-    font-size: 1.1rem;
-    font-weight: 700;
-    padding: 0.8rem 1.5rem;
-    border-radius: 10px;
-    background-color: #8B4513; /* tono más elegante y visible */
-    color: #fff;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-  }
-
-  .featured-products .buy-button:hover {
-    background-color: #a0522d;
-    transform: scale(1.05);
-  }
+/* Ajuste para pantallas extremadamente angostas (iPhone SE o menores) */
+@media (max-width: 360px) {
+  .info-box-text { display: none; } 
+  .info-box-title { font-size: 0.45rem !important; }
 }
